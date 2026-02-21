@@ -15,7 +15,7 @@ import time
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.cuda.amp import GradScaler, autocast
+from torch.amp import autocast, GradScaler
 from torch.utils.data import DataLoader
 
 from ..models.unet import SmallUNet

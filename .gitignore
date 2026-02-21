@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+outputs/
+data/
+*.egg-info/
+.eggs/
+wandb/
+*.pt
+*.pth
+*.bin
+*.safetensors
