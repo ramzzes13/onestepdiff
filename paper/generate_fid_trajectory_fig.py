@@ -18,8 +18,8 @@ v6_steps = [10, 15, 20, 25, 30, 35]
 v6_fid =   [178.42, 185.16, 134.00, 152.66, 117.90, 82.64]
 
 # v7: constant regression weight, cosine LR, lambda_dm=0.001
-v7_steps = [10, 15, 20]
-v7_fid =   [216.04, 158.65, 148.18]
+v7_steps = [10, 15, 20, 25, 30, 35]
+v7_fid =   [216.04, 158.65, 148.18, 151.36, 174.70, 107.85]
 
 fig, ax = plt.subplots(1, 1, figsize=(5.5, 3.8))
 
@@ -39,6 +39,9 @@ ax.annotate('82.64', xy=(35, 82.64), xytext=(32, 70),
 ax.annotate('115.01', xy=(20, 115.01), xytext=(16, 100),
             fontsize=8, color='#FF9800',
             arrowprops=dict(arrowstyle='->', color='#FF9800', lw=1))
+ax.annotate('107.85', xy=(35, 107.85), xytext=(32, 95),
+            fontsize=8, color='#9C27B0',
+            arrowprops=dict(arrowstyle='->', color='#9C27B0', lw=1))
 
 ax.set_xlabel('Training Steps (K)', fontsize=11)
 ax.set_ylabel('FID $\\downarrow$', fontsize=11)

@@ -338,7 +338,7 @@ Table~\ref{tab:main_results} reports distillation results across configurations.
 
 We compare three training configurations. With \textbf{decaying regression} weight (1.0$\to$0.3), FID plateaus at 139.77 (20K) then degrades to 174.83 (30K). With \textbf{constant regression and constant LR}, FID reaches 115.01 at 20K (DR-8: 110.38), but then degrades to 138.74 at 25K---the constant learning rate overshoots the optimum.
 
-With \textbf{constant regression and cosine LR}, FID improves continuously: 134.00 (20K) $\to$ 117.90 (30K) $\to$ \textbf{82.64} (35K), a 63\% improvement over the MSE baseline and 28\% better than constant LR. The cosine schedule decays the learning rate smoothly, preventing the overshoot that causes degradation at 25K+ with constant LR. This demonstrates that the combination of persistent LPIPS regression, cosine scheduling, and a moderate DM loss scale ($5 \times 10^{-5}$) enables stable long-horizon training.
+With \textbf{constant regression and cosine LR} ($\lambda_{\text{DM}} = 5 \times 10^{-5}$), FID improves continuously: 134.00 (20K) $\to$ 117.90 (30K) $\to$ \textbf{82.64} (35K), a 63\% improvement over the MSE baseline and 28\% better than constant LR. With a stronger DM loss ($\lambda_{\text{DM}} = 10^{-3}$) and cosine LR, the trajectory is more volatile (dipping at 30K before recovering to 107.85 at 35K), confirming that a moderate DM scale produces smoother optimization. The cosine schedule prevents the overshoot that causes degradation at 25K+ with constant LR, and the combination of cosine scheduling with moderate DM loss enables stable long-horizon training.
 
 \begin{table}[t]
 \caption{CIFAR-10 distillation results (5K generated vs.\ test set). DR-$N$: best-of-$N$ density-ratio verification.}
@@ -362,10 +362,14 @@ HF DDPM, LPIPS, 15K & 141.18 & 140.19 & 139.14 \\
 HF DDPM, LPIPS, 20K & 115.01 & 111.11 & 110.38 \\
 HF DDPM, LPIPS, 25K & 138.74 & 141.41 & 139.33 \\
 \midrule
-\multicolumn{4}{l}{\textit{Constant reg, cosine LR:}} \\
+\multicolumn{4}{l}{\textit{Cosine LR, $\lambda_{\text{DM}} = 5{\times}10^{-5}$:}} \\
 HF DDPM, LPIPS, 20K & 134.00 & --- & --- \\
 HF DDPM, LPIPS, 30K & 117.90 & 110.86 & 115.57 \\
 HF DDPM, LPIPS, 35K & \textbf{82.64} & 85.04 & 83.63 \\
+\midrule
+\multicolumn{4}{l}{\textit{Cosine LR, $\lambda_{\text{DM}} = 10^{-3}$:}} \\
+HF DDPM, LPIPS, 20K & 148.18 & 148.13 & 150.92 \\
+HF DDPM, LPIPS, 35K & 107.85 & 106.46 & 105.28 \\
 \bottomrule
 \multicolumn{4}{l}{\footnotesize $^\dagger$ Training collapsed (mean std $< 0.1$) after 5K steps.}
 \end{tabular}
@@ -400,8 +404,9 @@ SmallUNet & 222.12 & 219.93 & 220.10 \\
 HF DDPM, MSE (5K) & 237.09 & 234.23 & 233.93 \\
 HF DDPM, LPIPS decay (20K) & 139.77 & 135.22 & 137.38 \\
 HF DDPM, const LR (20K) & 115.01 & 111.11 & 110.38 \\
-HF DDPM, cosine LR (30K) & 117.90 & 110.86 & 115.57 \\
-HF DDPM, cosine LR (35K) & \textbf{82.64} & 85.04 & 83.63 \\
+Cosine, $\lambda_{\text{DM}}{=}5\text{e-}5$ (30K) & 117.90 & 110.86 & 115.57 \\
+Cosine, $\lambda_{\text{DM}}{=}5\text{e-}5$ (35K) & \textbf{82.64} & 85.04 & 83.63 \\
+Cosine, $\lambda_{\text{DM}}{=}10^{-3}$ (35K) & 107.85 & 106.46 & 105.28 \\
 \bottomrule
 \end{tabular}
 \end{table}

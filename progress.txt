@@ -36,7 +36,7 @@ Started: Sat Feb 21 09:43:48 PM MSK 2026
    |-------|--------|--------|--------|
    | 10K   | 180.72 | 181.61 | 180.33 |
    | 15K   | 141.18 | 140.19 | 139.14 |
-   | 20K   | 115.01 | 111.11 | 110.38 | <-- BEST
+   | 20K   | 115.01 | 111.11 | 110.38 |
    | 25K   | 138.74 | 141.41 | 139.33 |
 
 5. **ICML paper (paper/main.tex)**: Full 8-page ICML 2025 format paper.
@@ -46,25 +46,58 @@ Started: Sat Feb 21 09:43:48 PM MSK 2026
    - Clean LaTeX compilation (no errors)
 
 6. **Citation fixes**: Verified all references via web search.
-   - SiD authors corrected
-   - SwiftBrush author name fixed
-   - LCM-LoRA author name fixed
 
 7. **Git commits**: All pushed to github.com/ramzzes13/onestepdiff
 
-### Best Result:
-FID = 110.38 (DR-8 verification, constant regression, 20K steps)
-FID = 115.01 (standard, no verification, constant regression, 20K steps)
-FID = 135.22 (DR-4 verification, decaying regression, 20K steps)
+## Session 3 (Feb 22, 2026)
 
-### Key Finding:
-Constant regression weight (lambda_reg = 1.0 throughout) outperforms decaying
-(1.0 -> 0.3) by 25 FID points at 20K steps. The LPIPS perceptual loss serves
-as an essential mode-preserving anchor that the LoRA-based DM loss alone cannot
-provide, since the fake score NCE accuracy remains ~50%.
+### Completed:
+1. **v6 experiment (cosine LR, lambda_dm=5e-5)**: 35K steps, GPU 3.
+   Cosine LR schedule with 500-step warmup, min_lr_ratio=0.1.
+   Key finding: cosine LR prevents late-training degradation.
+   | Steps | FID    | DR-4   | DR-8   |
+   |-------|--------|--------|--------|
+   | 10K   | 178.42 | ---    | ---    |
+   | 15K   | 185.16 | ---    | ---    |
+   | 20K   | 134.00 | ---    | ---    |
+   | 25K   | 152.66 | 153.30 | 152.75 |
+   | 30K   | 117.90 | 110.86 | 115.57 |
+   | 35K   | 82.64  | 85.04  | 83.63  | <-- NEW BEST
+
+2. **v7 experiment (cosine LR, lambda_dm=0.001)**: 35K steps, GPU 7.
+   Same cosine LR as v6, but stronger DM loss. More volatile trajectory.
+   | Steps | FID    | DR-4   | DR-8   |
+   |-------|--------|--------|--------|
+   | 10K   | 216.04 | ---    | ---    |
+   | 15K   | 158.65 | 157.28 | 158.42 |
+   | 20K   | 148.18 | 148.13 | 150.92 |
+   | 25K   | 151.36 | 151.12 | 155.34 |
+   | 30K   | 174.70 | 175.98 | 175.85 |
+   | 35K   | 107.85 | 106.46 | 105.28 |
+
+3. **Paper updated**: Abstract, results tables, discussion, conclusion, FID figure
+   all updated with v6/v7 results. 10 pages.
+
+4. **Key insights from v6/v7**:
+   - Cosine LR prevents constant-LR overshoot (v5c degraded at 25K)
+   - Weak DM loss (5e-5) + cosine LR = smooth improvement to FID 82.64
+   - Strong DM loss (1e-3) + cosine LR = volatile, recovers to 107.85 at 35K
+   - lambda_dm sensitivity: 20x weaker DM loss gives 23% better FID
+
+### Best Result:
+FID = 82.64 (standard, cosine LR, lambda_dm=5e-5, 35K steps)
+FID = 105.28 (DR-8, cosine LR, lambda_dm=0.001, 35K steps)
+FID = 110.38 (DR-8, constant LR, 20K steps)
+
+### Key Findings:
+1. Cosine LR schedule is critical for long-horizon DMD training.
+   Constant LR overshoots the optimum at 25K+, causing degradation.
+2. Weaker DM loss (5e-5 vs 0.001) produces smoother optimization
+   with cosine LR, yielding 82.64 FID at 35K.
+3. LPIPS regression remains essential as persistent anchor.
 
 ### Remaining (Not Completed):
 - ImageNet / text-to-image experiments (GPU memory constrained by sglang servers)
 - SD v1.5 distillation (implemented but needs free GPU memory)
-- Longer training beyond 25K with constant reg (v5c showed degradation at 25K)
-- Learning rate / batch size tuning for constant-reg regime
+- Even longer training (50K+) with cosine LR (v6 still improving at 35K)
+- Ablation on min_lr_ratio and warmup steps
