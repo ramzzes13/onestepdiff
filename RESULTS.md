@@ -46,10 +46,17 @@ This report summarizes the implementation and experimental results of AdaDMD, an
 
 | Model | Steps | FID | DR-Verified (N=4) | DR-Verified (N=8) |
 |-------|-------|-----|-------------------|-------------------|
-| Custom UNet v4 | 20,000 | **222.12** | **219.93** | 220.10 |
-| HF DDPM v4 (best) | 5,000 | 237.09 | 234.23 | **233.93** |
-| HF DDPM v4 | 10,000 | 340.62 | 339.94 | 339.84 |
-| HF DDPM v4 | 20,000 | 454.02 | - | - |
+| Custom UNet v4 (MSE) | 20,000 | 222.12 | 219.93 | 220.10 |
+| HF DDPM v4 (MSE) | 5,000 | 237.09 | 234.23 | 233.93 |
+| HF DDPM v4 (MSE) | 10,000 | 340.62 | 339.94 | 339.84 |
+| **HF DDPM v5b (LPIPS)** | **5,000** | **232.78** | 233.53 | 235.20 |
+| **HF DDPM v5b (LPIPS)** | **10,000** | **140.16** | 140.28 | 145.17 |
+| **HF DDPM v5b (LPIPS)** | **15,000** | **139.80** | 141.84 | 140.29 |
+| **HF DDPM v5b (LPIPS)** | **20,000** | **139.77** | **135.22** | **137.38** |
+| HF DDPM v5b (LPIPS) | 25,000 | 155.91 | 158.40 | 155.47 |
+| HF DDPM v5b (LPIPS) | 30,000 | 174.83 | 176.77 | 177.48 |
+
+**Best overall: FID = 135.22 (HF DDPM v5b + LPIPS + DR-4 verification at 20K steps)**
 
 ### Ablation Studies (5,000 steps each, Custom UNet)
 
@@ -94,37 +101,39 @@ This report summarizes the implementation and experimental results of AdaDMD, an
 
 ## Key Findings and Lessons Learned
 
-### 1. LoRA for Fake Score Estimation Works
-- LoRA adapters successfully capture the difference between real and fake score functions
-- With proper configuration (epsilon prediction, conv layer targeting, warmup phase), the LoRA-based approach produces non-zero DM gradients and meaningful training dynamics
-- Critical bug discovered: LoRA must predict **noise** (epsilon), not clean images, matching the base model's parameterization
+### 1. Paired LPIPS Regression is Essential (v5b)
+- Unpaired MSE causes mean collapse (output std drops to 0.07 within 5K steps)
+- Even paired L1/smooth-L1 collapses with paired targets
+- **Only paired LPIPS** (AlexNet backbone, 9MB) maintains output diversity (std > 0.4)
+- LPIPS is not just for initialization: decaying its weight causes FID degradation after 20K steps
 
-### 2. Unpaired MSE Regression Causes Mean Collapse
-- Using `MSE(generator(z), random_real_images)` as regression drives the generator toward outputting the dataset mean (gray images)
-- The HF model collapsed between steps 5,000-10,000, with output std decreasing from 0.85 to 0.07
-- **Recommendation:** Use paired regression (z_i, teacher(z_i)) as in original DMD, or use perceptual loss (LPIPS) which is mode-seeking rather than mean-seeking
+### 2. DM Loss Provides Massive Distributional Signal
+- FID drops from 232.78 (regression only) to 139.77 (DM + regression) in 15K steps
+- This 40% improvement confirms the DM loss captures distributional information beyond pixel-level regression
+- However, DM loss alone cannot maintain quality (FID degrades when regression weight decays)
 
-### 3. Two-Phase Training Stabilizes Training
-- Phase 1 (regression only): Establishes basic image generation capability
-- Phase 2 (DM + regression): Refines distribution matching
-- The LoRA warmup is essential - without it, the fake score model is identical to the base model, producing zero DM gradients
+### 3. DM Loss Scaling is Critical
+- Use `.mean()` not `.sum()/B` for proper spatial normalization
+- Clamp adaptive weight to max 10.0 to prevent explosion
+- lambda_DM = 1e-4 (not 1e-3) for stability with LPIPS regression
 
-### 4. DM Loss Scaling is Critical
-- Raw DM loss magnitude (100-200x) overwhelms MSE loss (0.25)
-- Scaling DM loss by 0.001 prevents gradient explosion and mode collapse
-- Adaptive scaling via density-ratio EMA helps maintain balance
+### 4. Regression Weight Decay Causes Late Degradation
+- FID peaks at 15-20K steps (regression weight ~0.7-0.8)
+- Beyond 20K, as regression decays toward 0.3, FID degrades (155→175)
+- The LoRA fake score model (50% NCE accuracy) provides insufficient gradient signal alone
+- **Recommendation:** Keep constant regression weight or use very slow decay
 
 ### 5. Memory Efficiency Achieved
-- Peak GPU memory: 1.4-1.5 GB (vs estimated 3x base model for full DMD)
+- Peak GPU memory: 981 MB (vs estimated 3x base model for full DMD)
 - Single-GPU training demonstrated successfully
-- LoRA adds only 2-4% parameters vs full model copy
+- LoRA adds only 3% parameters vs full model copy
 
 ### 6. FID Gap Analysis
-The FID scores (~220-237) are significantly higher than SOTA CIFAR-10 results (~1-5 FID) due to:
-- **Base model quality:** The custom UNet (250 epochs) is far from convergence; SOTA models train for 1000+ epochs
-- **Training budget:** 5K-20K distillation steps vs 300K+ in the DMD paper
-- **Model capacity:** SmallUNet (6.6M) vs EDM models (60M+)
-- **Regression loss design:** Unpaired MSE vs paired LPIPS regression
+Best FID (135.22 with DR-4) is still far from SOTA (~1-5 FID) due to:
+- **Base model:** Unconditional DDPM (not optimized for distillation)
+- **Training budget:** 20K steps vs 300K+ in DMD paper
+- **Architecture mismatch:** DDPM at t=0 not designed for noise→image mapping
+- **Relative improvement is strong:** 40% FID reduction from MSE to LPIPS+DM
 
 ## Memory Profile
 
@@ -159,9 +168,9 @@ outputs/
 
 ## Future Work
 
-1. **Paired regression:** Pre-generate (noise, image) pairs from teacher for stable regression
-2. **LPIPS loss:** Replace MSE with perceptual loss to prevent mean collapse
-3. **Longer training:** Scale to 100K+ steps with proper base model
-4. **Better base model:** Use EDM or well-trained DDPM for fair comparison
-5. **SD v1.5 experiments:** Scale to text-to-image (implemented but not run due to memory constraints on shared GPUs)
-6. **GAN discriminator:** Add adversarial loss following DMD2 approach
+1. **Constant regression weight:** Keep LPIPS weight constant throughout training to avoid late degradation
+2. **Better base model:** Use EDM or well-trained DDPM for fair comparison
+3. **Longer training:** Scale to 100K+ steps with constant regression
+4. **SD v1.5 experiments:** Scale to text-to-image (implemented but needs free GPU memory)
+5. **GAN discriminator:** Add adversarial loss following DMD2 approach
+6. **Better fake score model:** Full LoRA fine-tuning may need more training steps

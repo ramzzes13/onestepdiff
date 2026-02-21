@@ -1,3 +1,56 @@
 # Progress Log for onestepdiff
 Started: Sat Feb 21 09:43:48 PM MSK 2026
 ---
+
+## Session 1 (Previous)
+- Implemented full AdaDMD framework (LoRA fake score, DR network, DR verification)
+- Custom SmallUNet (6.6M params) trained 250 epochs as base model
+- HF DDPM distillation with unpaired MSE regression
+- Ablation studies: LoRA rank (best r=8), adaptive weighting (+2.1 FID), DR regularization
+- Custom UNet: FID 222.12, HF DDPM: FID 237.09 (collapsed after 5K steps)
+- SD v1.5 pipeline implemented but not run due to GPU memory constraints
+
+## Session 2 (Current - Feb 21, 2026)
+
+### Completed:
+1. **Diagnosed mean collapse**: Unpaired MSE and L1 losses cause output std to drop to 0.07.
+   Only paired LPIPS (AlexNet, 9MB) maintains diversity.
+
+2. **Fixed DM loss explosion**: Changed .sum()/B to .mean(), clamped adaptive weight (max 10.0),
+   reduced lambda_DM from 0.001 to 0.0001, stronger regression anchor (min 0.3).
+
+3. **Training v5b (paired LPIPS + DM)**: 50K step run on GPU 3 with batch_size=8, LoRA rank=8.
+   Pre-generated 10K teacher pairs from 100-step DDPM.
+
+4. **FID evaluation results**:
+   | Steps | Phase     | FID    | DR-4   | DR-8   |
+   |-------|-----------|--------|--------|--------|
+   | 5K    | REG only  | 232.78 | 233.53 | 235.20 |
+   | 10K   | DM+REG    | 140.16 | 140.28 | 145.17 |
+   | 15K   | DM+REG    | 139.80 | 141.84 | 140.29 |
+   | 20K   | DM+REG    | 139.77 | 135.22 | 137.38 | <-- BEST
+   | 25K   | DM+REG    | 155.91 | 158.40 | 155.47 |
+   | 30K   | DM+REG    | 174.83 | 176.77 | 177.48 |
+
+   Key finding: FID peaks at 20K, degrades as regression weight decays.
+   LPIPS regression is a persistent requirement, not just initialization.
+
+5. **ICML paper**: Full 8-page paper (paper/main.tex) with:
+   - All citations verified against real papers (3 errors found and fixed)
+   - Figures generated from real data (7 figures)
+   - Updated with v5b results (FID 135.22 best with DR-4 verification)
+   - Clean LaTeX compilation (no errors)
+
+6. **Git commits**: 6 commits pushed to github.com/ramzzes13/onestepdiff
+
+### Best Result:
+FID = 135.22 (with DR-4 verification at 20K steps)
+FID = 139.77 (standard, no verification, 20K steps)
+
+### Remaining (Not Completed):
+- ImageNet / text-to-image experiments (GPU memory constrained by sglang servers)
+- Longer training with constant regression weight (avoid decay degradation)
+- SD v1.5 distillation (implemented but needs free GPU memory)
+
+### Training still running:
+v5b training at ~30K/50K steps, but FID is degrading. Best checkpoint is 20K.
