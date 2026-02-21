@@ -513,4 +513,16 @@ Figure~\ref{fig:training_dynamics} shows the training dynamics for both regressi
 
 \paragraph{Key observation.} The dynamics are qualitatively similar between decaying and constant regression, yet their FID trajectories diverge substantially after 15K steps (Figure~\ref{fig:fid_trajectory}). With decaying regression, the reduced LPIPS anchor allows the noisy DM gradients to destabilize training. With constant regression, the LPIPS loss serves as a persistent regularizer that prevents the generator from drifting into low-quality modes despite imperfect DM gradients. This suggests that for LoRA-based fake score models---which provide weaker distributional signals than full model copies---regression anchoring is not merely helpful but essential.
 
+\section{Qualitative Samples}
+\label{app:samples}
+
+Figure~\ref{fig:qualitative} compares teacher and student outputs. The teacher (100-step DDPM) produces recognizable CIFAR-10 images. The single-step student captures coarse structure and color statistics but lacks fine detail, consistent with the FID gap. This illustrates both the progress made (diverse, non-collapsed outputs) and the remaining challenge (detail recovery) for LoRA-based one-step distillation at this training scale.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/qualitative_comparison.pdf}
+\caption{Qualitative comparison on CIFAR-10 32$\times$32. Top: 100-step DDPM teacher outputs. Middle: AdaDMD single-step outputs from random noise. Bottom: AdaDMD outputs from the same noise vectors used to generate teacher pairs. The student maintains diversity (no mode collapse) but lacks the fine detail of multi-step generation.}
+\label{fig:qualitative}
+\end{figure*}
+
 \end{document}
