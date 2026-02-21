@@ -100,9 +100,14 @@ def evaluate_checkpoint(ckpt_path, output_dir, device, num_samples=5000):
     if 'ema_generator' in ckpt:
         ema_state = ckpt['ema_generator']
         if 'shadow' in ema_state:
-            gen_unet.load_state_dict(ema_state['shadow'])
+            raw_state = ema_state['shadow']
         else:
-            gen_unet.load_state_dict(ema_state)
+            raw_state = ema_state
+        # Strip 'unet.' prefix if present (EMA wraps HFOneStepGenerator)
+        clean_state = {}
+        for k, v in raw_state.items():
+            clean_state[k.replace('unet.', '')] = v
+        gen_unet.load_state_dict(clean_state)
     elif 'generator' in ckpt:
         gen_state = ckpt['generator']
         # Strip 'unet.' prefix if present

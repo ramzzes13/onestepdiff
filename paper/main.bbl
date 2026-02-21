@@ -1,4 +1,4 @@
-\begin{thebibliography}{19}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -34,13 +34,6 @@ Hu, E.~J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., and
 \newblock {LoRA}: Low-rank adaptation of large language models.
 \newblock In \emph{International Conference on Learning Representations}, 2022.
 
-\bibitem[Karras et~al.(2022)Karras, Aittala, Aila, and
-  Laine]{karras2022elucidating}
-Karras, T., Aittala, M., Aila, T., and Laine, S.
-\newblock Elucidating the design space of diffusion-based generative models.
-\newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~35, pp.\  26565--26577, 2022.
-
 \bibitem[Krizhevsky(2009)]{krizhevsky2009learning}
 Krizhevsky, A.
 \newblock Learning multiple layers of features from tiny images.
@@ -65,15 +58,15 @@ Luo, S., Tan, Y., Huang, L., Li, J., and Zhao, H.
   few-step inference.
 \newblock \emph{arXiv preprint arXiv:2310.04378}, 2023{\natexlab{a}}.
 
-\bibitem[Luo et~al.(2023{\natexlab{b}})Luo, Tan, Patil, Gu, von Platen, Pasber,
+\bibitem[Luo et~al.(2023{\natexlab{b}})Luo, Tan, Patil, Gu, von Platen, Passos,
   Huang, Li, and Zhao]{luo2023lcmlora}
-Luo, S., Tan, Y., Patil, S., Gu, D., von Platen, P., Pasber, A., Huang, L., Li,
+Luo, S., Tan, Y., Patil, S., Gu, D., von Platen, P., Passos, A., Huang, L., Li,
   J., and Zhao, H.
 \newblock {LCM-LoRA}: A universal stable-diffusion acceleration module.
 \newblock \emph{arXiv preprint arXiv:2311.05556}, 2023{\natexlab{b}}.
 
-\bibitem[Nguyen \& Cai(2024)Nguyen and Cai]{nguyen2024swiftbrush}
-Nguyen, T.~H. and Cai, A.~T.
+\bibitem[Nguyen \& Tran(2024)Nguyen and Tran]{nguyen2024swiftbrush}
+Nguyen, T.~H. and Tran, A.
 \newblock {SwiftBrush}: One-step text-to-image diffusion model with variational
   score distillation.
 \newblock \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and
@@ -129,8 +122,8 @@ Zhang, R., Isola, P., Efros, A.~A., Shechtman, E., and Wang, O.
 \newblock \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and
   Pattern Recognition}, pp.\  586--595, 2018.
 
-\bibitem[Zhou et~al.(2024)Zhou, Zheng, Yi, Fan, and Zhu]{zhou2024score}
-Zhou, M., Zheng, H., Yi, Z., Fan, M., and Zhu, J.
+\bibitem[Zhou et~al.(2024)Zhou, Zheng, Wang, Yin, and Huang]{zhou2024score}
+Zhou, M., Zheng, H., Wang, Z., Yin, M., and Huang, H.
 \newblock Score identity distillation: Exponentially fast distillation of
   pretrained diffusion models for one-step generation.
 \newblock In \emph{International Conference on Machine Learning}. PMLR, 2024.

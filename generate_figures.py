@@ -90,15 +90,15 @@ def fig_regularization_ablation():
 
 def fig_dr_verification():
     """Figure 4: DR verification improvement."""
-    models = ['SmallUNet', 'HF DDPM']
-    n1 = [222.12, 237.09]
-    n4 = [219.93, 234.23]
-    n8 = [220.10, 233.93]
+    models = ['SmallUNet\n(MSE, 20K)', 'HF DDPM\n(MSE, 5K)', 'HF DDPM\n(LPIPS, 20K)']
+    n1 = [222.12, 237.09, 139.77]
+    n4 = [219.93, 234.23, 135.22]
+    n8 = [220.10, 233.93, 137.38]
 
     x = np.arange(len(models))
     width = 0.25
 
-    fig, ax = plt.subplots(figsize=(5, 3.5))
+    fig, ax = plt.subplots(figsize=(6, 3.5))
     bars1 = ax.bar(x - width, n1, width, label='N=1 (baseline)', color='#E0E0E0',
                    edgecolor='black', linewidth=0.5)
     bars2 = ax.bar(x, n4, width, label='N=4', color='#64B5F6',
@@ -110,12 +110,12 @@ def fig_dr_verification():
     ax.set_xticks(x)
     ax.set_xticklabels(models)
     ax.legend()
-    ax.set_ylim(215, 240)
+    ax.set_ylim(130, 245)
     ax.grid(True, axis='y', alpha=0.3)
 
     for bars in [bars1, bars2, bars3]:
         for bar in bars:
-            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.3,
+            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.8,
                     f'{bar.get_height():.1f}', ha='center', va='bottom', fontsize=7)
 
     fig.tight_layout()
@@ -123,6 +123,31 @@ def fig_dr_verification():
     fig.savefig(os.path.join(FIG_DIR, 'dr_verification.png'), bbox_inches='tight')
     plt.close(fig)
     print("Generated: dr_verification")
+
+
+def fig_fid_trajectory():
+    """Figure 7: FID trajectory during training."""
+    steps = [5, 10, 15, 20]
+    fids = [232.78, 140.16, 139.80, 139.77]
+    fids_dr4 = [233.53, 140.28, 141.84, 135.22]
+
+    fig, ax = plt.subplots(figsize=(4.5, 3))
+    ax.plot(steps, fids, 'o-', color='#2196F3', linewidth=2, markersize=8,
+            label='Standard')
+    ax.plot(steps, fids_dr4, 's--', color='#FF5722', linewidth=2, markersize=7,
+            label='DR-verified (N=4)')
+    ax.axvline(x=5, color='gray', linestyle=':', linewidth=1, alpha=0.5)
+    ax.text(5.2, 200, 'Phase 2\nstarts', fontsize=8, color='gray')
+    ax.set_xlabel('Training Steps (K)')
+    ax.set_ylabel('FID ↓')
+    ax.legend()
+    ax.set_ylim(125, 245)
+    ax.grid(True, alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(os.path.join(FIG_DIR, 'fid_trajectory.pdf'), bbox_inches='tight')
+    fig.savefig(os.path.join(FIG_DIR, 'fid_trajectory.png'), bbox_inches='tight')
+    plt.close(fig)
+    print("Generated: fid_trajectory")
 
 
 def fig_memory_comparison():
@@ -208,4 +233,5 @@ if __name__ == '__main__':
     fig_dr_verification()
     fig_memory_comparison()
     fig_combined_ablation()
+    fig_fid_trajectory()
     print(f"\nAll figures saved to {FIG_DIR}/")

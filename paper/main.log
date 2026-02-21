@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.12.17)  21 FEB 2026 22:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.12.17)  21 FEB 2026 23:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -639,6 +639,16 @@ File: omsptm.fd
 )
 LaTeX Font Info:    Font shape `OMS/ptm/b/n' in size <9> not available
 (Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 65.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 6
+9.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `pcr' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
 
 Underfull \hbox (badness 1028) in paragraph at lines 69--70
 \OT1/ptm/m/n/10 (+20) which ad-dresses this through three con-tri-bu-
@@ -653,673 +663,177 @@ Underfull \hbox (badness 1708) in paragraph at lines 89--90
 
 
 
-]
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.130 ...ule. A denoising model $\bepsilon_\btheta
-                                                  (\bx_t, t)$ is trained to ...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.130 ...ising model $\bepsilon_\btheta(\bx_t, t)$
-                                                   is trained to predict the...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.132 ...trains a single-step generator $G_\btheta
-                                                  : \bz \mapsto \bx_{\text{f...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.132 ...G_\btheta: \bz \mapsto \bx_{\text{fake}}$
-                                                   by minimizing:
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.134 ...} = \E_t\left[w_t \cdot \nabla_{G_\btheta
-                                                  (\bz)} \KL\bigl(p_{\text{f...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.134 ...},t} \,\|\, p_{\text{real},t}\bigr)\right
-                                                  ]
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.142 ... model and $\bepsilon^{\text{fake}}_\bphi
-                                                  $ is a copy of the pretrai...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.142 ...model and $\bepsilon^{\text{fake}}_\bphi$
-                                                   is a copy of the pretrain...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.147 ...core model $\bepsilon^{\text{fake}}_\bphi
-                                                  $ in DMD is initialized fr...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.147 ...ore model $\bepsilon^{\text{fake}}_\bphi$
-                                                   in DMD is initialized fro...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.149 ...We replace $\bepsilon^{\text{fake}}_\bphi
-                                                  $ with:
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.149 ...e replace $\bepsilon^{\text{fake}}_\bphi$
-                                                   with:
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-[2]
+] [2]
 Underfull \hbox (badness 10000) in paragraph at lines 162--163
  \OT1/ptm/b/n/10 (+20) Mem-ory anal-y-sis. \OT1/ptm/m/n/10 (+20) For the Hug-gi
 ng-Face DDPM-
  []
 
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.169 ...ightweight density-ratio network $r_\bpsi
-                                                  (\bx_t, t)$ that estimates...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
 
-! Missing } inserted.
-<inserted text> 
-                }
-l.169 ...density-ratio network $r_\bpsi(\bx_t, t)$
-                                                   that estimates $\log\frac...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
+Overfull \hbox (5.63077pt too wide) detected at line 173
+[][][]\OMS/cmsy/m/n/10 L[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@\U/msb/m/n/10 
+E[] [][] \OML/cmm/m/it/10 ^^[\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]\OT1/cmr/m/n/
+10 )[] \OMS/cmsy/m/n/10 ^^@ \U/msb/m/n/10 E[] [][]\OT1/cmr/m/n/10 (1 \OMS/cmsy/
+m/n/10 ^^@ \OML/cmm/m/it/10 ^^[\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]\OT1/cmr/m/
+n/10 ))[]
+ []
 
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.171 ...text{real},t}}\!\bigl[\log \sigma(r_\bpsi
-                                                  )\bigr] - \E_{\bx_t \sim p...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
+[3]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.171 ...{fake},t}}\!\bigl[\log(1 - \sigma(r_\bpsi
-                                                  ))\bigr]
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! You can't use `\eqno' in math mode.
-\endmathdisplay@a ...\df@tag \@empty \else \veqno 
-                                                  \alt@tag \df@tag \fi \ifx ...
-l.173 \end{equation}
-                    
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.173 \end{equation}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.173 \end{equation}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.178 ...ext{EMA}(|r_\bpsi(\bx_t, t)|) + \epsilon}
-                                                  
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! You can't use `\eqno' in math mode.
-\endmathdisplay@a ...\df@tag \@empty \else \veqno 
-                                                  \alt@tag \df@tag \fi \ifx ...
-l.180 \end{equation}
-                    
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.180 \end{equation}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.188 ...regression loss $\|\text{LPIPS}(G_\btheta
-                                                  (\bz_i), \bx_i^{\text{teac...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.188 ...btheta(\bz_i), \bx_i^{\text{teacher}})\|$
-                                                   on pre-computed noise--im...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.192 ...ext{DR}} = \E_{\bz}\bigl[\max(0, -r_\bpsi
-                                                  (G_\btheta(\bz), 0) + \del...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.192 ... \E_{\bz}\bigl[\max(0, -r_\bpsi(G_\btheta
-                                                  (\bz), 0) + \delta)\bigr]
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! You can't use `\eqno' in math mode.
-\endmathdisplay@a ...\df@tag \@empty \else \veqno 
-                                                  \alt@tag \df@tag \fi \ifx ...
-l.194 \end{equation}
-                    
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.194 \end{equation}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.194 \end{equation}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.195 where $\delta$ is a margin and $r_\bpsi
-                                             (\cdot, 0)$ evaluates the densi...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.195 ...elta$ is a margin and $r_\bpsi(\cdot, 0)$
-                                                   evaluates the density rat...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.207 ...en $N$ candidate generations $\{G_\btheta
-                                                  (\bz_1), \ldots, G_\btheta...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.207 ...ns $\{G_\btheta(\bz_1), \ldots, G_\btheta
-                                                  (\bz_N)\}$ for a single sa...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.207 ...theta(\bz_1), \ldots, G_\btheta(\bz_N)\}$
-                                                   for a single sample, we s...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.207 ...theta(\bz_1), \ldots, G_\btheta(\bz_N)\}$
-                                                   for a single sample, we s...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.209 \bx^* = \arg\min_{i} r_\bpsi
-                                  (G_\btheta(\bz_i), 0)
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.209 \bx^* = \arg\min_{i} r_\bpsi(G_\btheta
-                                            (\bz_i), 0)
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! You can't use `\eqno' in math mode.
-\endmathdisplay@a ...\df@tag \@empty \else \veqno 
-                                                  \alt@tag \df@tag \fi \ifx ...
-l.211 \end{equation}
-                    
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.211 \end{equation}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.211 \end{equation}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.222 \STATE Init $G_\btheta
-                             \leftarrow \bepsilon^{\text{real}}$ (weights)
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.222 ...theta \leftarrow \bepsilon^{\text{real}}$
-                                                   (weights)
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.223 \STATE Init LoRA adapter $\Delta_\bphi
-                                            $ with rank $r_0$
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.223 \STATE Init LoRA adapter $\Delta_\bphi$
-                                              with rank $r_0$
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.224 \STATE Init density-ratio network $r_\bpsi
-                                                $
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.224 \STATE Init density-ratio network $r_\bpsi$
-                                                 
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.227 ...E $\bx_{\text{fake}} \leftarrow G_\btheta
-                                                  (\bz)$
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.227 ..._{\text{fake}} \leftarrow G_\btheta(\bz)$
-                                                  
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing { inserted.
-<to be read again> 
-                   \begingroup 
-l.230 ...^{\text{real}}(\bx_t, t; W + \Delta_\bphi
-                                                  ) - \bepsilon\|^2$
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.230 ..._t, t; W + \Delta_\bphi) - \bepsilon\|^2$
-                                                  
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 2
-53.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `pcr' (encoding: OT1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
- [3]
-<figures/combined_ablation.pdf, id=143, 860.01678pt x 246.03293pt>
+<figures/combined_ablation.pdf, id=141, 860.01678pt x 246.03293pt>
 File: figures/combined_ablation.pdf Graphic file (type pdf)
 <use figures/combined_ablation.pdf>
 Package pdftex.def Info: figures/combined_ablation.pdf  used on input line 278.
 
 (pdftex.def)             Requested size: 487.8225pt x 139.55696pt.
-<figures/dr_verification.pdf, id=150, 354.12675pt x 245.85916pt>
-File: figures/dr_verification.pdf Graphic file (type pdf)
-<use figures/dr_verification.pdf>
-Package pdftex.def Info: figures/dr_verification.pdf  used on input line 358.
-(pdftex.def)             Requested size: 234.8775pt x 163.0666pt.
-<figures/memory_comparison.pdf, id=153, 426.50844pt x 245.90094pt>
-File: figures/memory_comparison.pdf Graphic file (type pdf)
-<use figures/memory_comparison.pdf>
-Package pdftex.def Info: figures/memory_comparison.pdf  used on input line 384.
-
-(pdftex.def)             Requested size: 234.8775pt x 135.41852pt.
  [4
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.387 \end{figure}
-                  
+l.340 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.387 \end{figure}
-                  ] [5
+l.340 
+      ]
+Overfull \hbox (37.57164pt too wide) in paragraph at lines 345--359
+ [][] 
+ []
+
+<figures/fid_trajectory.pdf, id=162, 317.99176pt x 209.85463pt>
+File: figures/fid_trajectory.pdf Graphic file (type pdf)
+<use figures/fid_trajectory.pdf>
+Package pdftex.def Info: figures/fid_trajectory.pdf  used on input line 363.
+(pdftex.def)             Requested size: 234.8775pt x 155.00499pt.
+<figures/dr_verification.pdf, id=165, 426.39676pt x 245.90094pt>
+File: figures/dr_verification.pdf Graphic file (type pdf)
+<use figures/dr_verification.pdf>
+Package pdftex.def Info: figures/dr_verification.pdf  used on input line 373.
+(pdftex.def)             Requested size: 234.8775pt x 135.45229pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<figures/memory_comparison.pdf, id=168, 426.50844pt x 245.90094pt>
+File: figures/memory_comparison.pdf Graphic file (type pdf)
+<use figures/memory_comparison.pdf>
+Package pdftex.def Info: figures/memory_comparison.pdf  used on input line 400.
+
+(pdftex.def)             Requested size: 234.8775pt x 135.41852pt.
+
+Underfull \vbox (badness 2875) has occurred while \output is active []
+
+ [5
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.421 
+l.431 
       
 pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.421 
+l.431 
       
 pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.421 
+l.431 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.421 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has
- been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.421 
-       <./figures/combined_ablation.pdf> <./figures/dr_verification.pdf>]
-(./main.bbl
-Underfull \hbox (badness 2884) in paragraph at lines 63--67
-\OT1/ptm/m/n/10 (+20) im-ages with few-step in-fer-ence.  \OT1/ptm/m/it/10 (+20
-) arXiv preprint
+l.431 
+       <./figures/combined_ablation.pdf> <./figures/fid_trajectory.pdf>]
+Overfull \hbox (1.19594pt too wide) in paragraph at lines 439--440
+\OT1/ptm/m/n/10 (-20) (135) is not competitive with SOTA one-step generators ($
+\OMS/cmsy/m/n/10 ^^X$\OT1/ptm/m/n/10 (-20) 1--
  []
 
-[6
+(./main.bbl [6
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.86 
+l.15 
+     
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.15 
+     
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.15 
      
 pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.86 
-      <./figures/memory_comparison.pdf>])
+l.15 
+      <./figures/dr_verification.pdf> <./figures/memory_comparison.pdf>]
+Underfull \hbox (badness 2884) in paragraph at lines 56--60
+\OT1/ptm/m/n/10 (+20) im-ages with few-step in-fer-ence.  \OT1/ptm/m/it/10 (+20
+) arXiv preprint
+ []
+
+)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7] (./main.aux)
+[7] [8
+
+] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16338 strings out of 478051
- 268115 string characters out of 5840942
- 1880330 words of memory out of 5000000
- 35854 multiletter control sequences out of 15000+600000
- 556558 words of font info for 278 fonts, out of 8000000 for 9000
+ 16352 strings out of 478051
+ 268366 string characters out of 5840942
+ 1876330 words of memory out of 5000000
+ 35861 multiletter control sequences out of 15000+600000
+ 557186 words of font info for 282 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,13n,76p,1389b,625s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,13n,76p,1449b,625s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib5.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
-tmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (7 pages, 381460 bytes).
+-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib5.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbol
+s/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/times/utmri8a.pfb>
+Output written on main.pdf (8 pages, 366597 bytes).
 PDF statistics:
- 486 PDF objects out of 1000 (max. 8388607)
- 289 compressed objects within 3 object streams
- 70 named destinations out of 1000 (max. 500000)
- 61968 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 517 PDF objects out of 1000 (max. 8388607)
+ 285 compressed objects within 3 object streams
+ 72 named destinations out of 1000 (max. 500000)
+ 62485 words of extra memory for PDF output out of 74296 (max. 10000000)
 

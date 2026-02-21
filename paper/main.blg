@@ -5,45 +5,45 @@ The style file: icml2025.bst
 Database file #1: refs.bib
 Warning--empty journal in krizhevsky2009learning
 Warning--empty journal in loshchilov2019decoupled
-You've used 19 entries,
+You've used 18 entries,
             2773 wiz_defined-function locations,
-            680 strings with 8336 characters,
-and the built_in function-call counts, 10943 in all, are:
-= -- 921
-> -- 829
-< -- 14
-+ -- 279
-- -- 258
-* -- 905
-:= -- 1666
-add.period$ -- 59
-call.type$ -- 19
-change.case$ -- 143
-chr.to.int$ -- 17
-cite$ -- 40
-duplicate$ -- 476
-empty$ -- 767
-format.name$ -- 285
-if$ -- 2301
+            675 strings with 8177 characters,
+and the built_in function-call counts, 10184 in all, are:
+= -- 849
+> -- 790
+< -- 12
++ -- 266
+- -- 246
+* -- 846
+:= -- 1567
+add.period$ -- 56
+call.type$ -- 18
+change.case$ -- 136
+chr.to.int$ -- 16
+cite$ -- 38
+duplicate$ -- 439
+empty$ -- 707
+format.name$ -- 272
+if$ -- 2129
 int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 19
-newline$ -- 103
-num.names$ -- 76
-pop$ -- 311
+missing$ -- 18
+newline$ -- 98
+num.names$ -- 72
+pop$ -- 295
 preamble$ -- 1
-purify$ -- 124
+purify$ -- 118
 quote$ -- 0
-skip$ -- 410
+skip$ -- 374
 stack$ -- 0
-substring$ -- 278
-swap$ -- 98
-text.length$ -- 9
+substring$ -- 228
+swap$ -- 82
+text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 209
+type$ -- 198
 warning$ -- 2
-while$ -- 75
+while$ -- 69
 width$ -- 0
-write$ -- 245
+write$ -- 231
 (There were 2 warnings)
