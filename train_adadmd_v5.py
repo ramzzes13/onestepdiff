@@ -94,7 +94,7 @@ def train_adadmd_v5(device="cuda:0", num_iters=50000, batch_size=16,
                     num_teacher_pairs=10000,
                     lambda_reg=1.0, lambda_dm=0.001, lambda_dr=0.5,
                     lr_gen=2e-5, lr_lora=1e-4, use_lpips=True,
-                    reg_phase_steps=5000):
+                    reg_phase_steps=5000, constant_reg=False):
     """Train AdaDMD v5 with fixed paired regression."""
     device = torch.device(device)
     os.makedirs(output_dir, exist_ok=True)
@@ -334,8 +334,11 @@ def train_adadmd_v5(device="cuda:0", num_iters=50000, batch_size=16,
             dr_loss = dr_reg_fn(r_clean)
 
             # Keep regression strong to anchor outputs
-            progress = (step - reg_phase_steps) / max(1, num_iters - reg_phase_steps)
-            reg_decay = max(0.3, 1.0 - 0.7 * progress)
+            if constant_reg:
+                reg_decay = 1.0
+            else:
+                progress = (step - reg_phase_steps) / max(1, num_iters - reg_phase_steps)
+                reg_decay = max(0.3, 1.0 - 0.7 * progress)
             total = dm_loss_scaled + lambda_dr * dr_loss + lambda_reg * reg_decay * reg_loss
 
             dm_loss_val = dm_loss.item()
@@ -448,6 +451,8 @@ if __name__ == "__main__":
     parser.add_argument("--use_lpips", action="store_true", default=True)
     parser.add_argument("--no_lpips", action="store_false", dest="use_lpips")
     parser.add_argument("--reg_phase_steps", type=int, default=5000)
+    parser.add_argument("--constant_reg", action="store_true", default=False,
+                        help="Keep regression weight constant (no decay)")
     args = parser.parse_args()
 
     train_adadmd_v5(
@@ -459,4 +464,5 @@ if __name__ == "__main__":
         lambda_dr=args.lambda_dr, lr_gen=args.lr_gen,
         lr_lora=args.lr_lora, use_lpips=args.use_lpips,
         reg_phase_steps=args.reg_phase_steps,
+        constant_reg=args.constant_reg,
     )
