@@ -9,3 +9,10 @@ wandb/
 *.pth
 *.bin
 *.safetensors
+*.log
+*.aux
+*.blg
+*.out
+*.zip
+__pycache__/
+.agents/

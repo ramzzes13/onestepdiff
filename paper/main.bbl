@@ -1,0 +1,138 @@
+\begin{thebibliography}{19}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Gutmann \& Hyv{\"a}rinen(2010)Gutmann and
+  Hyv{\"a}rinen]{gutmann2010noise}
+Gutmann, M. and Hyv{\"a}rinen, A.
+\newblock Noise-contrastive estimation: A new estimation principle for
+  unnormalized statistical models.
+\newblock \emph{Proceedings of the Thirteenth International Conference on
+  Artificial Intelligence and Statistics}, pp.\  297--304, 2010.
+
+\bibitem[Heusel et~al.(2017)Heusel, Ramsauer, Unterthiner, Nessler, and
+  Hochreiter]{heusel2017gans}
+Heusel, M., Ramsauer, H., Unterthiner, T., Nessler, B., and Hochreiter, S.
+\newblock {GANs} trained by a two time-scale update rule converge to a local
+  {Nash} equilibrium.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~30, 2017.
+
+\bibitem[Ho et~al.(2020)Ho, Jain, and Abbeel]{ho2020denoising}
+Ho, J., Jain, A., and Abbeel, P.
+\newblock Denoising diffusion probabilistic models.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~33, pp.\  6840--6851, 2020.
+
+\bibitem[Hu et~al.(2022)Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and
+  Chen]{hu2022lora}
+Hu, E.~J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., and
+  Chen, W.
+\newblock {LoRA}: Low-rank adaptation of large language models.
+\newblock In \emph{International Conference on Learning Representations}, 2022.
+
+\bibitem[Karras et~al.(2022)Karras, Aittala, Aila, and
+  Laine]{karras2022elucidating}
+Karras, T., Aittala, M., Aila, T., and Laine, S.
+\newblock Elucidating the design space of diffusion-based generative models.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35, pp.\  26565--26577, 2022.
+
+\bibitem[Krizhevsky(2009)]{krizhevsky2009learning}
+Krizhevsky, A.
+\newblock Learning multiple layers of features from tiny images.
+\newblock 2009.
+
+\bibitem[Liu et~al.(2023)Liu, Zhang, Ma, Peng, and Liu]{liu2023instaflow}
+Liu, X., Zhang, X., Ma, J., Peng, J., and Liu, Q.
+\newblock {InstaFlow}: One step is enough for high-quality diffusion-based
+  text-to-image generation.
+\newblock \emph{arXiv preprint arXiv:2309.06380}, 2023.
+
+\bibitem[Loshchilov \& Hutter(2019)Loshchilov and
+  Hutter]{loshchilov2019decoupled}
+Loshchilov, I. and Hutter, F.
+\newblock Decoupled weight decay regularization.
+\newblock 2019.
+
+\bibitem[Luo et~al.(2023{\natexlab{a}})Luo, Tan, Huang, Li, and
+  Zhao]{luo2023latent}
+Luo, S., Tan, Y., Huang, L., Li, J., and Zhao, H.
+\newblock Latent consistency models: Synthesizing high-resolution images with
+  few-step inference.
+\newblock \emph{arXiv preprint arXiv:2310.04378}, 2023{\natexlab{a}}.
+
+\bibitem[Luo et~al.(2023{\natexlab{b}})Luo, Tan, Patil, Gu, von Platen, Pasber,
+  Huang, Li, and Zhao]{luo2023lcmlora}
+Luo, S., Tan, Y., Patil, S., Gu, D., von Platen, P., Pasber, A., Huang, L., Li,
+  J., and Zhao, H.
+\newblock {LCM-LoRA}: A universal stable-diffusion acceleration module.
+\newblock \emph{arXiv preprint arXiv:2311.05556}, 2023{\natexlab{b}}.
+
+\bibitem[Nguyen \& Cai(2024)Nguyen and Cai]{nguyen2024swiftbrush}
+Nguyen, T.~H. and Cai, A.~T.
+\newblock {SwiftBrush}: One-step text-to-image diffusion model with variational
+  score distillation.
+\newblock \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and
+  Pattern Recognition}, 2024.
+
+\bibitem[Salimans \& Ho(2022)Salimans and Ho]{salimans2022progressive}
+Salimans, T. and Ho, J.
+\newblock Progressive distillation for fast sampling of diffusion models.
+\newblock In \emph{International Conference on Learning Representations}, 2022.
+
+\bibitem[Sauer et~al.(2023)Sauer, Lorenz, Blattmann, and
+  Rombach]{sauer2023adversarial}
+Sauer, A., Lorenz, D., Blattmann, A., and Rombach, R.
+\newblock Adversarial diffusion distillation.
+\newblock \emph{arXiv preprint arXiv:2311.17042}, 2023.
+
+\bibitem[Song et~al.(2021)Song, Sohl-Dickstein, Kingma, Kumar, Ermon, and
+  Poole]{song2021scorebased}
+Song, Y., Sohl-Dickstein, J., Kingma, D.~P., Kumar, A., Ermon, S., and Poole,
+  B.
+\newblock Score-based generative modeling through stochastic differential
+  equations.
+\newblock In \emph{International Conference on Learning Representations}, 2021.
+
+\bibitem[Song et~al.(2023)Song, Dhariwal, Chen, and
+  Sutskever]{song2023consistency}
+Song, Y., Dhariwal, P., Chen, M., and Sutskever, I.
+\newblock Consistency models.
+\newblock In \emph{International Conference on Machine Learning}, pp.\
+  32211--32252. PMLR, 2023.
+
+\bibitem[Yin et~al.(2024{\natexlab{a}})Yin, Gharbi, Zhang, Shechtman, Durand,
+  Freeman, and Park]{yin2024dmd2}
+Yin, T., Gharbi, M., Zhang, R., Shechtman, E., Durand, F., Freeman, W.~T., and
+  Park, T.
+\newblock Improved distribution matching distillation for fast image synthesis.
+\newblock \emph{Advances in Neural Information Processing Systems}, 37,
+  2024{\natexlab{a}}.
+
+\bibitem[Yin et~al.(2024{\natexlab{b}})Yin, Gharbi, Zhang, Shechtman, Durand,
+  Freeman, and Park]{yin2024onestep}
+Yin, T., Gharbi, M., Zhang, R., Shechtman, E., Durand, F., Freeman, W.~T., and
+  Park, T.
+\newblock One-step diffusion with distribution matching distillation.
+\newblock \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and
+  Pattern Recognition}, pp.\  6613--6623, 2024{\natexlab{b}}.
+
+\bibitem[Zhang et~al.(2018)Zhang, Isola, Efros, Shechtman, and
+  Wang]{zhang2018unreasonable}
+Zhang, R., Isola, P., Efros, A.~A., Shechtman, E., and Wang, O.
+\newblock The unreasonable effectiveness of deep features as a perceptual
+  metric.
+\newblock \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and
+  Pattern Recognition}, pp.\  586--595, 2018.
+
+\bibitem[Zhou et~al.(2024)Zhou, Zheng, Yi, Fan, and Zhu]{zhou2024score}
+Zhou, M., Zheng, H., Yi, Z., Fan, M., and Zhu, J.
+\newblock Score identity distillation: Exponentially fast distillation of
+  pretrained diffusion models for one-step generation.
+\newblock In \emph{International Conference on Machine Learning}. PMLR, 2024.
+
+\end{thebibliography}
