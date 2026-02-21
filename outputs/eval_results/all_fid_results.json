@@ -1,0 +1,42 @@
+{
+  "custom_unet_v4": {
+    "description": "SmallUNet (6.6M params), 250-epoch base model, 20k distillation steps",
+    "step_20000": {
+      "fid": 222.12,
+      "dr_verified_n4": 219.93,
+      "dr_verified_n8": 220.10
+    }
+  },
+  "hf_ddpm_v4": {
+    "description": "google/ddpm-cifar10-32 (35.7M params), pretrained base, 20k steps (3k REG + 17k DM+REG)",
+    "step_5000": {
+      "fid": 237.09,
+      "dr_verified_n4": 234.23,
+      "dr_verified_n8": 233.93,
+      "note": "Best checkpoint - before mean collapse"
+    },
+    "step_10000": {
+      "fid": 340.62,
+      "note": "Mean collapse beginning (std=0.123)"
+    },
+    "step_15000": {
+      "fid": 420.74,
+      "note": "Further collapsed (std=0.083)"
+    },
+    "step_20000": {
+      "fid": 454.02,
+      "note": "Nearly constant output (std=0.072)"
+    }
+  },
+  "ablations": {
+    "lora_rank_4": {"fid": 224.98},
+    "lora_rank_8": {"fid": 223.59},
+    "lora_rank_16": {"fid": 226.03},
+    "lora_rank_32": {"fid": 227.79},
+    "lora_rank_warming_4_to_32": {"fid": 224.40},
+    "weight_adaptive": {"fid": 223.87},
+    "weight_fixed": {"fid": 225.97},
+    "reg_dr_only": {"fid": 223.45},
+    "reg_hybrid": {"fid": 226.56}
+  }
+}

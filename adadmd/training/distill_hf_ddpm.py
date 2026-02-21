@@ -149,9 +149,13 @@ def train_adadmd_hf(device="cuda:0", num_iters=30000, batch_size=8,
     # Training loop
     data_iter = iter(loader)
     start = time.time()
-    log = {k: 0 for k in ['dm', 'nce', 'dr', 'lora', 'acc', 'sdiff']}
+    log = {k: 0 for k in ['dm', 'nce', 'dr', 'lora', 'acc', 'sdiff', 'mse']}
     LOG_INT = 100
     SAVE_INT = 5000
+
+    # Phase 1: regression only (lora_warmup steps)
+    # Phase 2: DM + regression
+    REG_PHASE = lora_warmup  # First N steps: MSE only, no DM
 
     for step in range(num_iters):
         try:
@@ -161,17 +165,19 @@ def train_adadmd_hf(device="cuda:0", num_iters=30000, batch_size=8,
             imgs, labels = next(data_iter)
         imgs = imgs.to(device)
         B = imgs.shape[0]
-        in_warmup = step < lora_warmup
+        in_reg_phase = step < REG_PHASE
 
         # 1. Generate
         z = torch.randn_like(imgs)
-        if in_warmup:
-            with torch.no_grad():
-                x_fake = generator(z)
-        else:
-            x_fake = generator(z)
+        x_fake = generator(z)
 
-        # 2. Update LoRA fake score (predict noise, NOT clean image)
+        # 2. Regression target: multi-step DDIM from real images
+        # Use real images + noise as starting point for more stable targets
+        with torch.no_grad():
+            # Use real images as regression targets (direct supervision)
+            x_target = imgs
+
+        # 3. Update LoRA fake score (predict noise)
         xf = x_fake.detach()
         t_l = sample_t(B)
         noise_l = torch.randn_like(xf)
@@ -182,7 +188,7 @@ def train_adadmd_hf(device="cuda:0", num_iters=30000, batch_size=8,
         lora_loss.backward()
         opt_lora.step()
 
-        # 3. Update DR network
+        # 4. Update DR network
         t = sample_t(B)
         noise = torch.randn_like(imgs)
         x_real_t = q_sample(imgs, t, noise)
@@ -196,21 +202,25 @@ def train_adadmd_hf(device="cuda:0", num_iters=30000, batch_size=8,
         opt_dr.step()
         acc = nce_fn.accuracy(r_real.detach(), r_fake.detach())
 
-        # 4. DM loss (skip during warmup)
+        # 5. Generator loss
         dm_loss_val = 0.0
         score_diff_mag = 0.0
-        if not in_warmup:
-            x_fake = generator(z)
+        reg_mse = F.mse_loss(x_fake, x_target)
+        reg_mse_val = reg_mse.item()
+
+        if in_reg_phase:
+            # Phase 1: regression only
+            total = reg_mse
+        else:
+            # Phase 2: DM + scaled regression
+            x_fake2 = generator(z)
             t_dm = sample_t(B)
-            noise_dm = torch.randn_like(x_fake)
-            x_fake_t_dm = q_sample(x_fake, t_dm, noise_dm)
+            noise_dm = torch.randn_like(x_fake2)
+            x_fake_t_dm = q_sample(x_fake2, t_dm, noise_dm)
 
             with torch.no_grad():
-                # Both predict noise (epsilon parameterization)
-                # Use disable_adapter to get base model output (no LoRA)
                 with fake_unet.disable_adapter():
                     eps_real = fake_unet(x_fake_t_dm, t_dm).sample
-                # With LoRA enabled for fake score
                 eps_fake = fake_unet(x_fake_t_dm, t_dm).sample
 
                 r_w = dr_net(x_fake_t_dm, t_dm)
@@ -223,23 +233,22 @@ def train_adadmd_hf(device="cuda:0", num_iters=30000, batch_size=8,
 
             score_diff = (eps_fake - eps_real).detach()
             score_diff_mag = score_diff.abs().mean().item()
-            dm_loss = (x_fake * ada_weight * score_diff).sum() / B
+            # Scale DM loss to be comparable with MSE
+            dm_loss = (x_fake2 * ada_weight * score_diff).sum() / B
+            dm_loss_scaled = dm_loss * 0.001  # Scale down DM relative to MSE
 
-            # DR reg
-            t_zero = torch.zeros(B, dtype=torch.long, device=device)
-            r_clean = dr_net(x_fake, t_zero)
-            dr_loss = dr_reg_fn(r_clean)
-            total = dm_loss + 0.5 * dr_loss
-
-            opt_gen.zero_grad()
-            total.backward()
-            torch.nn.utils.clip_grad_norm_(generator.parameters(), 1.0)
-            opt_gen.step()
-            ema_gen.update(generator)
+            reg_mse2 = F.mse_loss(x_fake2, x_target)
+            total = dm_loss_scaled + reg_mse2
 
             dm_loss_val = dm_loss.item()
-        else:
-            dr_loss = torch.tensor(0.0)
+            reg_mse_val = reg_mse2.item()
+
+        opt_gen.zero_grad()
+        total.backward()
+        torch.nn.utils.clip_grad_norm_(generator.parameters(), 1.0)
+        opt_gen.step()
+        ema_gen.update(generator)
+        dr_loss = torch.tensor(0.0)
 
         log['dm'] += dm_loss_val
         log['nce'] += nce_loss.item()
@@ -247,16 +256,17 @@ def train_adadmd_hf(device="cuda:0", num_iters=30000, batch_size=8,
         log['lora'] += lora_loss.item()
         log['acc'] += acc
         log['sdiff'] += score_diff_mag
+        log['mse'] += reg_mse_val
 
         if (step+1) % LOG_INT == 0:
             elapsed = time.time() - start
             n = LOG_INT
             mem = torch.cuda.memory_allocated(device) / 1e6
-            phase = "WARMUP" if in_warmup else "TRAIN"
+            phase = "REG" if in_reg_phase else "DM+REG"
             print(f'Step {step+1}/{num_iters} [{phase}] | '
-                  f'DM:{log["dm"]/n:.3f} | NCE:{log["nce"]/n:.4f} | '
-                  f'DR:{log["dr"]/n:.3f} | LoRA:{log["lora"]/n:.4f} | '
-                  f'acc:{log["acc"]/n:.3f} | sdiff:{log["sdiff"]/n:.6f} | '
+                  f'DM:{log["dm"]/n:.3f} | MSE:{log["mse"]/n:.4f} | '
+                  f'LoRA:{log["lora"]/n:.4f} | '
+                  f'acc:{log["acc"]/n:.3f} | sdiff:{log["sdiff"]/n:.4f} | '
                   f'{n/elapsed:.1f}it/s | mem:{mem:.0f}MB')
             sys.stdout.flush()
             log = {k: 0 for k in log}

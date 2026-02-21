@@ -136,10 +136,10 @@ class AdaDMDTrainer:
 
         # ========== Step 1: Generate fake samples ==========
         z = torch.randn_like(real_images)
-        with torch.no_grad() if not self.generator.training else torch.enable_grad():
-            pass
-
         x_fake = self.generator(z, labels)
+
+        # Regression target: use real images for direct supervision
+        x_target = real_images
 
         # ========== Step 2: Update density-ratio network ==========
         t = self.diffusion.sample_timesteps(B, cfg.t_min, cfg.t_max, self.device)
@@ -202,13 +202,18 @@ class AdaDMDTrainer:
         reg_loss = self.hybrid_loss_fn(dr_loss=dr_reg_loss)
 
         # ========== Step 5: Update generator ==========
-        total_gen_loss = dm_loss + reg_loss
+        # Regression loss: prevents mode collapse
+        reg_mse_loss = F.mse_loss(x_fake, x_target)
+        # Scale DM loss to balance with MSE (~0.001 factor based on magnitude analysis)
+        dm_loss_scaled = dm_loss * 0.001
+        total_gen_loss = dm_loss_scaled + reg_loss + reg_mse_loss
         self.opt_gen.zero_grad()
         if self.scaler:
             self.scaler.scale(total_gen_loss).backward()
             self.scaler.step(self.opt_gen)
         else:
             total_gen_loss.backward()
+            torch.nn.utils.clip_grad_norm_(self.generator.parameters(), 1.0)
             self.opt_gen.step()
 
         # Update EMA
@@ -256,6 +261,7 @@ class AdaDMDTrainer:
             'dm_loss': dm_loss.item(),
             'nce_loss': nce_loss.item(),
             'dr_reg_loss': dr_reg_loss.item(),
+            'reg_mse': reg_mse_loss.item(),
             'lora_loss': lora_loss.item(),
             'total_gen_loss': total_gen_loss.item(),
             'dr_accuracy': dr_accuracy,
@@ -362,8 +368,9 @@ class AdaDMDTrainer:
                 it_per_sec = self.config.log_interval / elapsed
                 avg = {k: v / self.config.log_interval for k, v in log_losses.items()}
                 print(f"Step {step+1}/{num_iterations} | "
-                      f"DM: {avg['dm_loss']:.4f} | NCE: {avg['nce_loss']:.4f} | "
-                      f"DR_reg: {avg['dr_reg_loss']:.4f} | LoRA: {avg['lora_loss']:.4f} | "
+                      f"DM: {avg['dm_loss']:.3f} | NCE: {avg['nce_loss']:.4f} | "
+                      f"MSE: {avg.get('reg_mse', 0):.4f} | "
+                      f"LoRA: {avg['lora_loss']:.4f} | "
                       f"DR_acc: {avg['dr_accuracy']:.3f} | "
                       f"rank: {int(avg['lora_rank'])} | "
                       f"{it_per_sec:.1f} it/s")
