@@ -10,7 +10,7 @@ Started: Sat Feb 21 09:43:48 PM MSK 2026
 - Custom UNet: FID 222.12, HF DDPM: FID 237.09 (collapsed after 5K steps)
 - SD v1.5 pipeline implemented but not run due to GPU memory constraints
 
-## Session 2 (Current - Feb 21, 2026)
+## Session 2 (Feb 21, 2026)
 
 ### Completed:
 1. **Diagnosed mean collapse**: Unpaired MSE and L1 losses cause output std to drop to 0.07.
@@ -19,38 +19,52 @@ Started: Sat Feb 21 09:43:48 PM MSK 2026
 2. **Fixed DM loss explosion**: Changed .sum()/B to .mean(), clamped adaptive weight (max 10.0),
    reduced lambda_DM from 0.001 to 0.0001, stronger regression anchor (min 0.3).
 
-3. **Training v5b (paired LPIPS + DM)**: 50K step run on GPU 3 with batch_size=8, LoRA rank=8.
-   Pre-generated 10K teacher pairs from 100-step DDPM.
+3. **Training v5b (decaying regression, LPIPS + DM)**: 50K steps, GPU 3, batch_size=8, LoRA rank=8.
+   | Steps | FID    | DR-4   | DR-8   |
+   |-------|--------|--------|--------|
+   | 5K    | 232.78 | 233.53 | 235.20 |
+   | 10K   | 140.16 | 140.28 | 145.17 |
+   | 15K   | 139.80 | 141.84 | 140.29 |
+   | 20K   | 139.77 | 135.22 | 137.38 |
+   | 25K   | 155.91 | 158.40 | 155.47 |
+   | 30K   | 174.83 | 176.77 | 177.48 |
+   | 50K   | 152.72 | 151.16 | 147.73 |
 
-4. **FID evaluation results**:
-   | Steps | Phase     | FID    | DR-4   | DR-8   |
-   |-------|-----------|--------|--------|--------|
-   | 5K    | REG only  | 232.78 | 233.53 | 235.20 |
-   | 10K   | DM+REG    | 140.16 | 140.28 | 145.17 |
-   | 15K   | DM+REG    | 139.80 | 141.84 | 140.29 |
-   | 20K   | DM+REG    | 139.77 | 135.22 | 137.38 | <-- BEST
-   | 25K   | DM+REG    | 155.91 | 158.40 | 155.47 |
-   | 30K   | DM+REG    | 174.83 | 176.77 | 177.48 |
+4. **Training v5c (constant regression weight)**: 25K steps, GPU 7.
+   Key insight: LPIPS regression is a persistent anchor, not just initialization.
+   | Steps | FID    | DR-4   | DR-8   |
+   |-------|--------|--------|--------|
+   | 10K   | 180.72 | 181.61 | 180.33 |
+   | 15K   | 141.18 | 140.19 | 139.14 |
+   | 20K   | 115.01 | 111.11 | 110.38 | <-- BEST
+   | 25K   | 138.74 | 141.41 | 139.33 |
 
-   Key finding: FID peaks at 20K, degrades as regression weight decays.
-   LPIPS regression is a persistent requirement, not just initialization.
-
-5. **ICML paper**: Full 8-page paper (paper/main.tex) with:
+5. **ICML paper (paper/main.tex)**: Full 8-page ICML 2025 format paper.
    - All citations verified against real papers (3 errors found and fixed)
-   - Figures generated from real data (7 figures)
-   - Updated with v5b results (FID 135.22 best with DR-4 verification)
+   - 7 figures generated from real experimental data
+   - Updated with v5c constant-reg results (FID 110.38)
    - Clean LaTeX compilation (no errors)
 
-6. **Git commits**: 6 commits pushed to github.com/ramzzes13/onestepdiff
+6. **Citation fixes**: Verified all references via web search.
+   - SiD authors corrected
+   - SwiftBrush author name fixed
+   - LCM-LoRA author name fixed
+
+7. **Git commits**: All pushed to github.com/ramzzes13/onestepdiff
 
 ### Best Result:
-FID = 135.22 (with DR-4 verification at 20K steps)
-FID = 139.77 (standard, no verification, 20K steps)
+FID = 110.38 (DR-8 verification, constant regression, 20K steps)
+FID = 115.01 (standard, no verification, constant regression, 20K steps)
+FID = 135.22 (DR-4 verification, decaying regression, 20K steps)
+
+### Key Finding:
+Constant regression weight (lambda_reg = 1.0 throughout) outperforms decaying
+(1.0 -> 0.3) by 25 FID points at 20K steps. The LPIPS perceptual loss serves
+as an essential mode-preserving anchor that the LoRA-based DM loss alone cannot
+provide, since the fake score NCE accuracy remains ~50%.
 
 ### Remaining (Not Completed):
 - ImageNet / text-to-image experiments (GPU memory constrained by sglang servers)
-- Longer training with constant regression weight (avoid decay degradation)
 - SD v1.5 distillation (implemented but needs free GPU memory)
-
-### Training still running:
-v5b training at ~30K/50K steps, but FID is degrading. Best checkpoint is 20K.
+- Longer training beyond 25K with constant reg (v5c showed degradation at 25K)
+- Learning rate / batch size tuning for constant-reg regime

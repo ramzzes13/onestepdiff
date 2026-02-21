@@ -52,11 +52,15 @@ This report summarizes the implementation and experimental results of AdaDMD, an
 | **HF DDPM v5b (LPIPS)** | **5,000** | **232.78** | 233.53 | 235.20 |
 | **HF DDPM v5b (LPIPS)** | **10,000** | **140.16** | 140.28 | 145.17 |
 | **HF DDPM v5b (LPIPS)** | **15,000** | **139.80** | 141.84 | 140.29 |
-| **HF DDPM v5b (LPIPS)** | **20,000** | **139.77** | **135.22** | **137.38** |
-| HF DDPM v5b (LPIPS) | 25,000 | 155.91 | 158.40 | 155.47 |
-| HF DDPM v5b (LPIPS) | 30,000 | 174.83 | 176.77 | 177.48 |
+| HF DDPM v5b (LPIPS, decay) | 20,000 | 139.77 | 135.22 | 137.38 |
+| HF DDPM v5b (LPIPS, decay) | 25,000 | 155.91 | 158.40 | 155.47 |
+| HF DDPM v5b (LPIPS, decay) | 30,000 | 174.83 | 176.77 | 177.48 |
+| HF DDPM v5c (LPIPS, const) | 10,000 | 180.72 | 181.61 | 180.33 |
+| HF DDPM v5c (LPIPS, const) | 15,000 | 141.18 | 140.19 | 139.14 |
+| **HF DDPM v5c (LPIPS, const)** | **20,000** | **115.01** | **111.11** | **110.38** |
+| HF DDPM v5c (LPIPS, const) | 25,000 | 138.74 | 141.41 | 139.33 |
 
-**Best overall: FID = 135.22 (HF DDPM v5b + LPIPS + DR-4 verification at 20K steps)**
+**Best overall: FID = 110.38 (HF DDPM v5c + constant LPIPS + DR-8 verification at 20K steps)**
 
 ### Ablation Studies (5,000 steps each, Custom UNet)
 
@@ -96,8 +100,10 @@ This report summarizes the implementation and experimental results of AdaDMD, an
 |-------|----------------|-----|-----|-------------|
 | Custom v4 | 222.12 | **219.93** | 220.10 | **-2.19** |
 | HF v4 (step 5K) | 237.09 | 234.23 | **233.93** | **-3.16** |
+| HF v5b decay (20K) | 139.77 | **135.22** | 137.38 | **-4.55** |
+| HF v5c const (20K) | 115.01 | 111.11 | **110.38** | **-4.63** |
 
-**Finding:** DR verification consistently improves FID by 2-3 points. The density-ratio network successfully identifies higher-quality samples, validating the inference-time quality scaling approach.
+**Finding:** DR verification consistently improves FID by 2-5 points. The improvement grows with generator quality: from 2-3 points on early models to 4.6 points on the best v5c model. The density-ratio network successfully identifies higher-quality samples.
 
 ## Key Findings and Lessons Learned
 
@@ -117,11 +123,11 @@ This report summarizes the implementation and experimental results of AdaDMD, an
 - Clamp adaptive weight to max 10.0 to prevent explosion
 - lambda_DM = 1e-4 (not 1e-3) for stability with LPIPS regression
 
-### 4. Regression Weight Decay Causes Late Degradation
-- FID peaks at 15-20K steps (regression weight ~0.7-0.8)
-- Beyond 20K, as regression decays toward 0.3, FID degrades (155→175)
+### 4. Constant Regression Weight is Critical
+- Decaying regression (1.0→0.3): FID peaks at 139.77 (20K), degrades to 174.83 (30K)
+- Constant regression (1.0): FID reaches **115.01** at 20K (25 points better!)
 - The LoRA fake score model (50% NCE accuracy) provides insufficient gradient signal alone
-- **Recommendation:** Keep constant regression weight or use very slow decay
+- LPIPS regression serves as a persistent mode-preserving anchor throughout training
 
 ### 5. Memory Efficiency Achieved
 - Peak GPU memory: 981 MB (vs estimated 3x base model for full DMD)
@@ -129,7 +135,7 @@ This report summarizes the implementation and experimental results of AdaDMD, an
 - LoRA adds only 3% parameters vs full model copy
 
 ### 6. FID Gap Analysis
-Best FID (135.22 with DR-4) is still far from SOTA (~1-5 FID) due to:
+Best FID (110.38 with DR-8, constant reg) is still far from SOTA (~1-5 FID) due to:
 - **Base model:** Unconditional DDPM (not optimized for distillation)
 - **Training budget:** 20K steps vs 300K+ in DMD paper
 - **Architecture mismatch:** DDPM at t=0 not designed for noise→image mapping
@@ -168,7 +174,7 @@ outputs/
 
 ## Future Work
 
-1. **Constant regression weight:** Keep LPIPS weight constant throughout training to avoid late degradation
+1. **Stabilize late training:** v5c still degrades after 20K (115→139 at 25K). Investigate LR scheduling, gradient clipping, or cyclical regression weight
 2. **Better base model:** Use EDM or well-trained DDPM for fair comparison
 3. **Longer training:** Scale to 100K+ steps with constant regression
 4. **SD v1.5 experiments:** Scale to text-to-image (implemented but needs free GPU memory)

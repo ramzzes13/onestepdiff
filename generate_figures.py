@@ -90,15 +90,15 @@ def fig_regularization_ablation():
 
 def fig_dr_verification():
     """Figure 4: DR verification improvement."""
-    models = ['SmallUNet\n(MSE, 20K)', 'HF DDPM\n(MSE, 5K)', 'HF DDPM\n(LPIPS, 20K)']
-    n1 = [222.12, 237.09, 139.77]
-    n4 = [219.93, 234.23, 135.22]
-    n8 = [220.10, 233.93, 137.38]
+    models = ['SmallUNet\n(MSE, 20K)', 'HF DDPM\n(MSE, 5K)', 'HF DDPM\n(LPIPS,\ndecay, 20K)', 'HF DDPM\n(LPIPS,\nconst, 20K)']
+    n1 = [222.12, 237.09, 139.77, 115.01]
+    n4 = [219.93, 234.23, 135.22, 111.11]
+    n8 = [220.10, 233.93, 137.38, 110.38]
 
     x = np.arange(len(models))
     width = 0.25
 
-    fig, ax = plt.subplots(figsize=(6, 3.5))
+    fig, ax = plt.subplots(figsize=(7.5, 3.5))
     bars1 = ax.bar(x - width, n1, width, label='N=1 (baseline)', color='#E0E0E0',
                    edgecolor='black', linewidth=0.5)
     bars2 = ax.bar(x, n4, width, label='N=4', color='#64B5F6',
@@ -110,7 +110,7 @@ def fig_dr_verification():
     ax.set_xticks(x)
     ax.set_xticklabels(models)
     ax.legend()
-    ax.set_ylim(130, 245)
+    ax.set_ylim(100, 245)
     ax.grid(True, axis='y', alpha=0.3)
 
     for bars in [bars1, bars2, bars3]:
@@ -126,24 +126,41 @@ def fig_dr_verification():
 
 
 def fig_fid_trajectory():
-    """Figure 7: FID trajectory during training."""
-    steps = [5, 10, 15, 20, 25, 30]
-    fids = [232.78, 140.16, 139.80, 139.77, 155.91, 174.83]
-    fids_dr4 = [233.53, 140.28, 141.84, 135.22, 158.40, 176.77]
+    """Figure 7: FID trajectory during training (decaying vs constant reg)."""
+    # v5b: decaying regression weight (1.0 -> 0.3)
+    steps_decay = [5, 10, 15, 20, 25, 30]
+    fids_decay = [232.78, 140.16, 139.80, 139.77, 155.91, 174.83]
+    fids_decay_dr4 = [233.53, 140.28, 141.84, 135.22, 158.40, 176.77]
 
-    fig, ax = plt.subplots(figsize=(5, 3.2))
-    ax.plot(steps, fids, 'o-', color='#2196F3', linewidth=2, markersize=8,
-            label='Standard')
-    ax.plot(steps, fids_dr4, 's--', color='#FF5722', linewidth=2, markersize=7,
-            label='DR-verified (N=4)')
+    # v5c: constant regression weight (1.0)
+    steps_const = [10, 15, 20, 25]
+    fids_const = [180.72, 141.18, 115.01, 138.74]
+    fids_const_dr8 = [180.33, 139.14, 110.38, 139.33]
+
+    fig, ax = plt.subplots(figsize=(6, 3.5))
+    # Decaying reg curves
+    ax.plot(steps_decay, fids_decay, 'o-', color='#90CAF9', linewidth=1.5, markersize=6,
+            label='Decaying reg (standard)')
+    ax.plot(steps_decay, fids_decay_dr4, 's--', color='#FFAB91', linewidth=1.5, markersize=5,
+            label='Decaying reg (DR-4)')
+    # Constant reg curves
+    ax.plot(steps_const, fids_const, 'o-', color='#1565C0', linewidth=2.5, markersize=8,
+            label='Constant reg (standard)')
+    ax.plot(steps_const, fids_const_dr8, 'D--', color='#D32F2F', linewidth=2.5, markersize=7,
+            label='Constant reg (DR-8)')
+
     ax.axvline(x=5, color='gray', linestyle=':', linewidth=1, alpha=0.5)
-    ax.axvspan(15, 20, alpha=0.1, color='green')
-    ax.text(5.3, 210, 'Phase 2\nstarts', fontsize=8, color='gray')
-    ax.text(16, 130, 'Best\nregion', fontsize=8, color='green')
+    ax.text(5.3, 215, 'Phase 2\nstarts', fontsize=8, color='gray')
+
+    # Mark best point
+    ax.annotate('110.4', xy=(20, 110.38), xytext=(22, 118),
+                fontsize=9, fontweight='bold', color='#D32F2F',
+                arrowprops=dict(arrowstyle='->', color='#D32F2F', lw=1.5))
+
     ax.set_xlabel('Training Steps (K)')
     ax.set_ylabel('FID ↓')
-    ax.legend(loc='upper right')
-    ax.set_ylim(125, 245)
+    ax.legend(loc='upper right', fontsize=8)
+    ax.set_ylim(100, 245)
     ax.grid(True, alpha=0.3)
     fig.tight_layout()
     fig.savefig(os.path.join(FIG_DIR, 'fid_trajectory.pdf'), bbox_inches='tight')
