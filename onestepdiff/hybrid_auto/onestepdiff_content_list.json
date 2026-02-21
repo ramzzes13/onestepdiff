@@ -1,0 +1,3858 @@
+[
+    {
+        "type": "text",
+        "text": "One-step Diffusion with Distribution Matching Distillation ",
+        "text_level": 1,
+        "bbox": [
+            189,
+            130,
+            779,
+            152
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Tianwei Yin1 ",
+        "bbox": [
+            169,
+            179,
+            277,
+            196
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Michael Gharbi¨ 2 ",
+        "bbox": [
+            331,
+            181,
+            464,
+            196
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Richard Zhang2 ",
+        "bbox": [
+            517,
+            181,
+            643,
+            198
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Eli Shechtman2 ",
+        "bbox": [
+            697,
+            181,
+            823,
+            196
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Fredo Durand ´ 1 ",
+        "bbox": [
+            241,
+            199,
+            359,
+            215
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "William T. Freeman1 ",
+        "bbox": [
+            415,
+            199,
+            581,
+            215
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Taesung Park2 ",
+        "bbox": [
+            635,
+            199,
+            751,
+            217
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1Massachusetts Institute of Technology ",
+        "bbox": [
+            235,
+            222,
+            545,
+            241
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "2Adobe Research ",
+        "bbox": [
+            617,
+            222,
+            756,
+            238
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "https://tianweiy.github.io/dmd/ ",
+        "bbox": [
+            372,
+            241,
+            616,
+            258
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/eb6b1e1c11617e0789b7168df0ca66c1721adb07850b998e8fd0dafe91830b04.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            78,
+            272,
+            236,
+            383
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/29cbbfbe061abf12fb9548899b0277123d4650955b473163c8ef47efbf78b257.jpg",
+        "image_caption": [
+            "(a) DSLR photo of a golden retriever in heavy snow. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            78,
+            397,
+            236,
+            508
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/90505852d38136814151c33914b6000870e8e43e53d91ee6374b33ea2799309b.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            241,
+            272,
+            401,
+            395
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/1a112018e2aede86a06e436855cdacb8f5458942062b6ea2b6ae47a6f55f700f.jpg",
+        "image_caption": [
+            "(b) Lightshow at the Dolomites. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            241,
+            397,
+            401,
+            520
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/d6db6fc94e993a3720e21373ea27b4c4bbe350c669c8cc714aa409db634e5174.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            406,
+            272,
+            563,
+            395
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/0d75942d5eb35c7b512406ebd07cc42fc9bbc3912183dee99ee13cf225ac7fe1.jpg",
+        "image_caption": [
+            "(c) [...] stylishly dressed elderly woman [...] large glasses [...]. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            406,
+            397,
+            563,
+            520
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/3e9a53406ce2bf035b13f71a9601f25088e32db4bbe8fa4430bfa19c91ebbcdf.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            568,
+            272,
+            728,
+            395
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/e1ba18c3a7740f3022244b60e2eaa69f0b535172123672669400c49684a93bb5.jpg",
+        "image_caption": [
+            "(d) [...] warrior chief, tribal panther make up, blue on red [...]. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            568,
+            397,
+            727,
+            518
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/73d6393ac027b019de2e1a092068ff666249ab18445ea89d81f4090a102553d7.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            732,
+            272,
+            890,
+            396
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/4f568a125e2e7f480c227ea6f52344a37047ea4dbb45800cdbd893ac98e831f6.jpg",
+        "image_caption": [
+            "(e) hyperrealistic photo of a fox astronaut; perfect face, artstation. ",
+            "Figure 1. Which is which? Among these images, some were generated with baseline Stable Diffusion (SD) [63] (2590ms each), the others with our Diffusion Matching Distillation (DMD) (90ms each). Can you tell which is which? Answers in the footnote1. (Nonabbreviated prompts in Appendix G.) Our one-step text-to-image generators provide quality rivaling expensive diffusion models. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            732,
+            397,
+            890,
+            520
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Abstract ",
+        "text_level": 1,
+        "bbox": [
+            233,
+            590,
+            313,
+            606
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Diffusion models generate high-quality images but require dozens of forward passes. We introduce Distribution Matching Distillation (DMD), a procedure to transform a diffusion model into a one-step image generator with minimal impact on image quality. We enforce the one-step image generator match the diffusion model at distribution level, by minimizing an approximate KL divergence whose gradient can be expressed as the difference between 2 score functions, one of the target distribution and the other of the synthetic distribution being produced by our one-step generator. The score functions are parameterized as two diffusion models trained separately on each distribution. Combined with a simple regression loss matching the large-scale structure of the multi-step diffusion outputs, our method outperforms all published few-step diffusion approaches, reaching 2.62 FID on ImageNet $6 4 \\times 6 4$ and 11.49 FID on zero-shot COCO-30k, comparable to Stable Diffusion but orders of magnitude faster. Utilizing FP16 inference, our model can generate images at 20 FPS on modern hardware. ",
+        "bbox": [
+            73,
+            613,
+            472,
+            901
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1. Introduction ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            619,
+            630,
+            636
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Diffusion models [21, 61, 63, 64, 71, 74] have revolutionized image generation, achieving unprecedented levels of realism and diversity with a stable training procedure. In contrast to GANs [15] and VAEs [34], however, their sampling is a slow, iterative process that transforms a Gaussian noise sample into an intricate image by progressive denoising [21, 74]. This typically requires tens to hundreds of costly neural network evaluations, limiting interactivity in using the generation pipeline as a creative tool. ",
+        "bbox": [
+            496,
+            646,
+            893,
+            782
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "To accelerate sampling speed, previous methods [42, 43, 47, 48, 51, 65, 75, 91, 92] distill the noise image mapping, discovered by the original multi-step diffusion sampling, into a single-pass student network. However, fitting such a high-dimensional, complex mapping is certainly a demanding task. A challenge is the expensive cost of run-",
+        "bbox": [
+            496,
+            782,
+            893,
+            875
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "aside_text",
+        "text": "arXiv:2311.18828v4 [cs.CV] 4 Oct 2024 ",
+        "bbox": [
+            22,
+            270,
+            60,
+            700
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "page_footnote",
+        "text": "1Ours (left to right): bottom, top, bottom, bottom, top. ",
+        "bbox": [
+            517,
+            886,
+            812,
+            900
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "ning the full denoising trajectory, just to realize one loss computation of the student model. Recent methods mitigate this by progressively increasing the sampling distance of the student, without running the full denoising sequence of the original diffusion [3, 16, 42, 43, 51, 65, 75]. However, the performance of distilled models still lags behind the original multi-step diffusion model. ",
+        "bbox": [
+            75,
+            90,
+            470,
+            196
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "In contrast, rather than enforcing correspondences between noise and diffusion-generated images, we simply enforce that the student generations look indistinguishable from the original diffusion model. At high level, our goal shares motivation with other distribution-matching generative models, such as GMMN [39] or GANs [15]. Still, despite their impressive success in creating realistic images [27, 30], scaling up the model on the general text-toimage data has been challenging [26, 62, 88]. In this work, we bypass the issue by starting with a diffusion model that is already trained on large-scale text-to-image data. Concretely, we finetune the pretrained diffusion model to learn not only the data distribution, but also the fake distribution that is being produced by our distilled generator. Since diffusion models are known to approximate the score functions on diffused distributions [23, 73], we can interpret the denoised diffusion outputs as gradient directions for making an image “more realistic”, or if the diffusion model is learned on the fake images, “more fake”. Finally, the gradient update rule for the generator is concocted as the difference of the two, nudging the synthetic images toward higher realism and lower fakeness. Previous work [80], in a method called Variational Score Distillation, shows that modeling the real and fake distributions with a pretrained diffusion model is also effective for test-time optimization of 3D objects. Our insight is that a similar approach can instead train an entire generative model. ",
+        "bbox": [
+            75,
+            199,
+            470,
+            607
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Furthermore, we find that pre-computing a modest number of the multi-step diffusion sampling outcomes and enforcing a simple regression loss with respect to our one-step generation serves as an effective regularizer in the presence of the distribution matching loss. Moreover, the regression loss ensures our one-step generator aligns with the teacher model (see Figure 6), demonstrating potential for real-time design previews. Our method draws upon inspiration and insights from VSD [80], GANs [15], and pix2pix [24], showing that by (1) modeling real and fake distributions with diffusion models and (2) using a simple regression loss to match the multi-step diffusion outputs, we can train a one-step generative model with high fidelity. ",
+        "bbox": [
+            75,
+            609,
+            468,
+            806
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "We evaluate models trained with our Distribution Matching Distillation procedure (DMD) across various tasks, including image generation on CIFAR-10 [36] and ImageNet $6 4 \\times 6 4$ [8], and zero-shot text-to-image generation on MS COCO $5 1 2 \\times 5 1 2$ [40]. On all benchmarks, our one-step generator significantly outperforms all published few-steps ",
+        "bbox": [
+            75,
+            809,
+            470,
+            902
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "diffusion methods, such as Progressive Distillation [51, 65], Rectified Flow [42, 43], and Consistency Models [48, 75]. On ImageNet, DMD reaches FIDs of 2.62, an improvement of $2 . 4 \\times$ over Consistency Model [75]. Employing the identical denoiser architecture as Stable Diffusion [63], DMD achieves a competitive FID of 11.49 on MS-COCO 2014- 30k. Our quantitative and qualitative evaluations show that the images generated by our model closely resemble the quality of those generated by the costly Stable Diffusion model. Importantly, our approach maintains this level of image fidelity while achieving a $1 0 0 \\times$ reduction in neural network evaluations. This efficiency allows DMD to generate $5 1 2 \\times 5 1 2$ images at a rate of 20 FPS when utilizing FP16 inference, opening up a wide range of possibilities for interactive applications. ",
+        "bbox": [
+            496,
+            90,
+            893,
+            319
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "2. Related Work ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            330,
+            640,
+            347
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Diffusion Model Diffusion models [2, 21, 71, 74] have emerged as a powerful generative modeling framework, achieving unparalleled success in diverse domains such as image generation [61, 63, 64], audio synthesis [6, 35], and video generation [11, 22, 70]. These models operate by progressively transforming noise into coherent structures through a reverse diffusion process [72, 74]. Despite state-of-the-art results, the inherently iterative procedure of diffusion models entails a high and often prohibitive computational cost for real-time applications. Our work builds upon leading diffusion models [31, 63] and introduces a simple distillation pipeline that reduces the multi-step generative process to a single forward pass. Our method is universally applicable to any diffusion model with deterministic sampling [31, 72, 74]. ",
+        "bbox": [
+            496,
+            356,
+            893,
+            583
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Diffusion Acceleration Accelerating the inference process of diffusion models has been a key focus in the field, leading to the development of two types of approaches. The first type advances fast diffusion samplers [31, 41, 45, 46, 91], which can dramatically reduce the number of sampling steps required by pre-trained diffusion models—from a thousand down to merely 20-50. However, a further reduction in steps often results in a catastrophic decrease in performance. Alternatively, diffusion distillation has emerged as a promising avenue for further boosting speed [3, 16, 42, 47, 51, 65, 75, 83, 92]. They frame diffusion distillation as knowledge distillation [19], where a student model is trained to distill the multi-step outputs of the original diffusion model into a single step. Luhman et al. [47] and DSNO [93] proposed a simple approach of pre-computing the denoising trajectories and training the student model with a regression loss in pixel space. However, a significant challenge is the expensive cost of running the full denoising trajectory for each realization of the loss function. To address this issue, Progressive ",
+        "bbox": [
+            496,
+            598,
+            893,
+            902
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "image",
+        "img_path": "images/55993718e5c146f2af5b21eed35f5596d9c50e91621f6534c8737d8fae751e81.jpg",
+        "image_caption": [
+            "Figure 2. Method overview. We train one-step generator $G _ { \\theta }$ to map random noise $z$ into a realistic image. To match the multi-step sampling outputs of the diffusion model, we pre-compute a collection of noise–image pairs, and occasionally load the noise from the collection and enforce LPIPS [89] regression loss between our one-step generator and the diffusion output. Furthermore, we provide distribution matching gradient $\\nabla _ { \\boldsymbol { \\theta } } D _ { K L }$ to the fake image to enhance realism. We inject a random amount of noise to the fake image and pass it to two diffusion models, one pretrained on the real data and the other continually trained on the fake images with a diffusion loss , to obtain its denoised versions. The denoising scores (visualized as mean prediction in the plot) indicate directions to make the images more realistic or fake. The difference between the two represents the direction toward more realism and less fakeness and is backpropagated to the one-step generator. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            78,
+            85,
+            890,
+            296
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Distillation (PD) [51, 65] train a series of student models that halve the number of sampling steps of the previous model. InstaFlow [42, 43] progressively learn straighter flows on which the one step prediction maintains accuracy over a larger distance. Consistency Distillation (CD) [75], TRACT [3], and BOOT [16] train a student model to match its own output at a different timestep on the ODE flow, which in turn is enforced to match its own output at yet another timestep. In contrast, our method shows that the simple approach of Luhman et al. and DSNO to pre-compute the diffusion outputs is sufficient, once we introduce distribution matching as the training objective. ",
+        "bbox": [
+            75,
+            446,
+            472,
+            630
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Distribution Matching Recently, a few classes of generative models have shown success in scaling up to complex datasets by recovering samples that are corrupted by a predefined mechanism, such as noise injection [21, 61, 64] or token masking [5, 60, 87]. On the other hand, there exist generative methods that do not rely on sample reconstruction as the training objective. Instead, they match the synthetic and target samples at a distribution level, such as GMMD [10, 39] or GANs [15]. Among them, GANs have shown unprecedented quality in realism [4, 26– 28, 30, 67], particularly when the GAN loss can be combined with task-specific, auxiliary regression losses to mitigate training instability, ranging from paired image translation [24, 54, 79, 90] to unpaired image editing [37, 55, 95]. Still, GANs are a less popular choice for text-guided synthesis, as careful architectural design is needed to ensure training stability at large scale [26]. ",
+        "bbox": [
+            75,
+            643,
+            472,
+            902
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Lately, several works [1, 12, 82, 86] drew connections between score-based models and distribution matching. In particular, ProlificDreamer [80] introduced Variational Score Distillation (VSD), which leverages a pretrained textto-image diffusion model as a distribution matching loss. Since VSD can utilize a large pretrained model for unpaired settings [17, 58], it showed impressive results at particlebased optimization for text-conditioned 3D synthesis. Our method refines and extends VSD for training a deep generative neural network for distilling diffusion models. Furthermore, motivated by the success of GANs in image translation, we complement the stability of training with a regression loss. As a result, our method successfully attains high realism on a complex dataset like LAION [69]. Our method is different from recent works that combine GANs with diffusion [68, 81, 83, 84], as our formulation is not grounded in GANs. Our method shares motivation with concurrent works [50, 85] that leverage the VSD objective to train a generator, but differs in that we specialize the method for diffusion distillation by introducing regression loss and showing state-of-the-art results for text-to-image tasks. ",
+        "bbox": [
+            496,
+            446,
+            893,
+            779
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "3. Distribution Matching Distillation ",
+        "text_level": 1,
+        "bbox": [
+            498,
+            797,
+            808,
+            815
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Our goal is to distill a given pretrained diffusion denoiser, the base model, $\\mu _ { \\mathrm { b a s e } }$ , into a fast “one-step” image generator, $G _ { \\theta }$ , that produces high-quality images without the costly iterative sampling procedure (Sec. 3.1). While we wish to produce samples from the same distribution, we do ",
+        "bbox": [
+            496,
+            824,
+            893,
+            902
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "image",
+        "img_path": "images/683571bf3a972ac01c68779a2a8b6b1eba8efd0a850c5d608c2389c97f9bf2cd.jpg",
+        "image_caption": [
+            "initial state "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            78,
+            88,
+            176,
+            162
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "image",
+        "img_path": "images/89925784acfec3e4d30a92de6f000cf55ee929c6658b80b9c13367acb3793090.jpg",
+        "image_caption": [
+            "(a) real score only "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            176,
+            88,
+            272,
+            161
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "image",
+        "img_path": "images/8f76cb7f4c9e26073495a5a6d1a3398fddfa9614941e3c068c8a65461d026ade.jpg",
+        "image_caption": [
+            "(b) real+fake scores "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            274,
+            88,
+            370,
+            161
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "image",
+        "img_path": "images/a8a6023d3d732e4ad486bb8003a173fc329ba77b729f3326cf73b2c479072525.jpg",
+        "image_caption": [
+            "(c) real+fake scores & regression loss ",
+            "Figure 3. Optimizing various objectives starting from the same configuration (left) leads to different outcomes. (a) Maximizing the real score only, the fake samples all collapse to the closest mode of the real distribution. (b) With our distribution matching objective but not regression loss, the generated fake data covers more of the real distribution, but only recovers the closest mode, missing the second mode entirely. (c) Our full objective, with the regression loss, recovers both modes of the target distribution. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            370,
+            88,
+            468,
+            162
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "not necessarily seek to reproduce the exact mapping. ",
+        "bbox": [
+            76,
+            334,
+            424,
+            349
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "By analogy with GANs, we denote the outputs of the distilled model as fake, as opposed to the real images from the training distribution. We illustrate our approach in Figure 2. We train the fast generator by minimizing the sum of two losses: a distribution matching objective (Sec. 3.2), whose gradient update can be expressed as the difference of two score functions, and a regression loss (Sec. 3.3) that encourages the generator to match the large scale structure of the base model’s output on a fixed dataset of noise-image pairs. Crucially, we use two diffusion denoisers to model the score functions of the real and fake distributions, respectively, perturbed with Gaussian noise of various magnitudes. Finally, in Section 3.4, we show how to adapt our training procedure with classifier-free guidance. ",
+        "bbox": [
+            75,
+            351,
+            472,
+            563
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3.1. Pretrained base model and One-step generator ",
+        "text_level": 1,
+        "bbox": [
+            76,
+            574,
+            468,
+            589
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Our distillation procedure assumes a pretrained diffusion model $\\mu _ { \\mathrm { b a s e } }$ is given. Diffusion models are trained to reverse a Gaussian diffusion process that progressively adds noise to a sample from a real data distribution $x _ { 0 } \\sim p _ { \\mathrm { r e a l } }$ , turning it into white noise $x _ { T } ~ \\sim ~ \\mathcal { N } ( 0 , \\mathbf { I } )$ over $T$ time steps [21, 71, 74]; we use $T = 1 0 0 0$ . We denote the diffusion model as $\\mu _ { \\mathrm { b a s e } } ( x _ { t } , t )$ . Starting from a Gaussian sample $x _ { T }$ , the model iteratively denoises a running noisy estimate $x _ { t }$ , conditioned on the timestep $t \\in \\{ 0 , 1 , . . . , T - 1 \\}$ (or noise level), to produce a sample of the target data distribution. Diffusion models typically require 10 to 100s steps to produce realistic images. Our derivation uses the meanprediction form of diffusion for simplicity [31] but works identically with $\\epsilon$ -prediction [21, 63] with a change of variable [33] (see Appendix H). Our implementation uses pretrained models from EDM [31] and Stable Diffusion [63]. ",
+        "bbox": [
+            75,
+            597,
+            468,
+            839
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "One-step generator. Our one-step generator $G _ { \\theta }$ has the architecture of the base diffusion denoiser but without timeconditioning. We initialize its parameters $\\theta$ with the base model, i.e., $G _ { \\theta } ( z ) = \\mu _ { \\mathrm { b a s e } } ( z , T - 1 ) , \\forall z$ , before training. ",
+        "bbox": [
+            75,
+            839,
+            468,
+            901
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3.2. Distribution Matching Loss ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            90,
+            746,
+            106
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Ideally, we would like our fast generator to produce samples that are indistinguishable from real images. Inspired by the ProlificDreamer [80], we minimize the Kullback–Leibler (KL) divergence between the real and fake image distributions, $p _ { \\mathrm { r e a l } }$ and $p _ { \\mathrm { f a k e } }$ , respectively: ",
+        "bbox": [
+            496,
+            113,
+            890,
+            189
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\begin{array}{l} D _ {K L} \\left(p _ {\\text {f a k e}} \\| p _ {\\text {r e a l}}\\right) = \\underset {x \\sim p _ {\\text {f a k e}}} {\\mathbb {E}} \\left(\\log \\left(\\frac {p _ {\\text {f a k e}} (x)}{p _ {\\text {r e a l}} (x)}\\right)\\right) \\\\ = \\underset { \\begin{array}{c} z \\sim \\mathcal {N} (0; \\mathbf {I}) \\\\ x = G _ {\\theta} (z) \\end{array} } {\\mathbb {E}} - \\left(\\log p _ {\\text {r e a l}} (x) - \\log p _ {\\text {f a k e}} (x)\\right). \\tag {1} \\\\ \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            504,
+            195,
+            888,
+            271
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Computing the probability densities to estimate this loss is generally intractable, but we only need the gradient with respect to $\\theta$ to train our generator by gradient descent. ",
+        "bbox": [
+            496,
+            272,
+            890,
+            316
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Gradient update using approximate scores. Taking the gradient of Eq. (1) with respect to the generator parameters: ",
+        "bbox": [
+            498,
+            316,
+            890,
+            347
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\nabla_ {\\theta} D _ {K L} = \\underset { \\begin{array}{c} z \\sim \\mathcal {N} (0; \\mathbf {I}) \\\\ x = G _ {\\theta} (z) \\end{array} } {\\mathbb {E}} \\left[ - \\left(s _ {\\text {r e a l}} (x) - s _ {\\text {f a k e}} (x)\\right) \\frac {d G}{d \\theta} \\right], \\tag {2}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            521,
+            349,
+            890,
+            387
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "where $s _ { \\mathrm { r e a l } } ( x ) = \\nabla _ { x } \\mathrm { l o g } \\ p _ { \\mathrm { r e a l } } ( x )$ , $s _ { \\mathrm { f a k e } } ( x ) = \\nabla _ { x } \\log p _ { \\mathrm { f a k e } } ( x )$ are the scores of the respective distributions. Intuitively, $s _ { \\mathrm { r e a l } }$ moves $x$ toward the modes of $p _ { \\mathrm { r e a l } }$ , and $- s _ { \\mathrm { f a k e } }$ spreads them apart, as shown in Figure 3(a, b). Computing this gradient is still challenging for two reasons: first, the scores diverge for samples with low probability — in particular $p _ { \\mathrm { r e a l } }$ vanishes for fake samples, and second, our intended tool for estimating score, namely the diffusion models, only provide scores of the diffused distribution. Score-SDE [73, 74] provides an answer to these two issues. ",
+        "bbox": [
+            496,
+            390,
+            890,
+            540
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "By perturbing the data distribution with random Gaussian noise of varying standard deviations, we create a family of “blurred” distributions that are fully-supported over the ambient space, and therefore overlap, so that the gradient in Eq. (2) is well-defined (Figure 4). Score-SDE then shows that a trained diffusion model approximates the score function of the diffused distribution. ",
+        "bbox": [
+            496,
+            541,
+            890,
+            646
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Accordingly, our strategy is to use a pair of diffusion denoisers to model the scores of the real and fake distributions after Gaussian diffusion. With slight abuse of notation, we define these as $s _ { \\mathrm { r e a l } } ( x _ { t } , t )$ and $s _ { \\mathrm { f a k e } } ( x _ { t } , t )$ , respectively. Diffused sample $x _ { t } \\sim q ( x _ { t } | x )$ is obtained by adding noise to generator output $x = G _ { \\theta } ( z )$ at diffusion time step $t$ : ",
+        "bbox": [
+            496,
+            647,
+            890,
+            738
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "text": "$$\nq _ {t} \\left(x _ {t} \\mid x\\right) \\sim \\mathcal {N} \\left(\\alpha_ {t} x; \\sigma_ {t} ^ {2} \\mathbf {I}\\right), \\tag {3}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            609,
+            746,
+            890,
+            763
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "where $\\alpha _ { t }$ and $\\sigma _ { t }$ are from the diffusion noise schedule. ",
+        "bbox": [
+            496,
+            772,
+            861,
+            786
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Real score. The real distribution is fixed, corresponding to the training images of the base diffusion model, so we model its score using a fixed copy of the pretrained diffusion model $\\mu _ { \\mathrm { b a s e } } ( x , t )$ . The score given a diffusion model is given by Song et al. [74]: ",
+        "bbox": [
+            496,
+            787,
+            890,
+            863
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "text": "$$\ns _ {\\text {r e a l}} \\left(x _ {t}, t\\right) = - \\frac {x _ {t} - \\alpha_ {t} \\mu_ {\\text {b a s e}} \\left(x _ {t} , t\\right)}{\\sigma_ {t} ^ {2}}. \\tag {4}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            573,
+            871,
+            890,
+            905
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "image",
+        "img_path": "images/a7b848b6aa3de14cba87b4e7c08a7ced714eb022c9c68441ec2d760cc29b875d.jpg",
+        "image_caption": [
+            "Figure 4. Without perturbation, the real/fake distributions may not overlap (a). Real samples only get a valid gradient from the real score, and fake samples from the fake score. After diffusion (b), our distribution matching objective is well-defined everywhere. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            106,
+            88,
+            442,
+            233
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Dynamically-learned fake score. We derive the fake score function, in the same manner as the real score case: ",
+        "bbox": [
+            75,
+            319,
+            468,
+            349
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "$$\ns _ {\\text {f a k e}} \\left(x _ {t}, t\\right) = - \\frac {x _ {t} - \\alpha_ {t} \\mu_ {\\text {f a k e}} ^ {\\phi} \\left(x _ {t} , t\\right)}{\\sigma_ {t} ^ {2}}. \\tag {5}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            151,
+            357,
+            468,
+            391
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "However, as the distribution of our generated samples changes throughout training, we dynamically adjust the fake diffusion model $\\mu _ { \\mathrm { f a k e } } ^ { \\phi }$ to track these changes. We initialize the fake diffusion model from the pretrained diffusion model $\\mu _ { \\mathrm { b a s e } }$ , updating parameters $\\phi$ during training, by minimizing a standard denoising objective [21, 77]: ",
+        "bbox": [
+            75,
+            398,
+            468,
+            491
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\mathcal {L} _ {\\text {d e n o i s e}} ^ {\\phi} = \\left\\| \\mu_ {\\text {f a k e}} ^ {\\phi} \\left(x _ {t}, t\\right) - x _ {0} \\right\\| _ {2} ^ {2}, \\tag {6}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            166,
+            498,
+            468,
+            516
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "where Lϕ $\\mathcal { L } _ { \\mathrm { d e n o i s e } } ^ { \\phi }$ is weighted according to the diffusion timestep $t$ , using the same weighting strategy employed during the training of the base diffusion model [31, 63]. ",
+        "bbox": [
+            75,
+            525,
+            468,
+            571
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Distribution matching gradient update. Our final approximate distribution matching gradient is obtained by replacing the exact score in Eq. (2) with those defined by the two diffusion models on the perturbed samples $x _ { t }$ and taking the expectation over the diffusion time steps: ",
+        "bbox": [
+            75,
+            571,
+            468,
+            647
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\nabla_ {\\theta} D _ {K L} \\simeq \\underset {z, t, x, x _ {t}} {\\mathbb {E}} \\left[ w _ {t} \\alpha_ {t} \\left(s _ {\\text {f a k e}} \\left(x _ {t}, t\\right) - s _ {\\text {r e a l}} \\left(x _ {t}, t\\right)\\right) \\frac {d G}{d \\theta} \\right], \\tag {7}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            96,
+            651,
+            468,
+            678
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "where $z \\sim \\mathcal { N } ( 0 ; { \\bf I } )$ , $x = G _ { \\theta } ( z )$ , $t \\sim \\mathcal { U } ( T _ { \\mathrm { m i n } } , T _ { \\mathrm { m a x } } )$ , and $x _ { t } \\sim q _ { t } ( x _ { t } | x )$ . We include the derivations in Appendix F. Here, $w _ { t }$ is a time-dependent scalar weight we add to improve the training dynamics. We design the weighting factor to normalize the gradient’s magnitude across different noise levels. Specifically, we compute the mean absolute error across spatial and channel dimensions between the denoised image and the input, setting ",
+        "bbox": [
+            75,
+            681,
+            468,
+            801
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "$$\nw _ {t} = \\frac {\\sigma_ {t} ^ {2}}{\\alpha_ {t}} \\frac {C S}{\\left\\| \\mu_ {\\text {b a s e}} \\left(x _ {t} , t\\right) - x \\right\\| _ {1}}, \\tag {8}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            189,
+            811,
+            468,
+            837
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "where $S$ is the number of spatial locations and $C$ is the number of channels. In Sec. 4.2, we show that this weighting outperforms previous designs [58, 80]. We set $T _ { \\mathrm { m i n } } =$ $0 . 0 2 T$ and $T _ { \\mathrm { m a x } } = 0 . 9 8 T$ , following DreamFusion [58]. ",
+        "bbox": [
+            75,
+            839,
+            468,
+            901
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "3.3. Regression loss and final objective ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            90,
+            797,
+            107
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The distribution matching objective introduced in the previous section is well-defined for $t \\gg 0$ , i.e., when the generated samples are corrupted with a large amount of noise. However, for a small amount of noise, $s _ { \\mathrm { r e a l } } ( x _ { t } , t )$ often becomes unreliable, as $p _ { \\mathrm { r e a l } } ( x _ { t } , t )$ goes to zero. Furthermore, as the score $\\nabla _ { \\boldsymbol { x } } \\log ( p )$ is invariant to scaling of probability density function $p$ , the optimization is susceptible to mode collapse/dropping, where the fake distribution assigns higher overall density to a subset of the modes. To avoid this, we use an additional regression loss to ensure all modes are preserved; see Figure 3(b), (c). ",
+        "bbox": [
+            496,
+            112,
+            890,
+            280
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "This loss measures the pointwise distance between the generator and base diffusion model outputs, given the same input noise. Concretely, we build a paired dataset $\\mathcal { D } = \\{ \\boldsymbol { z } , \\boldsymbol { y } \\}$ of random Gaussian noise images $z$ and the corresponding outputs $y$ , obtained by sampling the pretrained diffusion model $\\mu _ { \\mathrm { b a s e } }$ using a deterministic ODE solver [31, 41, 72]. In our CIFAR-10 and ImageNet experiments, we utilize the Heun solver from EDM [31], with 18 steps for CIFAR-10 and 256 steps for ImageNet. For the LAION experiments, we use the PNDM [41] solver with 50 sampling steps. We find that even a small number of noise– image pairs, generated using less than $1 \\%$ of the training compute, in the case of CIFAR10, for example, acts as an effective regularizer. Our regression loss is given by: ",
+        "bbox": [
+            496,
+            280,
+            890,
+            492
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\mathcal {L} _ {\\text {r e g}} = \\underset {(z, y) \\sim \\mathcal {D}} {\\mathbb {E}} \\ell \\left(G _ {\\theta} (z), y\\right). \\tag {9}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            601,
+            502,
+            890,
+            526
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We use Learned Perceptual Image Patch Similarity (LPIPS) [89] as the distance function $\\ell$ , following InstaFlow [43] and Consistency Models [75]. ",
+        "bbox": [
+            496,
+            536,
+            890,
+            580
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Final objective. Network $\\dot { \\mu } _ { \\mathrm { f a k e } } ^ { \\phi }$ is trained with $\\mathcal { L } _ { \\mathrm { d e n o i s e } } ^ { \\phi }$ which is used to help calculate $\\nabla _ { \\boldsymbol { \\theta } } D _ { K L }$ . For training $G _ { \\theta }$ , the final objective is $D _ { K L } + \\lambda _ { \\mathrm { r e g } } \\mathcal { L } _ { \\mathrm { r e g } }$ , using $\\lambda _ { \\mathrm { r e g } } = 0 . 2 5$ unless otherwise specified. The gradient $\\nabla _ { \\boldsymbol { \\theta } } D _ { K L }$ is computed in Eq. (7), and gradient $\\nabla _ { \\boldsymbol { \\theta } } \\mathcal { L } _ { \\mathrm { r e g } }$ is computed from Eq. (9) with automatic differentiation. We apply the two losses to distinct data streams: unpaired fake samples for the distribution matching gradient and paired examples described in Section 3.3 for the regression loss. Algorithm 1 outlines the final training procedure. Additional details are provided in Appendix B. ",
+        "bbox": [
+            496,
+            580,
+            890,
+            748
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "3.4. Distillation with classifier-free guidance ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            756,
+            836,
+            772
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Classifier-Free Guidance [20] is widely used to improve the image quality of text-to-image diffusion models. Our approach also applies to diffusion models that use classifierfree guidance. We first generate the corresponding noiseoutput pairs by sampling from the guided model to construct the paired dataset needed for regression loss $\\mathcal { L } _ { \\mathrm { r e g } }$ . When computing the distribution matching gradient $\\nabla _ { \\boldsymbol { \\theta } } D _ { K L }$ , we substitute the real score with that derived from the mean ",
+        "bbox": [
+            496,
+            779,
+            890,
+            898
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [
+            "Algorithm 1: DMD Training procedure "
+        ],
+        "code_body": "Input: Pretrained real diffusion model $\\mu_{\\mathrm{real}}$ , paired dataset $\\mathcal{D} = \\{z_{\\mathrm{ref}},y_{\\mathrm{ref}}\\}$ Output: Trained generator $G$ .  \n1 // Initialize generator and fake score estimators from pretrained model  \n2 $G\\gets$ copyWeights $(\\mu_{\\mathrm{real}})$ , $\\mu_{\\mathrm{fake}}\\gets$ copyWeights $(\\mu_{\\mathrm{real}})$ 3 while train do  \n4 // Generate images  \n5 Sample batch $z\\sim \\mathcal{N}(0,\\mathbf{I})^B$ and $(z_{\\mathrm{ref}},y_{\\mathrm{ref}})\\sim \\mathcal{D}$ 6 $x\\gets G(z)$ , $x_{\\mathrm{ref}}\\gets G(z_{\\mathrm{ref}})$ 7 $x = \\mathrm{concat}(x,x_{\\mathrm{ref}})$ if dataset is LAION else $x$ 8  \n9 // Update generator  \n10 $\\mathcal{L}_{\\mathrm{KL}}\\gets$ distributionMatchingLoss $(\\mu_{\\mathrm{real}},\\mu_{\\mathrm{fake}},x)$ // Eq 7  \n11 $\\mathcal{L}_{\\mathrm{reg}}\\gets$ LPIPS $(x_{\\mathrm{ref}},y_{\\mathrm{ref}})$ // Eq 9  \n12 $\\mathcal{L}_G\\gets \\mathcal{L}_{\\mathrm{KL}} + \\lambda_{\\mathrm{reg}}\\mathcal{L}_{\\mathrm{reg}}$ 13 $G\\gets$ update $(G,\\mathcal{L}_G)$ 14  \n15 // Update fake score estimation model  \n16 Sample time step $t\\sim \\mathcal{U}(0,1)$ 17 $x_{t}\\gets$ forwardDiffusion(stopgrad $(x),t)$ 18 $\\mathcal{L}_{\\mathrm{denoise}}\\gets$ denoisingLoss $(\\mu_{\\mathrm{fake}}(x_{t},t),\\mathrm{stopgrad}(x))$ / Eq 6  \n19 $\\mu_{\\mathrm{fake}}\\gets$ update $(\\mu_{\\mathrm{fake}},\\mathcal{L}_{\\mathrm{denoise}})$ 20 end while ",
+        "bbox": [
+            81,
+            111,
+            467,
+            361
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "prediction of the guided model. Meanwhile, we do not modify the formulation for the fake score. We train our one-step generator with a fixed guidance scale. ",
+        "bbox": [
+            75,
+            391,
+            468,
+            438
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "4. Experiments ",
+        "text_level": 1,
+        "bbox": [
+            76,
+            450,
+            209,
+            467
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We assess the capabilities of our approach using several benchmarks, including class-conditional generation on CIFAR-10 [36] and ImageNet [8]. We use the Frechet ´ Inception Distance (FID) [18] to measure image quality and CLIP Score [59] to evaluate text-to-image alignment. First, we perform a direct comparison on ImageNet (Sec. 4.1), where our distribution matching distillation substantially outperforms competing distillation methods with identical base diffusion models. Second, we perform detailed ablation studies verifying the effectiveness of our proposed modules (Sec. 4.2). Third, we train a text-to-image model on the LAION-Aesthetic- $^ { 6 . 2 5 + }$ dataset [69] with a classifier-free guidance scale of 3 (Sec. 4.3). In this phase, we distill Stable Diffusion v1.5, and we show that our distilled model achieves FID comparable to the original model, while offering a $3 0 \\times$ speed-up. Finally, we train another text-to-image model on LAION-Aesthetic- $^ { 6 + }$ , utilizing a higher guidance value of 8 (Sec. 4.3). This model is tailored to enhance visual quality rather than optimize the FID metric. Quantitative and qualitative analysis confirm that models trained with our distribution matching distillation procedure can produce high-quality images rivaling Stable Diffusion. We describe additional training and evaluation details in the appendix. ",
+        "bbox": [
+            75,
+            474,
+            472,
+            838
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "4.1. Class-conditional Image Generation ",
+        "text_level": 1,
+        "bbox": [
+            76,
+            847,
+            390,
+            863
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We train our model on class-conditional ImageNet- $6 4 \\times 6 4$ and benchmark its performance with competing methods. ",
+        "bbox": [
+            75,
+            869,
+            468,
+            902
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Results are shown in Table 1. Our model surpasses established GANs like BigGAN-deep [4] and recent diffusion distillation methods, including the Consistency Model [75] and TRACT [3]. Our method remarkably bridges the fidelity gap, achieving a near-identical FID score (within 0.3) compared to the original diffusion model, while also attaining a 512-fold increase in speed. On CIFAR-10, our classconditional model reaches a competitive FID of 2.66. We include the CIFAR-10 results in the appendix. ",
+        "bbox": [
+            496,
+            90,
+            890,
+            227
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/4fca842aecdc905e49bb2fed2f92abeb580e4b9ce34516509e28b4ac3b23fcf4.jpg",
+        "table_caption": [
+            "Table 1. Sample quality comparison on ImageNet- $6 4 \\times 6 4$ . Baseline numbers are derived from Song et al. [75]. The upper section of the table highlights popular diffusion and GAN approaches [4, 9]. The middle section includes a list of competing diffusion distillation methods. The last row shows the performance of our teacher model, EDM† [31]. "
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Method</td><td># Fwd Pass (↓)</td><td>FID (↓)</td></tr><tr><td>BigGAN-deep [4]</td><td>1</td><td>4.06</td></tr><tr><td>ADM [9]</td><td>250</td><td>2.07</td></tr><tr><td>Progressive Distillation [65]</td><td>1</td><td>15.39</td></tr><tr><td>DFNO [92]</td><td>1</td><td>7.83</td></tr><tr><td>BOOT [16]</td><td>1</td><td>16.30</td></tr><tr><td>TRACT [3]</td><td>1</td><td>7.43</td></tr><tr><td>Meng et al. [51]</td><td>1</td><td>7.54</td></tr><tr><td>Diff-Instruct [50]</td><td>1</td><td>5.57</td></tr><tr><td>Consistency Model [75]</td><td>1</td><td>6.20</td></tr><tr><td>DMD (Ours)</td><td>1</td><td>2.62</td></tr><tr><td>EDM† (Teacher) [31]</td><td>512</td><td>2.32</td></tr></table>",
+        "bbox": [
+            540,
+            251,
+            851,
+            462
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "4.2. Ablation Studies ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            607,
+            663,
+            622
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We first compare our method with two baselines: one omitting the distribution matching objective and the other missing the regression loss in our framework. Table 2 (left) summarizes the results. In the absence of distribution matching loss, our baseline model produces images that lack realism and structural integrity, as illustrated in the top section of Figure 5. Likewise, omitting the regression loss leads to training instability and a propensity for mode collapse, resulting in a reduced diversity of the generated images. This issue is illustrated in the bottom section of Figure 5. ",
+        "bbox": [
+            496,
+            637,
+            890,
+            787
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Table 2 (right) demonstrates the advantage of our proposed sample weighting strategy (Section 3.2). We compare with $\\sigma _ { t } / \\alpha _ { t }$ and $\\sigma _ { t } ^ { 3 } / \\alpha _ { t }$ , two popular weighting schemes utilized by DreamFusion [58] and ProlificDreamer [80]. Our weighting strategy achieves a healthy 0.9 FID improvement as it normalizes the gradient magnitudes across noise levels and stabilizes the optimization. ",
+        "bbox": [
+            496,
+            794,
+            890,
+            900
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "image",
+        "img_path": "images/c88a65eb0d88d9ca1cd5ced186191e632aa1709ef8dc556e9b68e712c1562c65.jpg",
+        "image_caption": [
+            "DMD (ours) "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            93,
+            88,
+            271,
+            224
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "image",
+        "img_path": "images/da575bd66150fe3c0f8c64798296f603d7d07c555e275e330fce5d0a99466c1c.jpg",
+        "image_caption": [
+            "without distribution matching "
+        ],
+        "image_footnote": [
+            "(a) Qualitative comparison between our model (left) and the baseline model excluding the distribution matching objective (right). The baseline model generates images with compromised realism and structural integrity. Images are generated from the same random seed. "
+        ],
+        "bbox": [
+            274,
+            88,
+            454,
+            224
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "image",
+        "img_path": "images/9e0fa3790908ca0e4d14047def29e280ae2cb773b5bded67acf3fa4cc6d6f3e6.jpg",
+        "image_caption": [
+            "DMD (ours) "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            91,
+            297,
+            271,
+            434
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "image",
+        "img_path": "images/dd63bcffc1bcfe68d1ce4099e61485798a95448d257c90d057ea407a4d40a53f.jpg",
+        "image_caption": [
+            "without regression loss "
+        ],
+        "image_footnote": [
+            "(b) Qualitative comparison between our model (left) and the baseline model omitting the regression loss (right). The baseline model tends to exhibit mode collapse and a lack of diversity, as evidenced by the predominant appearance of the grey car (highlighted with a red square). Images are generated from the same random seed. "
+        ],
+        "bbox": [
+            274,
+            297,
+            454,
+            434
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/45c8a8a8bfee4b0f7862b74f1097ec83b8ea995729a4f01480a37111df3dae97.jpg",
+        "table_caption": [
+            "Figure 5. Ablation studies of our training loss, including the distribution matching objective (top) and the regression loss (bottom). "
+        ],
+        "table_footnote": [
+            "Table 2. Ablation study. (left) We ablate elements of our training loss. We show the FID results on CIFAR-10 and ImageNet-$6 4 \\times 6 4$ . (right) We compare different sample weighting strategies for the distribution matching loss. "
+        ],
+        "table_body": "<table><tr><td>Training loss</td><td>CIFAR</td><td>ImageNet</td><td colspan=\"2\">Sample weighting CIFAR</td></tr><tr><td>w/o Dist. Matching</td><td>3.82</td><td>9.21</td><td>σt/αt[58]</td><td>3.60</td></tr><tr><td>w/o Regress. Loss</td><td>5.58</td><td>5.61</td><td>σt3/αt[58, 80]</td><td>3.71</td></tr><tr><td>DMD (Ours)</td><td>2.66</td><td>2.62</td><td>Eq. 8 (Ours)</td><td>2.66</td></tr></table>",
+        "bbox": [
+            78,
+            551,
+            475,
+            623
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "4.3. Text-to-Image Generation ",
+        "text_level": 1,
+        "bbox": [
+            76,
+            709,
+            313,
+            724
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "We use zero-shot MS COCO to evaluate our model’s performance for text-to-image generation. We train a text-toimage model by distilling Stable Diffusion v1.5 [63] on the LAION-Aesthetics- $^ { 6 . 2 5 + }$ [69]. We use a guidance scale of 3, which yields the best FID for the base Stable Diffusion model. The training takes around 36 hours on a cluster of 72 A100 GPUs. Table 3 compares our model to state-ofthe-art approaches. Our method showcases superior performance over StyleGAN-T [67], surpasses all other diffusion acceleration methods, including advanced diffusion solvers [46, 91], and diffusion distillation techniques such ",
+        "bbox": [
+            75,
+            734,
+            470,
+            902
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "as Latent Consistency Models [48, 49], UFOGen [84], and InstaFlow [43]. We substantially close the gap between distilled and base models, reaching within 2.7 FID from Stable Diffusion v1.5, while running approximately $3 0 \\times$ faster. With FP16 inference, our model generates images at 20 frames per second, enabling interactive applications. ",
+        "bbox": [
+            496,
+            90,
+            893,
+            183
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/2f623d206d80ef0c277c50d5cb18658a09b40ca52d77037fa26221dd7957fa01.jpg",
+        "table_caption": [],
+        "table_footnote": [
+            "Table 3. Sample quality comparison on zero-shot text-toimage generation on MS COCO-30k. Baseline numbers are derived from GigaGAN [26]. The dashed line indicates that the result is unavailable. †Results are evaluated by us using the released models. LCM-LoRA is trained with a guidance scale of 7.5. We use a guidance scale of 3 for all the other methods. Latency is measured with a batch size of 1. "
+        ],
+        "table_body": "<table><tr><td>Family</td><td>Method</td><td colspan=\"3\">Resolution (↑) Latency (↓) FID (↓)</td></tr><tr><td rowspan=\"9\">Original, unaccelerated</td><td>DALL·E [60]</td><td>256</td><td>-</td><td>27.5</td></tr><tr><td>DALL·E 2 [61]</td><td>256</td><td>-</td><td>10.39</td></tr><tr><td>Parti-750M [87]</td><td>256</td><td>-</td><td>10.71</td></tr><tr><td>Parti-3B [87]</td><td>256</td><td>6.4s</td><td>8.10</td></tr><tr><td>Make-A-Scene [13]</td><td>256</td><td>25.0s</td><td>11.84</td></tr><tr><td>GLIDE [52]</td><td>256</td><td>15.0s</td><td>12.24</td></tr><tr><td>LDM [63]</td><td>256</td><td>3.7s</td><td>12.63</td></tr><tr><td>Imagen [64]</td><td>256</td><td>9.1s</td><td>7.27</td></tr><tr><td>eDiff-I [2]</td><td>256</td><td>32.0s</td><td>6.95</td></tr><tr><td rowspan=\"3\">GANs</td><td>LAFITE [94]</td><td>256</td><td>0.02s</td><td>26.94</td></tr><tr><td>StyleGAN-T [67]</td><td>512</td><td>0.10s</td><td>13.90</td></tr><tr><td>GigaGAN [26]</td><td>512</td><td>0.13s</td><td>9.09</td></tr><tr><td rowspan=\"6\">Accelerated diffusion</td><td>DPM++ (4 step) [46]†</td><td>512</td><td>0.26s</td><td>22.36</td></tr><tr><td>UniPC (4 step) [91]†</td><td>512</td><td>0.26s</td><td>19.57</td></tr><tr><td>LCM-LoRA (4 step)[49]†</td><td>512</td><td>0.19s</td><td>23.62</td></tr><tr><td>InstaFlow-0.9B [43]</td><td>512</td><td>0.09s</td><td>13.10</td></tr><tr><td>UFOGen [84]</td><td>512</td><td>0.09s</td><td>12.78</td></tr><tr><td>DMD (Ours)</td><td>512</td><td>0.09s</td><td>11.49</td></tr><tr><td>Teacher</td><td>SDv1.5† [63]</td><td>512</td><td>2.59s</td><td>8.78</td></tr></table>",
+        "bbox": [
+            503,
+            194,
+            890,
+            441
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "High guidance-scale diffusion distillation. For text-toimage generation, diffusion models typically operate with a high guidance scale to enhance image quality [57, 63]. To evaluate our distillation method in this high guidancescale regime, we trained an additional text-to-image model. This model distills SD v1.5 using a guidance scale of 8 on the LAION-Aesthetics- $^ { 6 + }$ dataset [69]. Table 4 benchmarks our approach against various diffusion acceleration methods [46, 49, 91]. Similar to the low guidance model, our one-step generator significantly outperforms competing methods, even when they utilize a four-step sampling process. Qualitative comparisons with competing approaches and the base diffusion model are shown in Figure 6. ",
+        "bbox": [
+            496,
+            587,
+            892,
+            785
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "5. Limitations ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            799,
+            624,
+            814
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "While our results are promising, a slight quality discrepancy persists between our one-step model and finer discretizations of the diffusion sampling path, such as those with 100 or 1000 neural network evaluations. Additionally, our framework fine-tunes the weights of both the fake score ",
+        "bbox": [
+            496,
+            824,
+            892,
+            902
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "“close-up photo of a unicorn in a forest, in a style of “wise old man with a white beard in the enchanted an ",
+        "bbox": [
+            102,
+            88,
+            410,
+            101
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/8ad9c44c5ef0e6b8a576fb707f9b4acca13a96714b83ca6c0ff62043ac50b0f4.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            104,
+            101,
+            228,
+            185
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/590aed007521451428184767bd2da721ca9c415b993db03d7508a919fedd00b9.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            230,
+            101,
+            356,
+            185
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/2b91b406931ca9fa012ec33119fc3ab82d163b038f15c747c380db39d7199eab.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            357,
+            88,
+            483,
+            185
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/d83d5a96fedd3c34f178ba7eaaddc48840e4884d73a34614c551b3a69f04d409.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            483,
+            88,
+            611,
+            185
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/17f8cc28b8d0bea3988c8e50496b7125c721d41e65cbba9c76b2d0aa5aa187be.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            612,
+            88,
+            738,
+            185
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/a2b424247bbe7646d1ecee5e5e2775a5959b2e3babb9380bb3b60e0f57b3e362.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            738,
+            89,
+            864,
+            185
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "“amazing photograph of a labrador retriever chasing a tennis ball under water, fisheye lens, close up portrait, crazy image”“macro photo of a miniature toy sloth drinking a soda, shot on a light pastel cyclorama” ",
+        "bbox": [
+            104,
+            186,
+            686,
+            199
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/d73cbe1f868db0031bd3dd6f2f65261450b01d1b38cb781b745db68130915d35.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            104,
+            199,
+            228,
+            282
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/00ff052cb6e0ee4e5c72a2618bafe7675f8cb13eb68001833ea8314e3dbdd757.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            230,
+            199,
+            356,
+            282
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/c9fcc74e3726fe7bf5457729e5d4726fc7295baf0ef049f9fa8c211c3a0c6029.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            357,
+            199,
+            483,
+            282
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/1c9e2dd2a07364e5f1ca6585100ad37c37297441a69b6d0b90ecfc2c83c75382.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            483,
+            199,
+            611,
+            282
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/0e3cf8f19a7cce982eea86a763c5889cfd45c4d86a079a3f0c8392f60f6b17dc.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            612,
+            199,
+            738,
+            282
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/533271a5536a974de400278343c579dc1beb54de7e6c2e09baf4e93785ba0fb3.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            738,
+            199,
+            864,
+            282
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "“wise old man with a white beard in the enchanted and magical forest”“a high-resolution photo of an orange Porsche under sunshine” ",
+        "bbox": [
+            104,
+            285,
+            437,
+            297
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/db77e820dcb649d1a03123e8f6a64eaca7cb9d1bae8b4f0f49f1f55580f48a21.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            104,
+            297,
+            228,
+            382
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/1e7f4794d5ec894f5390dfa84384dff479433d342a77ed2a6f3a174f0ec185f3.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            230,
+            297,
+            356,
+            382
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/a372dc2c199bd9bfe103bf36c3bb209c38607889d3fc92378893a9733e7d9368.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            357,
+            297,
+            483,
+            382
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/5e3c0532aca8831fc06df117fb84f7eff50c949fe4636c256e1515f81c3a44ac.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            483,
+            285,
+            611,
+            382
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/693facd0a6952deef5ad4f70ef1e41e1b74709f6ec1f88d00d2b1eaf8581ce75.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            612,
+            285,
+            738,
+            382
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/b8e686293a44b38f43423aa34a653638a75146b3fa5f9349f0128a1453979cac.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            738,
+            285,
+            864,
+            382
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "“macro photo of a miniature toy sloth drinking a soda, shot on a light pastel cyclorama”“a hot air balloon in shape of a heart. Grand Canyon” ",
+        "bbox": [
+            104,
+            383,
+            519,
+            396
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/7c1ae83d3922be9b3dbd94a3f6d5c507c480831a0f56ddcdc4b809ae2fa7441b.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            104,
+            396,
+            228,
+            481
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/ebabec29b5355a96153899f4bde785285e5f1a0014490ffb7c24b1e571771130.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            230,
+            396,
+            356,
+            481
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/5d04e6f6b9bc9de3052e7e4bc2f677eb10f608be5e7a49b0be24c0993dae8f5f.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            357,
+            396,
+            483,
+            481
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/9d2c1a207adf24b18326e3bbe1692a882cd69a84858712d5b689c788e0310bc8.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            483,
+            396,
+            611,
+            481
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/9ed219099ded177eaca97270cf0baeea5c3070f1954d7bdcfd052191f4dc54f5.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            612,
+            383,
+            738,
+            481
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/353a10c19b0fa4233ac61ec3c461f41e6184c70f6e2bcee9b111a4ad154ac6e0.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            738,
+            383,
+            864,
+            481
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "“a high-resolution photo o“Astronaut on a camel on ",
+        "bbox": [
+            104,
+            481,
+            256,
+            493
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/7194047dc62c076b96a51ae101a842b88d824db198103870840a0bb3367b1394.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            104,
+            493,
+            228,
+            578
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/e53d93c52363eb4a325c3761b05fa9a8b6757395c91f3e70e8c0f079c80605ac.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            230,
+            481,
+            356,
+            578
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/0acacb1519ec6c896233bccdad2cd982fbed627a394560deee3f4b31ef4da6dd.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            357,
+            481,
+            483,
+            578
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/7d1ea6e9f0144f3181541477289642d81e70462479ef5103ac7150d363cda0f8.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            483,
+            481,
+            611,
+            578
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/297f3160c73f566407569f664dc19c1a7cb041ca579e3381cf51dbf14e77608a.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            612,
+            481,
+            738,
+            578
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/6fd20b44c31e93988a0b9a0df27a68f413311e5ba4af83fc433c2225184be815.jpg",
+        "image_caption": [
+            "“a hot air balloon in shDMD (ours, 1 step) 90ms ",
+            "InstaFlow (1 step) rt. Gran90ms ",
+            "LCM (1 step) 90ms ",
+            "LCM (2 steps) 120ms ",
+            "DPM++ (4 steps) 260ms ",
+            "SD (50 steps) 2590ms ",
+            "Figure 6. Starting from a pretrained diffusion model, here Stable Diffusion (right), our distribution matching distillation algorithm yields a model that can generate images with much higher quality (left) than previous few-steps generators (middle), with the same speed or faster. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            738,
+            481,
+            864,
+            578
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/4df7db0febc214bdf006ea833bc0965f2f6e7b73537fa24acfca006ff257ed69.jpg",
+        "table_caption": [
+            "Table 4. FID/CLIP-Score comparison on MS COCO-30K. †Results are evaluated by us. LCM-LoRA is trained with a guidance scale of 7.5. We use a guidance scale of 8 for all the other methods. Latency is measured with a batch size of 1. "
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Method</td><td>Latency (↓)</td><td>FID (↓)</td><td>CLIP-Score (↑)</td></tr><tr><td>DPM++ (4 step)[46]†</td><td>0.26s</td><td>22.44</td><td>0.309</td></tr><tr><td>UniPC (4 step)[91]†</td><td>0.26s</td><td>23.30</td><td>0.308</td></tr><tr><td>LCM-LoRA (1 step) [49]†</td><td>0.09s</td><td>77.90</td><td>0.238</td></tr><tr><td>LCM-LoRA (2 step) [49]†</td><td>0.12s</td><td>24.28</td><td>0.294</td></tr><tr><td>LCM-LoRA (4 step) [49]†</td><td>0.19s</td><td>23.62</td><td>0.297</td></tr><tr><td>DMD (Ours)</td><td>0.09s</td><td>14.93</td><td>0.320</td></tr><tr><td>SDv1.5† (Teacher) [63]</td><td>2.59s</td><td>13.45</td><td>0.322</td></tr></table>",
+        "bbox": [
+            81,
+            655,
+            467,
+            787
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "function and the generator, leading to significant memory usage during training. Techniques such as LORA offer potential solutions for addressing this issue. ",
+        "bbox": [
+            498,
+            657,
+            890,
+            705
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Acknowledgements ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            717,
+            668,
+            734
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "This work was started while TY was an intern at Adobe Research. We are grateful for insightful discussions with DPM++ (4 steps)LCM (2 steps) SD (50 steps)Yilun Xu, Guangxuan Xiao, and Minguk Kang. This work 260ms120ms 2590msis supported, in part by NSF grants 2105819, 1955864, and 2019786 (IAIFI), by the Singapore DSTA under DST00OECI20300823 (New Representations for Vision), as well as by funding from GIST and Amazon. ",
+        "bbox": [
+            496,
+            742,
+            893,
+            849
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "References ",
+        "text_level": 1,
+        "bbox": [
+            78,
+            89,
+            174,
+            106
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "[1] Siddarth Asokan, Nishanth Shetty, Aadithya Srikanth, and Chandra Sekhar Seelamantula. Gans settle scores! arXiv preprint arXiv:2306.01654, 2023. 3 ",
+            "[2] Yogesh Balaji, Seungjun Nah, Xun Huang, Arash Vahdat, Jiaming Song, Karsten Kreis, Miika Aittala, Timo Aila, Samuli Laine, Bryan Catanzaro, et al. ediffi: Text-to-image diffusion models with an ensemble of expert denoisers. arXiv preprint arXiv:2211.01324, 2022. 2, 7 ",
+            "[3] David Berthelot, Arnaud Autef, Jierui Lin, Dian Ang Yap, Shuangfei Zhai, Siyuan Hu, Daniel Zheng, Walter Talbot, and Eric Gu. Tract: Denoising diffusion models with transitive closure time-distillation. arXiv preprint arXiv:2303.04248, 2023. 2, 3, 6, 14 ",
+            "[4] Andrew Brock, Jeff Donahue, and Karen Simonyan. Large scale gan training for high fidelity natural image synthesis. In ICLR, 2019. 3, 6, 14 ",
+            "[5] Huiwen Chang, Han Zhang, Jarred Barber, AJ Maschinot, Jose Lezama, Lu Jiang, Ming-Hsuan Yang, Kevin Murphy, William T Freeman, Michael Rubinstein, et al. Muse: Textto-image generation via masked generative transformers. In ICML, 2023. 3 ",
+            "[6] Nanxin Chen, Yu Zhang, Heiga Zen, Ron J Weiss, Mohammad Norouzi, and William Chan. Wavegrad: Estimating gradients for waveform generation. In ICLR, 2021. 2 ",
+            "[7] Tianqi Chen, Bing Xu, Chiyuan Zhang, and Carlos Guestrin. Training deep nets with sublinear memory cost. arXiv preprint arXiv:1604.06174, 2016. 13 ",
+            "[8] Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li Fei-Fei. Imagenet: A large-scale hierarchical image database. In CVPR, 2009. 2, 6 ",
+            "[9] Prafulla Dhariwal and Alexander Nichol. Diffusion models beat gans on image synthesis. In NeurIPS, 2021. 6 ",
+            "[10] Gintare Karolina Dziugaite, Daniel M Roy, and Zoubin Ghahramani. Training generative neural networks via maximum mean discrepancy optimization. In UAI, 2015. 3 ",
+            "[11] Patrick Esser, Johnathan Chiu, Parmida Atighehchian, Jonathan Granskog, and Anastasis Germanidis. Structure and content-guided video synthesis with diffusion models. In CVPR, 2023. 2 ",
+            "[12] Jean-Yves Franceschi, Mike Gartrell, Ludovic Dos Santos, Thibaut Issenhuth, Emmanuel de Bezenac, Micka ´ el Chen, ¨ and Alain Rakotomamonjy. Unifying gans and score-based diffusion as generative particle models. In NeurIPS, 2023. 3 ",
+            "[13] Oran Gafni, Adam Polyak, Oron Ashual, Shelly Sheynin, Devi Parikh, and Yaniv Taigman. Make-a-scene: Scenebased text-to-image generation with human priors. In ECCV, 2022. 7 ",
+            "[14] Xinyu Gong, Shiyu Chang, Yifan Jiang, and Zhangyang Wang. Autogan: Neural architecture search for generative adversarial networks. In ICCV, 2019. 14 ",
+            "[15] Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, and Yoshua Bengio. Generative Adversarial Nets. In NIPS, 2014. 1, 2, 3 ",
+            "[16] Jiatao Gu, Shuangfei Zhai, Yizhe Zhang, Lingjie Liu, and Joshua M Susskind. Boot: Data-free distillation of denois-"
+        ],
+        "bbox": [
+            78,
+            114,
+            470,
+            900
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "ing diffusion models with bootstrapping. In ICML 2023 Workshop on Structured Probabilistic Inference & Generative Modeling, 2023. 2, 3, 6 ",
+            "[17] Amir Hertz, Kfir Aberman, and Daniel Cohen-Or. Delta denoising score. In ICCV, 2023. 3 ",
+            "[18] Martin Heusel, Hubert Ramsauer, Thomas Unterthiner, Bernhard Nessler, and Sepp Hochreiter. Gans trained by a two time-scale update rule converge to a local nash equilibrium. In NeurIPS, 2017. 6 ",
+            "[19] Geoffrey Hinton, Oriol Vinyals, and Jeff Dean. Distilling the knowledge in a neural network. In NeurIPS 2014 Deep Learning Workshop, 2015. 2 ",
+            "[20] Jonathan Ho and Tim Salimans. Classifier-free diffusion guidance. In arXiv preprint arXiv:2207.12598, 2022. 5 ",
+            "[21] Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising diffusion probabilistic models. In NeurIPS, 2020. 1, 2, 3, 4, 5 ",
+            "[22] Jonathan Ho, William Chan, Chitwan Saharia, Jay Whang, Ruiqi Gao, Alexey Gritsenko, Diederik P Kingma, Ben Poole, Mohammad Norouzi, David J Fleet, et al. Imagen video: High definition video generation with diffusion models. arXiv preprint arXiv:2210.02303, 2022. 2 ",
+            "[23] Aapo Hyvarinen and Peter Dayan. Estimation of non- ¨ normalized statistical models by score matching. JMLR, 2005. 2 ",
+            "[24] Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, and Alexei A Efros. Image-to-image translation with conditional adversarial networks. In CVPR, 2017. 2, 3 ",
+            "[25] Yifan Jiang, Shiyu Chang, and Zhangyang Wang. Transgan: Two pure transformers can make one strong gan, and that can scale up. In NeurIPS, 2021. 14 ",
+            "[26] Minguk Kang, Jun-Yan Zhu, Richard Zhang, Jaesik Park, Eli Shechtman, Sylvain Paris, and Taesung Park. Scaling up gans for text-to-image synthesis. In CVPR, 2023. 2, 3, 7, 13 ",
+            "[27] Tero Karras, Timo Aila, Samuli Laine, and Jaakko Lehtinen. Progressive growing of gans for improved quality, stability, and variation. In ICLR, 2018. 2 ",
+            "[28] Tero Karras, Samuli Laine, and Timo Aila. A style-based generator architecture for generative adversarial networks. In CVPR, 2019. 3 ",
+            "[29] Tero Karras, Miika Aittala, Janne Hellsten, Samuli Laine, Jaakko Lehtinen, and Timo Aila. Training generative adversarial networks with limited data. In NeurIPS, 2020. 14 ",
+            "[30] Tero Karras, Samuli Laine, Miika Aittala, Janne Hellsten, Jaakko Lehtinen, and Timo Aila. Analyzing and improving the image quality of stylegan. In CVPR, 2020. 2, 3, 14 ",
+            "[31] Tero Karras, Miika Aittala, Timo Aila, and Samuli Laine. Elucidating the design space of diffusion-based generative models. In NeurIPS, 2022. 2, 4, 5, 6, 12, 14 ",
+            "[32] Sergey Kastryulin, Jamil Zakirov, Denis Prokopenko, and Dmitry V. Dylov. Pytorch image quality: Metrics for image quality assessment, 2022. 12, 13 ",
+            "[33] Diederik Kingma, Tim Salimans, Ben Poole, and Jonathan Ho. Variational diffusion models. In NeurIPS, 2021. 4 ",
+            "[34] Diederik P Kingma and Max Welling. Auto-encoding variational bayes. In ICLR, 2014. 1 "
+        ],
+        "bbox": [
+            501,
+            92,
+            890,
+            902
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "[35] Zhifeng Kong, Wei Ping, Jiaji Huang, Kexin Zhao, and Bryan Catanzaro. Diffwave: A versatile diffusion model for audio synthesis. In ICLR, 2021. 2 ",
+            "[36] Alex Krizhevsky et al. Learning multiple layers of features from tiny images. 2009. 2, 6 ",
+            "[37] Hsin-Ying Lee, Hung-Yu Tseng, Qi Mao, Jia-Bin Huang, Yu-Ding Lu, Maneesh Singh, and Ming-Hsuan Yang. Drit++: Diverse image-to-image translation via disentangled representations. IJCV, 2020. 3 ",
+            "[38] Kwonjoon Lee, Huiwen Chang, Lu Jiang, Han Zhang, Zhuowen Tu, and Ce Liu. Vitgan: Training gans with vision transformers. In ICLR, 2022. 14 ",
+            "[39] Yujia Li, Kevin Swersky, and Rich Zemel. Generative moment matching networks. In ICML, 2015. 2, 3 ",
+            "[40] Tsung-Yi Lin, Michael Maire, Serge Belongie, James Hays, Pietro Perona, Deva Ramanan, Piotr Dollar, and C Lawrence ´ Zitnick. Microsoft coco: Common objects in context. In ECCV, 2014. 2 ",
+            "[41] Luping Liu, Yi Ren, Zhijie Lin, and Zhou Zhao. Pseudo numerical methods for diffusion models on manifolds. In ICLR, 2022. 2, 5, 13 ",
+            "[42] Xingchao Liu, Chengyue Gong, and Qiang Liu. Flow straight and fast: Learning to generate and transfer data with rectified flow. In ICLR, 2023. 1, 2, 3, 14 ",
+            "[43] Xingchao Liu, Xiwen Zhang, Jianzhu Ma, Jian Peng, and Qiang Liu. Instaflow: One step is enough for high-quality diffusion-based text-to-image generation. arXiv preprint arXiv:2309.06380, 2023. 1, 2, 3, 5, 7 ",
+            "[44] Ilya Loshchilov and Frank Hutter. Decoupled weight decay regularization. In ICLR, 2019. 12, 13 ",
+            "[45] Cheng Lu, Yuhao Zhou, Fan Bao, Jianfei Chen, Chongxuan Li, and Jun Zhu. Dpm-solver: A fast ode solver for diffusion probabilistic model sampling in around 10 steps. In NeurIPS, 2022. 2, 14 ",
+            "[46] Cheng Lu, Yuhao Zhou, Fan Bao, Jianfei Chen, Chongxuan Li, and Jun Zhu. Dpm-solver++: Fast solver for guided sampling of diffusion probabilistic models. In arXiv preprint arXiv:2211.01095, 2022. 2, 7, 8, 13, 14 ",
+            "[47] Eric Luhman and Troy Luhman. Knowledge distillation in iterative generative models for improved sampling speed. arXiv preprint arXiv:2101.02388, 2021. 1, 2, 14 ",
+            "[48] Simian Luo, Yiqin Tan, Longbo Huang, Jian Li, and Hang Zhao. Latent consistency models: Synthesizing highresolution images with few-step inference. arXiv preprint arXiv:2310.04378, 2023. 1, 2, 7, 13 ",
+            "[49] Simian Luo, Yiqin Tan, Suraj Patil, Daniel Gu, Patrick von Platen, Apolinario Passos, Longbo Huang, Jian Li, and Hang ´ Zhao. Lcm-lora: A universal stable-diffusion acceleration module. arXiv preprint arXiv:2310.04378, 2023. 7, 8, 13 ",
+            "[50] Weijian Luo, Tianyang Hu, Shifeng Zhang, Jiacheng Sun, Zhenguo Li, and Zhihua Zhang. Diff-instruct: A universal approach for transferring knowledge from pre-trained diffusion models. arXiv preprint arXiv:2305.18455, 2023. 3, 6, 14 ",
+            "[51] Chenlin Meng, Robin Rombach, Ruiqi Gao, Diederik Kingma, Stefano Ermon, Jonathan Ho, and Tim Salimans. On distillation of guided diffusion models. In CVPR, 2023. 1, 2, 3, 6, 14 "
+        ],
+        "bbox": [
+            78,
+            90,
+            468,
+            898
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "[52] Alex Nichol, Prafulla Dhariwal, Aditya Ramesh, Pranav Shyam, Pamela Mishkin, Bob McGrew, Ilya Sutskever, and Mark Chen. Glide: Towards photorealistic image generation and editing with text-guided diffusion models. In ICML, 2022. 7 ",
+            "[53] Ollin. Tiny autoencoder for stable diffusion. https:// github.com/madebyollin/taesd, 2023. 13 ",
+            "[54] Taesung Park, Ming-Yu Liu, Ting-Chun Wang, and Jun-Yan Zhu. Semantic image synthesis with spatially-adaptive normalization. In CVPR, 2019. 3 ",
+            "[55] Taesung Park, Jun-Yan Zhu, Oliver Wang, Jingwan Lu, Eli Shechtman, Alexei Efros, and Richard Zhang. Swapping autoencoder for deep image manipulation. In NeurIPS, 2020. 3 ",
+            "[56] Gaurav Parmar, Richard Zhang, and Jun-Yan Zhu. On aliased resizing and surprising subtleties in gan evaluation. In CVPR, 2022. 14 ",
+            "[57] Dustin Podell, Zion English, Kyle Lacey, Andreas Blattmann, Tim Dockhorn, Jonas Muller, Joe Penna, and ¨ Robin Rombach. Sdxl: Improving latent diffusion models for high-resolution image synthesis. arXiv preprint arXiv:2307.01952, 2023. 7 ",
+            "[58] Ben Poole, Ajay Jain, Jonathan T Barron, and Ben Mildenhall. Dreamfusion: Text-to-3d using 2d diffusion. In ICLR, 2023. 3, 5, 6, 7 ",
+            "[59] Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark, et al. Learning transferable visual models from natural language supervision. In ICML, 2021. 6 ",
+            "[60] Aditya Ramesh, Mikhail Pavlov, Gabriel Goh, Scott Gray, Chelsea Voss, Alec Radford, Mark Chen, and Ilya Sutskever. Zero-shot text-to-image generation. In ICML, 2021. 3, 7 ",
+            "[61] Aditya Ramesh, Prafulla Dhariwal, Alex Nichol, Casey Chu, and Mark Chen. Hierarchical text-conditional image generation with clip latents. arXiv preprint arXiv:2204.06125, 2022. 1, 2, 3, 7 ",
+            "[62] Scott Reed, Zeynep Akata, Xinchen Yan, Lajanugen Logeswaran, Bernt Schiele, and Honglak Lee. Generative adversarial text to image synthesis. In ICML, 2016. 2 ",
+            "[63] Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Bjorn Ommer. High-resolution image syn- ¨ thesis with latent diffusion models. In CVPR, 2022. 1, 2, 4, 5, 7, 8, 13 ",
+            "[64] Chitwan Saharia, William Chan, Saurabh Saxena, Lala Li, Jay Whang, Emily L Denton, Kamyar Ghasemipour, Raphael Gontijo Lopes, Burcu Karagol Ayan, Tim Salimans, et al. Photorealistic text-to-image diffusion models with deep language understanding. In NeurIPS, 2022. 1, 2, 3, 7 ",
+            "[65] Tim Salimans and Jonathan Ho. Progressive distillation for fast sampling of diffusion models. In ICLR, 2022. 1, 2, 3, 6, 14 ",
+            "[66] Axel Sauer, Katja Schwarz, and Andreas Geiger. Styleganxl: Scaling stylegan to large diverse datasets. In SIGGRAPH, 2022. 14 ",
+            "[67] Axel Sauer, Tero Karras, Samuli Laine, Andreas Geiger, and Timo Aila. Stylegan-t: Unlocking the power of gans for fast large-scale text-to-image synthesis. ICML, 2023. 3, 7 "
+        ],
+        "bbox": [
+            501,
+            90,
+            890,
+            900
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "[68] Axel Sauer, Dominik Lorenz, Andreas Blattmann, and Robin Rombach. Adversarial diffusion distillation. arXiv preprint arXiv:2311.17042, 2023. 3 ",
+            "[69] Christoph Schuhmann, Romain Beaumont, Richard Vencu, Cade Gordon, Ross Wightman, Mehdi Cherti, Theo Coombes, Aarush Katta, Clayton Mullis, Mitchell Wortsman, et al. Laion-5b: An open large-scale dataset for training next generation image-text models. In NeurIPS, 2022. 3, 6, 7, 13 ",
+            "[70] Uriel Singer, Adam Polyak, Thomas Hayes, Xi Yin, Jie An, Songyang Zhang, Qiyuan Hu, Harry Yang, Oron Ashual, Oran Gafni, et al. Make-a-video: Text-to-video generation without text-video data. arXiv preprint arXiv:2209.14792, 2022. 2 ",
+            "[71] Jascha Sohl-Dickstein, Eric Weiss, Niru Maheswaranathan, and Surya Ganguli. Deep unsupervised learning using nonequilibrium thermodynamics. In ICML, 2015. 1, 2, 4 ",
+            "[72] Jiaming Song, Chenlin Meng, and Stefano Ermon. Denoising diffusion implicit models. In ICLR, 2021. 2, 5, 14 ",
+            "[73] Yang Song and Stefano Ermon. Generative modeling by estimating gradients of the data distribution. In NeurIPS, 2019. 2, 4 ",
+            "[74] Yang Song, Jascha Sohl-Dickstein, Diederik P Kingma, Abhishek Kumar, Stefano Ermon, and Ben Poole. Score-based generative modeling through stochastic differential equations. In ICLR, 2021. 1, 2, 4 ",
+            "[75] Yang Song, Prafulla Dhariwal, Mark Chen, and Ilya Sutskever. Consistency models. In ICML, 2023. 1, 2, 3, 5, 6, 12, 13, 14 ",
+            "[76] Yuan Tian, Qin Wang, Zhiwu Huang, Wen Li, Dengxin Dai, Minghao Yang, Jun Wang, and Olga Fink. Off-policy reinforcement learning for efficient and effective gan architecture search. In ECCV, 2020. 14 ",
+            "[77] Pascal Vincent. A connection between score matching and denoising autoencoders. Neural Computation, 2011. 5 ",
+            "[78] Patrick von Platen, Suraj Patil, Anton Lozhkov, Pedro Cuenca, Nathan Lambert, Kashif Rasul, Mishig Davaadorj, and Thomas Wolf. Diffusers: State-of-the-art diffusion models. https://github.com/huggingface/ diffusers, 2022. 13 ",
+            "[79] Ting-Chun Wang, Ming-Yu Liu, Jun-Yan Zhu, Andrew Tao, Jan Kautz, and Bryan Catanzaro. High-resolution image synthesis and semantic manipulation with conditional gans. In CVPR, 2018. 3 ",
+            "[80] Zhengyi Wang, Cheng Lu, Yikai Wang, Fan Bao, Chongxuan Li, Hang Su, and Jun Zhu. Prolificdreamer: High-fidelity and diverse text-to-3d generation with variational score distillation. arXiv preprint arXiv:2305.16213, 2023. 2, 3, 4, 5, 6, 7 ",
+            "[81] Zhendong Wang, Huangjie Zheng, Pengcheng He, Weizhu Chen, and Mingyuan Zhou. Diffusion-gan: Training gans with diffusion. In ICLR, 2023. 3, 14 ",
+            "[82] Romann M Weber. The score-difference flow for implicit generative modeling. arXiv preprint arXiv:2304.12906, 2023. 3 ",
+            "[83] Zhisheng Xiao, Karsten Kreis, and Arash Vahdat. Tackling the generative learning trilemma with denoising diffusion gans. In ICLR, 2022. 2, 3, 14 "
+        ],
+        "bbox": [
+            78,
+            90,
+            468,
+            898
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "[84] Yanwu Xu, Yang Zhao, Zhisheng Xiao, and Tingbo Hou. Ufogen: You forward once large scale text-to-image generation via diffusion gans. arXiv preprint arXiv:2311.09257, 2023. 3, 7 ",
+            "[85] Senmao Ye and Fei Liu. Score mismatching for generative modeling. arXiv preprint arXiv:2309.11043, 2023. 3, 14 ",
+            "[86] Mingxuan Yi, Zhanxing Zhu, and Song Liu. Monoflow: Rethinking divergence gans via the perspective of wasserstein gradient flows. In ICML, 2023. 3 ",
+            "[87] Jiahui Yu, Yuanzhong Xu, Jing Yu Koh, Thang Luong, Gunjan Baid, Zirui Wang, Vijay Vasudevan, Alexander Ku, Yinfei Yang, Burcu Karagol Ayan, et al. Scaling autoregressive models for content-rich text-to-image generation. arXiv preprint arXiv:2206.10789, 2(3):5, 2022. 3, 7 ",
+            "[88] Han Zhang, Tao Xu, Hongsheng Li, Shaoting Zhang, Xiaogang Wang, Xiaolei Huang, and Dimitris N Metaxas. Stackgan++: Realistic image synthesis with stacked generative adversarial networks. TPAMI, 2018. 2 ",
+            "[89] Richard Zhang, Phillip Isola, Alexei A Efros, Eli Shechtman, and Oliver Wang. The unreasonable effectiveness of deep features as a perceptual metric. In CVPR, 2018. 3, 5, 14 ",
+            "[90] Shengyu Zhao, Jonathan Cui, Yilun Sheng, Yue Dong, Xiao Liang, Eric I Chang, and Yan Xu. Large scale image completion via co-modulated generative adversarial networks. In ICLR, 2021. 3 ",
+            "[91] Wenliang Zhao, Lujia Bai, Yongming Rao, Jie Zhou, and Jiwen Lu. Unipc: A unified predictor-corrector framework for fast sampling of diffusion models. arXiv preprint arXiv:2302.04867, 2023. 1, 2, 7, 8, 13 ",
+            "[92] Hongkai Zheng, Weili Nie, Arash Vahdat, Kamyar Azizzadenesheli, and Anima Anandkumar. Fast sampling of diffusion models via operator learning. In ICML, 2023. 1, 2, 6, 14 ",
+            "[93] Hongkai Zheng, Weili Nie, Arash Vahdat, Kamyar Azizzadenesheli, and Anima Anandkumar. Fast sampling of diffusion models via operator learning. In ICML, 2023. 2 ",
+            "[94] Yufan Zhou, Ruiyi Zhang, Changyou Chen, Chunyuan Li, Chris Tensmeyer, Tong Yu, Jiuxiang Gu, Jinhui Xu, and Tong Sun. Towards language-free training for text-to-image generation. In CVPR, 2022. 7 ",
+            "[95] Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei A Efros. Unpaired image-to-image translation using cycleconsistent adversarial networks. In ICCV, 2017. 3 "
+        ],
+        "bbox": [
+            501,
+            92,
+            890,
+            700
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "code",
+        "sub_type": "code",
+        "code_caption": [
+            "Algorithm 2: distributionMatchingLoss "
+        ],
+        "code_body": "# mu_real, mu Fake: denoising networks for real and fake distribution\n# x: fake sample generated by our one-step generator\n# min_dm_step, max_dm_step: timestep intervals for computing distribution matching loss\n# bs: batch size\n# random timesteps\ntimestep = randint(min_dm_step, max_dm_step, [bs])\nnoise = randn_like(x)\n# Diffuse generated sample by injecting noise\n# e.g. noise_x = x + noise * sigma_t (EDM)\nnoisy_x = forward_diffusion(x, noise, timestep)\n# denoise using real and fake denoiser\nwith_grad_disable():\n    pred Fake_image = mu Fake(noisy_x, timestep)\n    pred_real_image = mu_real(noisy_x, timestep)\n# The weighting_factor diverges slightly from our\n# paper's equation, adapting to accommodate the mean\n# prediction scheme we use here.\nweighting_factor = abs(x - pred_real_image).mean(\n    dim=[1,2,3], keepdim=True)\ngrad = (pred Fake_image - pred_real_image) /\nweighting_factor\n# the loss that would enforce above grad\nloss = 0.5 * mse_loss(x, stopgrad(x - grad)) ",
+        "guess_lang": "python",
+        "bbox": [
+            98,
+            119,
+            467,
+            395
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "code",
+        "sub_type": "code",
+        "code_caption": [
+            "Algorithm 3: denoisingLoss "
+        ],
+        "code_body": "pred Fake_image: denoised output by mu Fake on x_t\n# x: fake sample generated by our one-step generator\n# weight: weighting strategy(SNR+1/0.5^2 for EDM, SNR for SDv1.5)\nloss = mean(weight * (pred Fake_image - x) ** 2) ",
+        "guess_lang": "python",
+        "bbox": [
+            98,
+            455,
+            473,
+            505
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "Appendix ",
+        "text_level": 1,
+        "bbox": [
+            76,
+            544,
+            179,
+            565
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "A. Qualitative Speed Comparison ",
+        "text_level": 1,
+        "bbox": [
+            76,
+            579,
+            361,
+            598
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "In the accompanying video material, we present a qualitative speed comparison between our one-step generator and the original stable diffusion model. Our one-step generator achieves comparable image quality with the Stable Diffusion model while being around $3 0 \\times$ faster. ",
+        "bbox": [
+            75,
+            607,
+            468,
+            683
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "B. Implementation Details ",
+        "text_level": 1,
+        "bbox": [
+            76,
+            700,
+            302,
+            717
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "For a comprehensive understanding, we include the implementation specifics for constructing the KL loss for the generator $G$ in Algorithm 2 and training the fake score estimator parameterized by $\\mu _ { \\mathrm { f a k e } }$ in Algorithm 3. ",
+        "bbox": [
+            75,
+            726,
+            468,
+            787
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "B.1. CIFAR-10 ",
+        "text_level": 1,
+        "bbox": [
+            76,
+            800,
+            196,
+            814
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "We distill our one-step generator from EDM [31] pretrained models, specifically utilizing “edm-cifar10-32x32- cond-vp” for class-conditional training and “edm-cifar10- 32x32-uncond-vp” for unconditional training. We use $\\sigma _ { \\mathrm { m i n } } = 0 . 0 0 2$ and $\\sigma _ { \\mathrm { m a x } } = 8 0$ and discretize the noise sched-",
+        "bbox": [
+            76,
+            824,
+            468,
+            901
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "ules into $1 0 0 0 { \\mathrm { ~ b i n s } }$ . To create our distillation dataset, we generate 100,000 noise-image pairs for class-conditional training and 500,000 for unconditional training. This process utilizes the deterministic Heun sampler (with $S _ { \\mathrm { c h u r n } } =$ 0) over 18 steps [31]. For the training phase, we use the AdamW optimizer [44], setting the learning rate at 5e-5, weight decay to 0.01, and beta parameters to (0.9, 0.999). We use a learning rate warmup of 500 steps. The model training is conducted across 7 GPUs, achieving a total batch size of 392. Concurrently, we sample an equivalent number of noise-image pairs from the distillation dataset to calculate the regression loss. Following Song et al. [75], we incorporate the LPIPS loss using a VGG backbone from the PIQ library [32]. Prior to input into the LPIPS network, images are upscaled to a resolution of $2 2 4 \\times 2 2 4$ using bilinear upsampling. The regression loss is weighted at 0.25 $( \\lambda _ { \\mathrm { { r e g } } } = 0 . 2 5 )$ for class-conditional training and at 0.5 $( \\lambda _ { \\mathrm { { r e g } } } ~ = ~ 0 . 5 )$ for unconditional training. The weights for the distribution matching loss and fake score denoising loss are both set to 1. We train the model for 300,000 iterations and use a gradient clipping with a L2 norm of 10. The dropout is disabled for all networks following consistency model [75]. ",
+        "bbox": [
+            496,
+            90,
+            892,
+            439
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "B.2. ImageNet- ${ \\bf \\delta } \\mathbf { \\delta } \\mathbf { \\delta } \\mathbf { \\delta } \\mathbf { \\delta } \\mathbf { 6 4 }$ ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            459,
+            668,
+            474
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "We distill our one-step generator from EDM [31] pretrained models, specifically utilizing “edm-imagenet-64x64-condadm” for class-conditional training. We use a $\\sigma _ { \\mathrm { m i n } } = 0 . 0 0 2$ and $\\sigma _ { \\mathrm { m a x } } = 8 0$ and discretize the noise schedules into 1000 bins. Initially, we prepare a distillation dataset by generating 25,000 noise-image pairs using the deterministic Heun sampler (with $S _ { \\mathrm { c h u r n } } = 0 $ ) over 256 steps [31]. For the training phase, we use the AdamW optimizer [44], setting the learning rate at 2e-6, weight decay to 0.01, and beta parameters to (0.9, 0.999). We use a learning rate warmup of 500 steps. The model training is conducted across 7 GPUs, achieving a total batch size of 336. Concurrently, we sample an equivalent number of noise-image pairs from the distillation dataset to calculate the regression loss. Following Song et al. [75], we incorporate the LPIPS loss using a VGG backbone from the PIQ library [32]. Prior to input into the LPIPS network, images are upscaled to a resolution of $2 2 4 \\times 2 2 4$ using bilinear upsampling. The regression loss is weighted at 0.25 $( \\lambda _ { \\mathrm { r e g } } = 0 . 2 5 )$ , and the weights for the distribution matching loss and fake score denoising loss are both set to 1. We train the models for 350,000 iterations. We use mixed-precision training and a gradient clipping with a L2 norm of 10. The dropout is disabled for all networks following consistency model [75]. ",
+        "bbox": [
+            496,
+            487,
+            892,
+            849
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "page_footnote",
+        "text": "2https://github.com/openai/consistency_models/ blob/main/cm/karras_diffusion.py#L422 ",
+        "bbox": [
+            500,
+            875,
+            890,
+            900
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "B.3. LAION-Aesthetic $\\mathbf { 6 . 2 5 + }$ ",
+        "text_level": 1,
+        "bbox": [
+            76,
+            90,
+            299,
+            104
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "We distill our one-step generator from Stable Diffusion v1.5 [63]. We use the LAION-Aesthetic $6 . 2 5 +$ [69] dataset, which contains around 3 million images. Initially, we prepare a distillation dataset by generating 500,000 noiseimage pairs using the deterministic PNMS sampler [41] over 50 steps with a guidance scale of 3. Each pair corresponds to one of the first 500,000 prompts of LAION-Aesthetic $6 . 2 5 +$ . For the training phase, we use the AdamW optimizer [44], setting the learning rate at 1e-5, weight decay to 0.01, and beta parameters to (0.9, 0.999). We use a learning rate warmup of 500 steps. The model training is conducted across 72 GPUs, achieving a total batch size of 2304. Simultaneously, noise-image pairs from the distillation dataset are sampled to compute the regression loss, with a total batch size of 1152. Given the memory-intensive nature of decoding generated latents into images using the VAE for regression loss computation, we opt for a smaller VAE network [53] for decoding. Following Song et al. [75], we incorporate the LPIPS loss using a VGG backbone from the PIQ library [32]. The regression loss is weighted at 0.25 $\\lambda _ { \\mathrm { { r e g } } } ~ = ~ 0 . 2 5 )$ , and the weights for the distribution matching loss and fake score denoising loss are both set to 1. We train the model for 20,000 iterations. To optimize GPU memory usage, we implement gradient checkpointing [7] and mixed-precision training. We also apply a gradient clipping with a L2 norm of 10. ",
+        "bbox": [
+            76,
+            122,
+            472,
+            517
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "B.4. LAION-Aesthetic 6+ ",
+        "text_level": 1,
+        "bbox": [
+            76,
+            550,
+            276,
+            566
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "We distill our one-step generator from Stable Diffusion v1.5 [63]. We use the LAION-Aesthetic $^ { 6 + }$ [69] dataset, comprising approximately 12 million images. To prepare the distillation dataset, we generate 12,000,000 noise-image pairs using the deterministic PNMS sampler [41] over 50 steps with a guidance scale of 8. Each pair corresponds to a prompt from the LAION-Aesthetic $^ { 6 + }$ dataset. For training, we utilize the AdamW optimizer [44], setting the learning rate at 1e-5, weight decay to 0.01, and beta parameters to (0.9, 0.999). We use a learning rate warmup of 500 steps. To optimize GPU memory usage, we implement gradient checkpointing [7] and mixed-precision training. We also apply a gradient clipping with a L2 norm of 10. The training takes two weeks on approximately 80 A100 GPUs. During this period, we made adjustments to the distillation dataset size, the regression loss weight, the type of VAE decoder, and the maximum timestep for the distribution matching loss computation. A comprehensive training log is provided in Table 5. We note that this training schedule, constrained by time and computational resources, may not be the most efficient or optimal. ",
+        "bbox": [
+            76,
+            583,
+            472,
+            901
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "table",
+        "img_path": "images/39f65724c212c8b8c40e8fd3a1d608d1b147d06d8458ff1c9b7b47365c9799b4.jpg",
+        "table_caption": [
+            "Table 5. Training Logs for the LAION-Aesthetic $^ { 6 + }$ Dataset: ‘Max DM step’ denotes the highest timestep for noise injection in computing the distribution matching loss. “VAE-Type small” corresponds to the Tiny VAE decoder [53], while “VAE-Type large” indicates the standard VAE decoder used in SDv1.5. “DM BS” denotes the batch size used for the distribution matching loss while “Reg. BS” represents the batch size used for the regression loss. "
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Version</td><td>#Reg. Pair</td><td>Reg. Weight</td><td>Max DM Step</td><td>VAE-Type</td><td>DM BS</td><td>Reg. BS</td><td>Cumulative Iter.</td><td>FID</td></tr><tr><td>V1</td><td>2.5M</td><td>0.1</td><td>980</td><td>Small</td><td>32</td><td>16</td><td>5400</td><td>23.88</td></tr><tr><td>V2</td><td>2.5M</td><td>0.5</td><td>980</td><td>Small</td><td>32</td><td>16</td><td>8600</td><td>18.21</td></tr><tr><td>V3</td><td>2.5M</td><td>1</td><td>980</td><td>Small</td><td>32</td><td>16</td><td>21100</td><td>16.10</td></tr><tr><td>V4</td><td>4M</td><td>1</td><td>980</td><td>Small</td><td>32</td><td>16</td><td>56300</td><td>16.86</td></tr><tr><td>V5</td><td>6M</td><td>1</td><td>980</td><td>Small</td><td>32</td><td>16</td><td>60100</td><td>16.94</td></tr><tr><td>V6</td><td>9M</td><td>1</td><td>980</td><td>Small</td><td>32</td><td>16</td><td>68000</td><td>16.76</td></tr><tr><td>V7</td><td>12M</td><td>1</td><td>980</td><td>Small</td><td>32</td><td>16</td><td>74000</td><td>16.80</td></tr><tr><td>V8</td><td>12M</td><td>1</td><td>500</td><td>Small</td><td>32</td><td>16</td><td>80000</td><td>15.61</td></tr><tr><td>V9</td><td>12M</td><td>1</td><td>500</td><td>Large</td><td>16</td><td>4</td><td>127000</td><td>15.33</td></tr><tr><td>V10</td><td>12M</td><td>0.75</td><td>500</td><td>Large</td><td>16</td><td>4</td><td>149500</td><td>15.51</td></tr><tr><td>V11</td><td>12M</td><td>0.5</td><td>500</td><td>Large</td><td>16</td><td>4</td><td>162500</td><td>15.05</td></tr><tr><td>V12</td><td>12M</td><td>0.25</td><td>500</td><td>Large</td><td>16</td><td>4</td><td>165000</td><td>14.93</td></tr></table>",
+        "bbox": [
+            503,
+            88,
+            890,
+            196
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "C. Baseline Details ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            328,
+            661,
+            344
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "C.1. w/o Distribution Matching Baseline ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            353,
+            812,
+            369
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "This baseline adheres to the training settings outlined in Sections B.1 and B.2, with the distribution matching loss omitted. ",
+        "bbox": [
+            496,
+            377,
+            892,
+            422
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "C.2. w/o Regression Loss Baseline ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            431,
+            764,
+            449
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Following the training protocols from Sections B.1 and B.2, this baseline excludes the regression loss. To prevent training divergence, the learning rate is adjusted to 1e-5. ",
+        "bbox": [
+            496,
+            455,
+            890,
+            502
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "C.3. Text-to-Image Baselines ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            511,
+            723,
+            527
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "We benchmark our approach against a variety of models, including the base diffusion model [63], fast diffusion solvers [46, 91], and few-step diffusion distillation baselines [48, 49]. ",
+        "bbox": [
+            496,
+            535,
+            890,
+            594
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Stable Diffusion We employ the StableDiffusion v1.5 model available on huggingface3, generating images with the PNMS sampler [41] over 50 steps. ",
+        "bbox": [
+            496,
+            595,
+            890,
+            640
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Fast Diffusion Solvers We use the UniPC [91] and DPMSolver $^ { + + }$ [46] implementations from the diffusers library [78], with all hyperparameters set to default values. ",
+        "bbox": [
+            496,
+            641,
+            890,
+            686
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "LCM-LoRA We use the LCM-LoRA SDv1.5 checkpoints hosted on Hugging Face4. As the model is pre-trained with guidance, we do not apply classifier-free guidance during inference. ",
+        "bbox": [
+            496,
+            686,
+            890,
+            746
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "D. Evaluation Details ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            760,
+            684,
+            776
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "For zero-shot evaluation on COCO, we employ the evaluation code from GigaGAN [26]5. Specifically, we gen-",
+        "bbox": [
+            496,
+            786,
+            890,
+            816
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "page_footnote",
+        "text": "3https : / / huggingface . co / runwayml / stable diffusion-v1-5 ",
+        "bbox": [
+            500,
+            825,
+            890,
+            849
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "page_footnote",
+        "text": "4https://huggingface.co/latent-consistency/lcmlora-sdv1-5 ",
+        "bbox": [
+            500,
+            851,
+            890,
+            875
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "page_footnote",
+        "text": "5https : / / github . com / mingukkang / GigaGAN / tree / main/evaluation ",
+        "bbox": [
+            500,
+            875,
+            890,
+            898
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "erate 30,000 images using random prompts from the MS-COCO2014 validation set. We downsample the generated images from $5 1 2 \\times 5 1 2$ to $2 5 6 \\times 2 5 6$ using the PIL.Lanczos resizer. These images are then compared with 40,504 real images from the same validation set to calculate the FID metric using the clean-fid [56] library. Additionally, we employ the OpenCLIP-G backbone to compute the CLIP score. For ImageNet and CIFAR-10, we generate 50,000 images for each and calculate their FID using the EDM’s evaluation code [31]6. ",
+        "bbox": [
+            75,
+            90,
+            472,
+            243
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "E. CIFAR-10 Experiments ",
+        "text_level": 1,
+        "bbox": [
+            76,
+            266,
+            305,
+            285
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "Following the setup outlined in Section B.1, we train our models on CIFAR-10 and conduct comparisons with other competing approaches. Table 6 summarizes the results. ",
+        "bbox": [
+            75,
+            295,
+            470,
+            342
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "table",
+        "img_path": "images/0fc440fd2d0c9fc975eb0d014ced14c80aae980a934b9267df89a0d7ce88b95b.jpg",
+        "table_caption": [
+            "Table 6. Sample quality comparison on CIFAR-10. Baseline numbers are derived from Song et al. [75]. †Methods that use classconditioning. "
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Family</td><td>Method</td><td># Fwd Pass (↓)</td><td>FID (↓)</td></tr><tr><td rowspan=\"10\">GAN</td><td>BigGAN† [4]</td><td>1</td><td>14.7</td></tr><tr><td>Diffusion GAN [83]</td><td>1</td><td>14.6</td></tr><tr><td>Diffusion StyleGAN [81]</td><td>1</td><td>3.19</td></tr><tr><td>AutoGAN [14]</td><td>1</td><td>12.4</td></tr><tr><td>E2GAN [76]</td><td>1</td><td>11.3</td></tr><tr><td>ViTGAN [38]</td><td>1</td><td>6.66</td></tr><tr><td>TransGAN [25]</td><td>1</td><td>9.26</td></tr><tr><td>StyleGAN2 [30]</td><td>1</td><td>6.96</td></tr><tr><td>StyleGAN2-ADA† [29]</td><td>1</td><td>2.42</td></tr><tr><td>StyleGAN-XL† [66]</td><td>1</td><td>1.85</td></tr><tr><td rowspan=\"5\">Diffusion + Samplers</td><td>DDIM [72]</td><td>10</td><td>8.23</td></tr><tr><td>DPM-solver-2 [45]</td><td>10</td><td>5.94</td></tr><tr><td>DPM-solver-fast [45]</td><td>10</td><td>4.70</td></tr><tr><td>3-DEIS [92]</td><td>10</td><td>4.17</td></tr><tr><td>DPM-solver++ [46]</td><td>10</td><td>2.91</td></tr><tr><td rowspan=\"13\">Diffusion + Distillation</td><td>Knowledge Distillation [47]</td><td>1</td><td>9.36</td></tr><tr><td>DFNO [92]</td><td>1</td><td>3.78</td></tr><tr><td>1-Rectified Flow (+distill) [42]</td><td>1</td><td>6.18</td></tr><tr><td>2-Rectified Flow (+distill) [42]</td><td>1</td><td>4.85</td></tr><tr><td>3-Rectified Flow (+distill) [42]</td><td>1</td><td>5.21</td></tr><tr><td>Progressive Distillation [65]</td><td>1</td><td>8.34</td></tr><tr><td>Meng et al. [51]†</td><td>1</td><td>5.98</td></tr><tr><td>Diff-Instruct [50]†</td><td>1</td><td>4.19</td></tr><tr><td>Score Mismatching [85]</td><td>1</td><td>8.10</td></tr><tr><td>TRACT [3]</td><td>1</td><td>3.78</td></tr><tr><td>Consistency Model [75]</td><td>1</td><td>3.55</td></tr><tr><td>DMD (Ours)</td><td>1</td><td>3.77</td></tr><tr><td>DMD-conditional (Ours)†</td><td>1</td><td>2.66</td></tr><tr><td>Diffusion</td><td>EDM† (Teacher) [31]</td><td>35</td><td>1.84</td></tr></table>",
+        "bbox": [
+            81,
+            361,
+            467,
+            790
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "F. Derivation for Distribution Matching Gradient ",
+        "text_level": 1,
+        "bbox": [
+            498,
+            89,
+            890,
+            122
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "We present the derivation for Equation 7 as follows: ",
+        "bbox": [
+            500,
+            133,
+            843,
+            148
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\begin{array}{l} \\nabla_ {\\theta} D _ {K L} \\simeq \\underset {z, t, x, x _ {t}} {\\mathbb {E}} \\left[ w _ {t} \\left(s _ {\\text {f a k e}} \\left(x _ {t}, t\\right) - s _ {\\text {r e a l}} \\left(x _ {t}, t\\right)\\right) \\frac {\\partial x _ {t}}{\\partial \\theta} \\right] \\\\ = \\underset {z, t, x, x _ {t}} {\\mathbb {E}} \\left[ w _ {t} \\left(s _ {\\text {f a k e}} \\left(x _ {t}, t\\right) - s _ {\\text {r e a l}} \\left(x _ {t}, t\\right)\\right) \\frac {\\partial x _ {t}}{\\partial G _ {\\theta} (z)} \\frac {\\partial G _ {\\theta} (z)}{\\partial \\theta} \\right] \\\\ = \\underset {z, t, x, x _ {t}} {\\mathbb {E}} \\left[ w _ {t} \\left(s _ {\\text {f a k e}} \\left(x _ {t}, t\\right) - s _ {\\text {r e a l}} \\left(x _ {t}, t\\right)\\right) \\frac {\\partial x _ {t}}{\\partial x} \\frac {\\partial G _ {\\theta} (z)}{\\partial \\theta} \\right] \\\\ = \\underset {z, t, x, x _ {t}} {\\mathbb {E}} \\left[ w _ {t} \\alpha_ {t} \\left(s _ {\\text {f a k e}} \\left(x _ {t}, t\\right) - s _ {\\text {r e a l}} \\left(x _ {t}, t\\right)\\right) \\frac {d G}{d \\theta} \\right] \\tag {10} \\\\ \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            501,
+            172,
+            890,
+            297
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "G. Prompts for Figure 1 ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            316,
+            705,
+            335
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "We use the following prompts for Figure 1. From left to right: ",
+        "bbox": [
+            498,
+            344,
+            890,
+            375
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "• A DSLR photo of a golden retriever in heavy snow. ",
+            "• A Lightshow at the Dolomities. ",
+            "• A professional portrait of a stylishly dressed elderly woman wearing very large glasses in the style of Iris Apfel, with highly detailed features. ",
+            "• Medium shot side profile portrait photo of a warrior chief, sharp facial features, with tribal panther makeup in blue on red, looking away, serious but clear eyes, 50mm portrait, photography, hard rim lighting photography. ",
+            "• A hyperrealistic photo of a fox astronaut; perfect face, artstation. "
+        ],
+        "bbox": [
+            517,
+            377,
+            890,
+            556
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "H. Equivalence of Noise and Data Prediction ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            577,
+            877,
+            595
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "The noise prediction model $\\boldsymbol { \\epsilon } ( x _ { t } , t )$ and data prediction model $\\mu ( x _ { t } , t )$ could be converted to each other according to the following rule [31] ",
+        "bbox": [
+            498,
+            604,
+            890,
+            651
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\mu \\left(x _ {t}, t\\right) = \\frac {x _ {t} - \\sigma_ {t} \\epsilon \\left(x _ {t} , t\\right)}{\\alpha_ {t}}, \\quad \\epsilon \\left(x _ {t}, t\\right) = \\frac {x _ {t} - \\alpha_ {t} \\mu \\left(x _ {t} , t\\right)}{\\sigma_ {t}}. \\tag {11}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            508,
+            678,
+            890,
+            718
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "I. Further Analysis of the Regression Loss ",
+        "text_level": 1,
+        "bbox": [
+            500,
+            737,
+            856,
+            755
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "DMD utilizes a regression loss to stabilize training and mitigate mode collapse (Sec. 3.3). In our paper, we mainly adopt the LPIPS [89] distance function, as it has been commonly adopted in prior works. For further analysis, we experiment with a standard L2 distance to train our distilled model on the CIFAR-10 dataset. The model trained using L2 loss achieves an FID score of 2.78, compared to 2.66 with LPIPS, demonstrating the robustness of our method to different loss functions. ",
+        "bbox": [
+            496,
+            763,
+            890,
+            898
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "page_footnote",
+        "text": "6https://github.com/NVlabs/edm/blob/main/fid.py ",
+        "bbox": [
+            93,
+            886,
+            465,
+            901
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "J. More Qualitative Results ",
+        "text_level": 1,
+        "bbox": [
+            76,
+            89,
+            312,
+            108
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "We provide additional qualitative results on ImageNet (Fig. 7), LAION (Fig. 8, 9, 10, 11), and CIFAR-10 (Fig. 12, 13). ",
+        "bbox": [
+            76,
+            114,
+            468,
+            162
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "image",
+        "img_path": "images/34192c656f8ee4fd8770441eb9661d3653be4ab447317cb658cc8f243e625284.jpg",
+        "image_caption": [
+            "Figure 7. One-step samples from our class-conditional model on ImageNet (FID=2.62). "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            76,
+            165,
+            890,
+            792
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "“create an image that depicts a majestic kingdom with towering castles, lush gardens, and vibrant colors. show the bustling streets filled with lively townsfolk and capture the enchanting atmosphere of the realm.” ",
+        "bbox": [
+            80,
+            143,
+            606,
+            166
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/62a55754876a583d150bafb591da34205bd3ee63c9a142dcbb03181110462bdf.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            80,
+            167,
+            210,
+            244
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/7626f748ad6c0fe9025f3229aba9952b2bc6a3a50a9e5fbcf042f65eb98ad374.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            212,
+            167,
+            346,
+            244
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/311065ecb1a8c0e9132f97b089736a661c85f31cefc8ca7bf6955e26030c02ad.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            349,
+            167,
+            483,
+            244
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/d89e6c6b1bde8eb230af5ed6536b842d234886a7618a08ad6988fc1a5b27c109.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            485,
+            167,
+            619,
+            244
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "“fluffy little ball of fur with cute eyes holding a tiny spear in a fantasy forest, being chased by a giant hand” ",
+        "bbox": [
+            81,
+            247,
+            614,
+            260
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/aebced85578bcd1399d7bd7a5e145e8baff4f960ac5a298b552231bdcf8a4ea2.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            80,
+            261,
+            210,
+            349
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/6947b3d9446aa5e3182b0204f0e30c23523ab8d1ef3a1b06d97c56b45d247b4b.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            212,
+            261,
+            346,
+            349
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/28a6200cfb6e703c5ce1b5c3781c09217c8e2cca3728c86f7c45b04ecafea476.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            349,
+            261,
+            483,
+            349
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/96db38322af656cd1892e9c3bd1454c7b95967b4104d91a055ab1dafe0549b07.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            485,
+            261,
+            619,
+            349
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "“an underwater photo portrait of a beautiful fluffy white cat, hair floating. In a dynamic swimming pose. The sun rays filters through the water. High-angle shot. Shot on Fujifilm X” ",
+        "bbox": [
+            80,
+            352,
+            599,
+            376
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/93734c7c8ccf9449b09ea6a4690e2638f9bbe384eb31a330edbf4bd68feedde8.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            80,
+            377,
+            210,
+            455
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/2694c21b7a83e59a77639ae203fca32c476f499604a18cfbce533b43be9f8837.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            212,
+            377,
+            346,
+            455
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/a329f0a5972f276b37f944d94f9d69b7667df5fa8c79cde68b489a199935530c.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            349,
+            377,
+            483,
+            455
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/26994a3819efd6c3be5b514b9c64c892d142f50b1148653b9d94b48ba677b1f6.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            485,
+            377,
+            619,
+            455
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/b183185eb5eb193bc80a81ab44713fb61b0418e1caa25dd43b0b84f0a31c9271.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            620,
+            143,
+            754,
+            244
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/87f9974bc6c6b3165edda73650fb887fd69b5eea89fc2e4195f7af308bee2170.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            756,
+            143,
+            890,
+            244
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/900d1bd8d6a9cd53fa972e478798788b916daee5e1791918e1439019a389b5d1.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            622,
+            247,
+            754,
+            349
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/82e6e2350a7d5cca494309033f0ade2837dd99919240670c145de5c7243d828c.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            756,
+            247,
+            890,
+            349
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "“transparent vacation pod at dramatic scottish lochside, concept prototype, ultra clear plastic material, editorial style photograph” ",
+        "bbox": [
+            80,
+            458,
+            732,
+            470
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/f139b6cf27acbc55cd8425eb64e2613d7b408699bc31c1b580b128a5ecaa4df2.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            80,
+            470,
+            210,
+            560
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/29324e050f225753772e07cb95f30d0f09c985d0099a9a7577200fda0fcc2276.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            212,
+            470,
+            346,
+            560
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/b4d9563ea1d424fcc0462da3375916abfa4402aaba7cc603206d5990278db63e.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            349,
+            470,
+            483,
+            560
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/87f42e08766e4fcab87f97d85f499b725eefa562975bc4e4d746a6080fe07038.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            485,
+            470,
+            619,
+            560
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/32a35b5b333210d28eacca74f9c28b81d23366b3e2ea3e6f6d0287d449f3330a.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            622,
+            470,
+            754,
+            560
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/b36c7120ee0be20bedf4f775fc087f94b21c0ee13233a06edd4ec6a099debe3d.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            756,
+            470,
+            890,
+            560
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "“3D animation cinematic style young caveman kid, in its natural environment” ",
+        "bbox": [
+            80,
+            561,
+            473,
+            575
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/defa766cde3605096db053866b49a06e7a2897a3da134aa09d1c5238dc5aab37.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            80,
+            575,
+            210,
+            665
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/4e849726dbf83cf65d0e2769fefdce3a79e77e4798ee2d8607db445ef50188fd.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            212,
+            575,
+            346,
+            665
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/87f17c19dec4a06a77bc541dc6e503f2d9c31ce4c64daf91434b9cd950cf1ea4.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            349,
+            575,
+            483,
+            665
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/896cd260f77c7e945916e1452ca3faf4a5e042fc1019b59ae9e29d5301b9e31c.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            485,
+            563,
+            619,
+            665
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/8354a95a749ebec099fb8d71fdb5ee4259c9763748959bead774de99ca591043.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            622,
+            561,
+            754,
+            665
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/eaf4e6eb520eafdaaacc39dd1bd57195bbc9e93d77cb3b3267a8c64bd64f7038.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            756,
+            561,
+            890,
+            665
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "“robot with human body form, robot pieces, knolling, top of view, ultra realistic” ",
+        "bbox": [
+            80,
+            667,
+            480,
+            680
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/5bb87ac7656a0aaa0b52d0233a4df45c51ca9b6c8477e7ef5abf1e90205d894c.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            80,
+            680,
+            210,
+            770
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/4d71ae30ff520d445fc383db19cf896754decb5ad4b4ae16599ec444dd560fb2.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            212,
+            680,
+            346,
+            770
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/9ab787e69daf6eae48eae1d87d6e50bc012886116968cea42b299b4c8bbcfbe9.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            349,
+            680,
+            483,
+            770
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/061056d3df5816eb5ade19ac685c2dcfe2f2b112579797a8c596739270d77d96.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            485,
+            667,
+            619,
+            770
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/589986c82c69bf47843ca5414d2a0981957d570c6a8cfe24f304d920cdd6f4d1.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            622,
+            669,
+            754,
+            770
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/141cc5fb4fbfce71cb86684eecc7232dd7648d244637f52af1d974fb18fc0a1d.jpg",
+        "image_caption": [
+            "Figure 8. Starting from a pretrained diffusion model, here Stable Diffusion (right), our distribution matching distillation algorithm yields a model that can generate images with much higher quality (left) than previous few-steps generators (middle), with the same speed or faster. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            756,
+            669,
+            890,
+            770
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "DMD (ours, 1 step) 90ms ",
+        "bbox": [
+            91,
+            772,
+            197,
+            796
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "InstaFlow (1 step) 90ms ",
+        "bbox": [
+            232,
+            773,
+            328,
+            796
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "LCM (1 step) 90ms ",
+        "bbox": [
+            379,
+            773,
+            452,
+            796
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "LCM (2 steps) 120ms ",
+        "bbox": [
+            513,
+            773,
+            591,
+            796
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "DPM++ (4 steps) 260ms ",
+        "bbox": [
+            640,
+            773,
+            733,
+            796
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "SD (50 steps) 2590ms ",
+        "bbox": [
+            787,
+            773,
+            859,
+            796
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "“3D render baby parrot, Chibi, adorable big eyes. In a garden with butterflies, greenery, lush, whimsical and soft, magical, octane render, fairy dust” ",
+        "bbox": [
+            106,
+            136,
+            844,
+            148
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "image",
+        "img_path": "images/136d35b5eb787ec0ef5fadc4d2c8ff6a3f7808aa6c4399074d5a79c59669cbe2.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            83,
+            148,
+            890,
+            349
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "“a dog of the german shepherd breed, wearing a space suit, in a post-pocalyptic world, among debris, rubble, dramatic colors, cinematic lighting, vivid colors, sparkling colors, full colors|vector” ",
+        "bbox": [
+            104,
+            366,
+            611,
+            388
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "image",
+        "img_path": "images/b4eca25fee5e6e5742aa532f07f5afbb5665e35bac6dd38a26ff90e52179aaef.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            84,
+            388,
+            890,
+            590
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "“druid portrait by mandy jurgens and warhol, ernst haeckel, james jean, artstation” ",
+        "bbox": [
+            106,
+            614,
+            522,
+            626
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "image",
+        "img_path": "images/db5682d6d4b9c692f8d717f6025acfcf3e6821a3e7c83c0dc2c7daefd53a4050.jpg",
+        "image_caption": [
+            "Figure 9. One-step samples from our LAION model. Our generator achieves comparable image quality with Stable Diffusion model at a speed $3 0 \\times$ faster. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            83,
+            627,
+            890,
+            828
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "“an isolated iron lighthouse shining light out to sea at night as it sits on a rocky stone island being battered by huge ocean waves, a human person with a bycicle standing, aside, smoky orange clouds filling the sky, symmetrical imag” ",
+        "bbox": [
+            104,
+            126,
+            746,
+            148
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "image",
+        "img_path": "images/4cae11fce1adcca92f4b56cd273ea30ccc881465e6c7bcb8f0350908550cadda.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            83,
+            148,
+            890,
+            349
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "“border collie surfing a small wave, with a mountain on background” ",
+        "bbox": [
+            107,
+            377,
+            452,
+            388
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "image",
+        "img_path": "images/48cad77b95c7de302e9b9d932232a0f2072218eb001e0cdc786c228e8ebd70fd.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            84,
+            388,
+            890,
+            590
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "“macro photography of a realistic and natural ladybug” ",
+        "bbox": [
+            107,
+            614,
+            387,
+            627
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "image",
+        "img_path": "images/13dd64410f5282ddd64179e17f4951f78f7d5ef828719389cb666e777a4f645d.jpg",
+        "image_caption": [
+            "Figure 10. One-step samples from our LAION model. Our generator achieves comparable image quality with Stable Diffusion model at a speed $3 0 \\times$ faster. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            83,
+            627,
+            890,
+            828
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "“Sports Magazine, medium close-up shot of an Olympic swimmer triumphantly finishing at the end of the race, reaching with one arm to touch the end of the pool. racing swimming goggles, strong arms and shoulders, High resolution, high shutter speed sports photography, freeze frame, water droplets, bright volumetric lighting,Nikon 200mm lens, 1/8000 sec shutter speed” ",
+        "bbox": [
+            104,
+            118,
+            830,
+            148
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/34d8de918e35b156509a0f13603702f56c187f96f0154b31191e7a5a668305ac.jpg",
+        "image_caption": [
+            "SD ",
+            "ours "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            107,
+            148,
+            235,
+            248
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/bd830c366fcba3228401915c3b63f342af9f13c5fce571359dbadcce97bb8b8d.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            236,
+            148,
+            364,
+            248
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/479b12a4ac9e1044cc2f39a793b401036750c312bef2cd42cf27ce6c692fe460.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            367,
+            148,
+            496,
+            248
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/3c68fede52c4a5345a2c0d11a46ff1408c3d944922db7cc6e2a0e438ea895ebd.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            500,
+            148,
+            627,
+            248
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/e6f6947a20a2c717adf02aae4d5c058aee24a283b54992ab3732bffcb27b02a6.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            630,
+            148,
+            759,
+            248
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/829f8cca6dc7f15c7113fba1bc9f298f9b6db66aee01544185402ec760966880.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            761,
+            148,
+            890,
+            248
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/9c2e9c4125ac776f9566d426deba4d9aefcf5f7564823aaee42a447c48335b1f.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            107,
+            250,
+            235,
+            348
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/bab7b07626280061c1759fd777bb8066275438234daffbefd416c44d12118215.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            236,
+            250,
+            364,
+            349
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/88f97dd9a0a70db88a49dea15c0b237fb69cf17876b564bff7d8f5d0df6d896f.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            367,
+            250,
+            496,
+            349
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/959fd1b3145a6b7788380ad0b5f32ee00783dfd7549970a3a71c62dcb28fc418.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            500,
+            250,
+            627,
+            349
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/c2cf6a9acae259dc5ec72991f27c716120d24544caa28b63ce2baf4cf385b9dc.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            630,
+            250,
+            759,
+            349
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/558317ef0ed5b866b280450a3f871832c018d133b4572331a870221b7f5c4315.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            761,
+            250,
+            890,
+            349
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "text",
+        "text": "“The giant magical deer god of the forest, sniffing flowers on the forest floor. Fireflies evereywhere. A spring of water. Long moss hanging from the tree branches. Moonlight. Photorealism, cinematic shot, cinematic lighting, National Geographic, analagous colors, Award-winning photography” ",
+        "bbox": [
+            107,
+            366,
+            834,
+            388
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/a2e3c19dfcb364a30bf3447a01f55aa58c60bf96d069ebb9d4c8657d4e445144.jpg",
+        "image_caption": [
+            "SD "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            107,
+            388,
+            235,
+            488
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/f7c173d475ac43c0da979806ff9fcf8e3a58afc6c1fb14b05b95f5ec4f33b51f.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            236,
+            388,
+            364,
+            488
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/dc1550539913d6b9c2822b9b2d7b161905f377573a6a4684d5674b78778514f8.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            367,
+            391,
+            496,
+            488
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/0ca8df15b546cb3361e1d81b2b072330a901d18680279f44112e73fa834359ff.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            500,
+            388,
+            627,
+            488
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/e9a8d2fddc395cadf93da8a40e7fd85cad466a0f19889457b78005becd6db682.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            630,
+            388,
+            759,
+            488
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/4fedd6ec6054910caeb96c47fed714e0e89e562db7a1c4e0d5a951caf3b2d12f.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            761,
+            388,
+            890,
+            488
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/7caa14c967dac6e6bc58eed42bc1f0efe7fe083eb303b93f80a1ef3509079a72.jpg",
+        "image_caption": [
+            "ours "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            107,
+            489,
+            235,
+            589
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/d95b308a36f4256bf88edae6847b25d99abb471adcb3d9bac769c6873a5231af.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            236,
+            489,
+            364,
+            589
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/5e9668eab0fd0946f03c78a378c8bbe25d46da04d82653459f91ad0389443b5b.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            367,
+            493,
+            496,
+            588
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/2ec1adc8af9dfd5d7acea3e98ff06d69a93fcfc594685f14917b47ebb3c26d76.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            500,
+            489,
+            627,
+            589
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/fd1c9f5d26464d7a8ea9055bf9388f149d9cf1a1749c9f79373bcd6caa03c419.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            630,
+            489,
+            759,
+            589
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/dd8049ae028a3649a6c4cb7cfc4a6ee6cc27a056dac49718b6e2090762dba170.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            761,
+            489,
+            890,
+            589
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/d101727d499258ac436d24e106ae7e593a033e2a387d0d552069cbe03e64a9e8.jpg",
+        "image_caption": [
+            "“cute dog running at beach” ",
+            "SD "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            107,
+            628,
+            235,
+            727
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/d45de526d2eab341738b68b8eb67b9c3566ebdeca3bae9fed4096ab4f94e3e2d.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            236,
+            628,
+            364,
+            727
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/e6bcf614d159c4db07642ed9277e409d07b53c13494461c6fc5ecb03a97c0e49.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            367,
+            628,
+            496,
+            727
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/39349479765cbedd4fa9ffda23ea138eef9370c8b94bb73ef33780961aa632a0.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            500,
+            628,
+            627,
+            727
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/fed365af8f91b0cdd870d7f1ce1d6777f93fb8e78a94cc91028c57bf3b47a726.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            630,
+            628,
+            759,
+            727
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/96c171964155f55694493b18dbdba6512e501236f030ae41cf37bf5922a8d402.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            761,
+            628,
+            890,
+            727
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/f9f0b24ba964c0c4a72fe2649ff8973634ebed6bfbd24db26bcfcaeceba00bed.jpg",
+        "image_caption": [
+            "ours "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            107,
+            729,
+            235,
+            828
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/b6aff718c88b3385e4f5ed5f07c7aa09197199d18eb8ac5b893b1da08cc0b12a.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            236,
+            729,
+            364,
+            828
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/bb0250456ad1caef7e707f0bb02c8240224f1da3ffa34323c1f372e87925a735.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            367,
+            729,
+            496,
+            828
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/7d950bdf198c1357c01a6a4284a26a4ebd00eacf937fbf963cac95ed6f8cddad.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            500,
+            729,
+            627,
+            828
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/ccbc4051d48994edf3e098eeb63dd41887b6d23a62116247454de9cdde7607d1.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            630,
+            729,
+            759,
+            828
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/cc2c81401f2ec8e90206f4b14d420f31f97efdc580c80c902e7653f7abe5679b.jpg",
+        "image_caption": [
+            "Figure 11. One-step samples from our LAION model. Our generator achieves comparable image quality with Stable Diffusion model at a speed $3 0 \\times$ faster. "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            761,
+            729,
+            890,
+            828
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/9f98c7fe2488b38ebf99cbd664b8089ef49c64c39aa078a289f10eb1220765aa.jpg",
+        "image_caption": [
+            "Figure 12. One-step samples from our class-conditional model on CIFAR-10 (FID=2.66). "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            76,
+            161,
+            893,
+            796
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "image",
+        "img_path": "images/4aa853bc960514b37220b09b439075657ac88da27409fc69a14c8fc4e7effc9c.jpg",
+        "image_caption": [
+            "Figure 13. One-step samples from our unconditional model on CIFAR-10 (FID=3.77). "
+        ],
+        "image_footnote": [],
+        "bbox": [
+            76,
+            165,
+            890,
+            792
+        ],
+        "page_idx": 21
+    }
+]
