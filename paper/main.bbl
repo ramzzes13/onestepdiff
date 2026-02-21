@@ -39,17 +39,17 @@ Krizhevsky, A.
 \newblock Learning multiple layers of features from tiny images.
 \newblock 2009.
 
-\bibitem[Liu et~al.(2023)Liu, Zhang, Ma, Peng, and Liu]{liu2023instaflow}
+\bibitem[Liu et~al.(2024)Liu, Zhang, Ma, Peng, and Liu]{liu2024instaflow}
 Liu, X., Zhang, X., Ma, J., Peng, J., and Liu, Q.
 \newblock {InstaFlow}: One step is enough for high-quality diffusion-based
   text-to-image generation.
-\newblock \emph{arXiv preprint arXiv:2309.06380}, 2023.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
 
 \bibitem[Loshchilov \& Hutter(2019)Loshchilov and
   Hutter]{loshchilov2019decoupled}
 Loshchilov, I. and Hutter, F.
 \newblock Decoupled weight decay regularization.
-\newblock 2019.
+\newblock In \emph{International Conference on Learning Representations}, 2019.
 
 \bibitem[Luo et~al.(2023{\natexlab{a}})Luo, Tan, Huang, Li, and
   Zhao]{luo2023latent}
