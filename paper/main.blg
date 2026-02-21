@@ -4,46 +4,45 @@ The top-level auxiliary file: main.aux
 The style file: icml2025.bst
 Database file #1: refs.bib
 Warning--empty journal in krizhevsky2009learning
-Warning--empty journal in loshchilov2019decoupled
 You've used 18 entries,
             2773 wiz_defined-function locations,
-            675 strings with 8177 characters,
-and the built_in function-call counts, 10184 in all, are:
-= -- 849
+            674 strings with 8146 characters,
+and the built_in function-call counts, 10245 in all, are:
+= -- 850
 > -- 790
 < -- 12
 + -- 266
 - -- 246
-* -- 846
-:= -- 1567
+* -- 848
+:= -- 1568
 add.period$ -- 56
 call.type$ -- 18
 change.case$ -- 136
 chr.to.int$ -- 16
-cite$ -- 38
-duplicate$ -- 439
-empty$ -- 707
+cite$ -- 37
+duplicate$ -- 447
+empty$ -- 727
 format.name$ -- 272
-if$ -- 2129
+if$ -- 2150
 int.to.chr$ -- 3
 int.to.str$ -- 1
 missing$ -- 18
 newline$ -- 98
 num.names$ -- 72
-pop$ -- 295
+pop$ -- 301
 preamble$ -- 1
 purify$ -- 118
 quote$ -- 0
 skip$ -- 374
 stack$ -- 0
 substring$ -- 228
-swap$ -- 82
+swap$ -- 85
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 198
-warning$ -- 2
+warning$ -- 1
 while$ -- 69
 width$ -- 0
-write$ -- 231
-(There were 2 warnings)
+write$ -- 232
+(There was 1 warning)
