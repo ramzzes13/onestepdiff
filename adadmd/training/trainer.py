@@ -224,12 +224,14 @@ class AdaDMDTrainer:
         if self.scaler:
             with autocast(device_type='cuda'):
                 pred = self.fake_score_model(x_lora_t, t_lora, labels)
-                lora_loss = F.mse_loss(pred, x_fake_detached)
+                # Train to predict noise (epsilon parameterization), NOT clean image
+                lora_loss = F.mse_loss(pred, noise_lora)
             self.scaler.scale(lora_loss).backward()
             self.scaler.step(self.opt_lora)
         else:
             pred = self.fake_score_model(x_lora_t, t_lora, labels)
-            lora_loss = F.mse_loss(pred, x_fake_detached)
+            # Train to predict noise (epsilon parameterization), NOT clean image
+            lora_loss = F.mse_loss(pred, noise_lora)
             lora_loss.backward()
             self.opt_lora.step()
 

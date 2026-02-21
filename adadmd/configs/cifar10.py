@@ -42,7 +42,7 @@ class CIFAR10Config:
     weight_decay: float = 0.0
     num_iterations: int = 50000
     gradient_checkpointing: bool = False
-    mixed_precision: bool = True
+    mixed_precision: bool = False  # Disable for small models (GradScaler issues)
 
     # Loss weights
     lambda_lpips: float = 0.1
