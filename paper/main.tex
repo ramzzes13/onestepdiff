@@ -336,7 +336,7 @@ Hybrid & 0.1 & 0.5 & 226.56 \\
 \paragraph{Distillation with pretrained DDPM teacher.}
 Table~\ref{tab:main_results} reports distillation results across configurations. The SmallUNet (6.6M) with unpaired MSE regression and 20K steps achieves 222.12 FID. The HuggingFace DDPM (35.7M) with unpaired MSE collapses within 5K steps (237.09 FID). Switching to paired LPIPS regression prevents collapse entirely, enabling stable 20K+ step training. The best configuration---HF DDPM with paired LPIPS at 20K steps---achieves \textbf{135.22} FID with DR-4 verification, a 40\% relative improvement over the SmallUNet baseline.
 
-The DM loss provides the primary distributional signal: FID drops from 232.78 (regression-only at 5K steps) to 139.77 (with DM loss at 20K steps), while regression alone plateaus early. This confirms the complementarity of the two losses: LPIPS regression prevents collapse while DM loss sharpens the generator distribution.
+The DM loss provides the primary distributional signal: FID drops from 232.78 (regression-only at 5K steps) to 139.77 (with DM loss at 20K steps). However, as the regression weight decays beyond 20K steps, FID degrades (155.91 at 25K, 174.83 at 30K), revealing that the LPIPS regression anchor is not merely an initialization aid but a persistent necessity. The DM loss alone cannot maintain quality, likely due to noisy gradients from the LoRA fake score model (DR accuracy $\sim$50\%).
 
 \begin{table}[t]
 \caption{CIFAR-10 distillation results (5K generated vs.\ test set). DR-$N$: best-of-$N$ density-ratio verification.}
@@ -352,7 +352,9 @@ HF DDPM, MSE, 5K$^\dagger$ & 237.09 & 234.23 & 233.93 \\
 HF DDPM, LPIPS, 5K (REG only) & 232.78 & 233.53 & 235.20 \\
 HF DDPM, LPIPS, 10K & 140.16 & 140.28 & 145.17 \\
 HF DDPM, LPIPS, 15K & 139.80 & 141.84 & 140.29 \\
-HF DDPM, LPIPS, 20K & 139.77 & \textbf{135.22} & 137.38 \\
+HF DDPM, LPIPS, 20K & \textbf{139.77} & \textbf{135.22} & \textbf{137.38} \\
+HF DDPM, LPIPS, 25K & 155.91 & 158.40 & 155.47 \\
+HF DDPM, LPIPS, 30K & 174.83 & 176.77 & 177.48 \\
 \bottomrule
 \multicolumn{4}{l}{\footnotesize $^\dagger$ Training collapsed (mean std $< 0.1$) after 5K steps.}
 \end{tabular}
@@ -361,7 +363,7 @@ HF DDPM, LPIPS, 20K & 139.77 & \textbf{135.22} & 137.38 \\
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fid_trajectory.pdf}
-\caption{FID trajectory during training. Phase 2 (DM + regression) begins at 5K steps, producing a sharp FID drop from 233 to 140 within the next 5K steps. DR-4 verification provides an additional 4.6-point improvement at 20K steps.}
+\caption{FID trajectory during training. Phase 2 (DM + regression) begins at 5K steps, producing a sharp FID drop from 233 to 140. Quality peaks at 15--20K steps and degrades beyond 20K as the regression weight decays, indicating the LPIPS anchor is essential throughout training.}
 \label{fig:fid_trajectory}
 \end{figure}
 
@@ -429,8 +431,8 @@ Optimizers + buffers & $\sim$670 \\
 \paragraph{FID gap analysis.}
 Our best one-step result (135.22 FID with DR-4 verification) remains far from CIFAR-10 state-of-the-art ($\sim$1--5 FID with multi-step sampling). Several factors contribute: (1) the HuggingFace DDPM teacher itself produces imperfect 32$\times$32 images; (2) training uses 20K distillation steps versus 300K+ in DMD~\citep{yin2024onestep}; (3) the DDPM architecture at $t{=}0$ is not designed for direct noise-to-image mapping, requiring substantial weight adaptation. However, the 40\% relative improvement from MSE (222 FID) to LPIPS+DM (135 FID) demonstrates the effectiveness of each component, and these relative gains should transfer to stronger base models.
 
-\paragraph{Mean collapse and regression loss design.}
-Unpaired regression ($\text{MSE}(G(\bz), \bx_{\text{random}})$) causes severe mean collapse, with output standard deviation dropping from 0.85 to 0.07 within 5K steps. Even paired regression with L1 or smooth L1 loss collapses with paired targets. Only paired LPIPS~\citep{zhang2018unreasonable} maintains output diversity (std $> 0.4$ throughout 20K steps), confirming the mode-seeking property of perceptual losses is essential for distillation stability.
+\paragraph{Regression loss as persistent anchor.}
+Unpaired regression ($\text{MSE}(G(\bz), \bx_{\text{random}})$) causes severe mean collapse (output std drops to 0.07 within 5K steps). Even paired L1/smooth-L1 collapses; only paired LPIPS~\citep{zhang2018unreasonable} maintains diversity (std $> 0.4$). Critically, decaying the regression weight during Phase 2 causes FID degradation after 20K steps (Figure~\ref{fig:fid_trajectory}), revealing that LPIPS regression is not merely an initialization aid but a persistent requirement. The DM loss with LoRA-based fake scores provides insufficient gradient signal alone, likely because the density-ratio network cannot reliably discriminate real from fake at intermediate noise levels (NCE accuracy $\sim$50\%). A constant regression weight may yield better late-training behavior.
 
 \paragraph{LoRA capacity trade-off.}
 Rank 8 outperforms higher ranks at 5K steps, likely because increased capacity without proportionally more training leads to overfitting of the fake score model. The rank warming schedule (4$\to$32) achieves competitive results while starting with lower capacity, supporting the hypothesis that early distributional differences are low-rank.

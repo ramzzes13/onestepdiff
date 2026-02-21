@@ -127,20 +127,22 @@ def fig_dr_verification():
 
 def fig_fid_trajectory():
     """Figure 7: FID trajectory during training."""
-    steps = [5, 10, 15, 20]
-    fids = [232.78, 140.16, 139.80, 139.77]
-    fids_dr4 = [233.53, 140.28, 141.84, 135.22]
+    steps = [5, 10, 15, 20, 25, 30]
+    fids = [232.78, 140.16, 139.80, 139.77, 155.91, 174.83]
+    fids_dr4 = [233.53, 140.28, 141.84, 135.22, 158.40, 176.77]
 
-    fig, ax = plt.subplots(figsize=(4.5, 3))
+    fig, ax = plt.subplots(figsize=(5, 3.2))
     ax.plot(steps, fids, 'o-', color='#2196F3', linewidth=2, markersize=8,
             label='Standard')
     ax.plot(steps, fids_dr4, 's--', color='#FF5722', linewidth=2, markersize=7,
             label='DR-verified (N=4)')
     ax.axvline(x=5, color='gray', linestyle=':', linewidth=1, alpha=0.5)
-    ax.text(5.2, 200, 'Phase 2\nstarts', fontsize=8, color='gray')
+    ax.axvspan(15, 20, alpha=0.1, color='green')
+    ax.text(5.3, 210, 'Phase 2\nstarts', fontsize=8, color='gray')
+    ax.text(16, 130, 'Best\nregion', fontsize=8, color='green')
     ax.set_xlabel('Training Steps (K)')
     ax.set_ylabel('FID ↓')
-    ax.legend()
+    ax.legend(loc='upper right')
     ax.set_ylim(125, 245)
     ax.grid(True, alpha=0.3)
     fig.tight_layout()

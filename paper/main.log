@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.12.17)  21 FEB 2026 23:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.12.17)  21 FEB 2026 23:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -700,87 +700,82 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has
                                                   \__shipout_drop_firstpage_...
 l.340 
       ]
-Overfull \hbox (37.57164pt too wide) in paragraph at lines 345--359
+Overfull \hbox (37.57164pt too wide) in paragraph at lines 345--361
  [][] 
  []
 
-<figures/fid_trajectory.pdf, id=162, 317.99176pt x 209.85463pt>
+<figures/fid_trajectory.pdf, id=162, 354.12675pt x 224.30864pt>
 File: figures/fid_trajectory.pdf Graphic file (type pdf)
 <use figures/fid_trajectory.pdf>
-Package pdftex.def Info: figures/fid_trajectory.pdf  used on input line 363.
-(pdftex.def)             Requested size: 234.8775pt x 155.00499pt.
+Package pdftex.def Info: figures/fid_trajectory.pdf  used on input line 365.
+(pdftex.def)             Requested size: 234.8775pt x 148.77318pt.
 <figures/dr_verification.pdf, id=165, 426.39676pt x 245.90094pt>
 File: figures/dr_verification.pdf Graphic file (type pdf)
 <use figures/dr_verification.pdf>
-Package pdftex.def Info: figures/dr_verification.pdf  used on input line 373.
+Package pdftex.def Info: figures/dr_verification.pdf  used on input line 375.
 (pdftex.def)             Requested size: 234.8775pt x 135.45229pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 <figures/memory_comparison.pdf, id=168, 426.50844pt x 245.90094pt>
 File: figures/memory_comparison.pdf Graphic file (type pdf)
 <use figures/memory_comparison.pdf>
-Package pdftex.def Info: figures/memory_comparison.pdf  used on input line 400.
+Package pdftex.def Info: figures/memory_comparison.pdf  used on input line 402.
 
 (pdftex.def)             Requested size: 234.8775pt x 135.41852pt.
-
-Underfull \vbox (badness 2875) has occurred while \output is active []
-
- [5
+[5
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.431 
+l.433 
       
 pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.431 
+l.433 
       
 pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.431 
+l.433 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.431 
+l.433 
        <./figures/combined_ablation.pdf> <./figures/fid_trajectory.pdf>]
-Overfull \hbox (1.19594pt too wide) in paragraph at lines 439--440
+Overfull \hbox (1.19594pt too wide) in paragraph at lines 441--442
 \OT1/ptm/m/n/10 (-20) (135) is not competitive with SOTA one-step generators ($
 \OMS/cmsy/m/n/10 ^^X$\OT1/ptm/m/n/10 (-20) 1--
  []
 
-(./main.bbl [6
+[6
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.15 
-     
+l.450 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.15 
-     
+l.450 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.15 
-     
+l.450 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.15 
-      <./figures/dr_verification.pdf> <./figures/memory_comparison.pdf>]
+l.450 
+       <./figures/dr_verification.pdf> <./figures/memory_comparison.pdf>]
+(./main.bbl
 Underfull \hbox (badness 2884) in paragraph at lines 56--60
 \OT1/ptm/m/n/10 (+20) im-ages with few-step in-fer-ence.  \OT1/ptm/m/it/10 (+20
 ) arXiv preprint
@@ -797,11 +792,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16352 strings out of 478051
- 268366 string characters out of 5840942
+ 16358 strings out of 478051
+ 268417 string characters out of 5840942
  1876330 words of memory out of 5000000
  35861 multiletter control sequences out of 15000+600000
- 557186 words of font info for 282 fonts, out of 8000000 for 9000
+ 557424 words of font info for 286 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,13n,76p,1449b,625s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -830,10 +825,10 @@ s/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
 live/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on main.pdf (8 pages, 366597 bytes).
+Output written on main.pdf (8 pages, 368833 bytes).
 PDF statistics:
- 517 PDF objects out of 1000 (max. 8388607)
- 285 compressed objects within 3 object streams
+ 522 PDF objects out of 1000 (max. 8388607)
+ 286 compressed objects within 3 object streams
  72 named destinations out of 1000 (max. 500000)
  62485 words of extra memory for PDF output out of 74296 (max. 10000000)
 

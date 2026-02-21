@@ -89,15 +89,13 @@
 \newlabel{tab:regularization@cref}{{[table][3][]3}{[1][4][]5}}
 \newlabel{tab:main_results}{{4}{5}{CIFAR-10 distillation results (5K generated vs.\ test set). DR-$N$: best-of-$N$ density-ratio verification}{table.4}{}}
 \newlabel{tab:main_results@cref}{{[table][4][]4}{[1][5][]5}}
-\newlabel{fig:fid_trajectory}{{2}{5}{FID trajectory during training. Phase 2 (DM + regression) begins at 5K steps, producing a sharp FID drop from 233 to 140 within the next 5K steps. DR-4 verification provides an additional 4.6-point improvement at 20K steps}{figure.2}{}}
+\newlabel{fig:fid_trajectory}{{2}{5}{FID trajectory during training. Phase 2 (DM + regression) begins at 5K steps, producing a sharp FID drop from 233 to 140. Quality peaks at 15--20K steps and degrades beyond 20K as the regression weight decays, indicating the LPIPS anchor is essential throughout training}{figure.2}{}}
 \newlabel{fig:fid_trajectory@cref}{{[figure][2][]2}{[1][5][]5}}
 \newlabel{sec:memory}{{4.4}{5}{}{subsection.4.4}{}}
 \newlabel{sec:memory@cref}{{[subsection][4][4]4.4}{[1][5][]5}}
 \newlabel{sec:discussion}{{5}{5}{}{section.5}{}}
 \newlabel{sec:discussion@cref}{{[section][5][]5}{[1][5][]5}}
 \citation{zhang2018unreasonable}
-\bibdata{refs}
-\bibcite{gutmann2010noise}{{1}{2010}{{Gutmann \& Hyv{\"a}rinen}}{{Gutmann and Hyv{\"a}rinen}}}
 \newlabel{fig:dr_verify}{{3}{6}{Density-ratio verification (best-of-$N$) improves FID. For the extended LPIPS model, DR-4 provides a 4.6-point improvement}{figure.3}{}}
 \newlabel{fig:dr_verify@cref}{{[figure][3][]3}{[1][5][]6}}
 \newlabel{tab:dr_verify}{{5}{6}{Density-ratio verification (FID improvement)}{table.5}{}}
@@ -108,6 +106,8 @@
 \newlabel{tab:memory@cref}{{[table][6][]6}{[1][5][]6}}
 \newlabel{sec:conclusion}{{6}{6}{}{section.6}{}}
 \newlabel{sec:conclusion@cref}{{[section][6][]6}{[1][6][]6}}
+\bibdata{refs}
+\bibcite{gutmann2010noise}{{1}{2010}{{Gutmann \& Hyv{\"a}rinen}}{{Gutmann and Hyv{\"a}rinen}}}
 \bibcite{heusel2017gans}{{2}{2017}{{Heusel et~al.}}{{Heusel, Ramsauer, Unterthiner, Nessler, and Hochreiter}}}
 \bibcite{ho2020denoising}{{3}{2020}{{Ho et~al.}}{{Ho, Jain, and Abbeel}}}
 \bibcite{hu2022lora}{{4}{2022}{{Hu et~al.}}{{Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and Chen}}}
@@ -128,6 +128,6 @@
 \bibstyle{icml2025}
 \newlabel{app:details}{{A}{7}{}{appendix.A}{}}
 \newlabel{app:details@cref}{{[appendix][1][2147483647]A}{[1][7][]7}}
-\newlabel{app:dynamics}{{B}{7}{}{appendix.B}{}}
-\newlabel{app:dynamics@cref}{{[appendix][2][2147483647]B}{[1][7][]7}}
+\newlabel{app:dynamics}{{B}{8}{}{appendix.B}{}}
+\newlabel{app:dynamics@cref}{{[appendix][2][2147483647]B}{[1][7][]8}}
 \gdef \@abspage@last{8}
