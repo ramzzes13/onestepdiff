@@ -53,7 +53,7 @@ Started: Sat Feb 21 09:43:48 PM MSK 2026
 
 ### Completed:
 1. **v6 experiment (cosine LR, lambda_dm=5e-5)**: 35K steps, GPU 3.
-   Cosine LR schedule with 500-step warmup, min_lr_ratio=0.1.
+   Cosine LR schedule with 1000-step warmup, min_lr_ratio=0.1.
    Key finding: cosine LR prevents late-training degradation.
    | Steps | FID    | DR-4   | DR-8   |
    |-------|--------|--------|--------|
@@ -62,7 +62,7 @@ Started: Sat Feb 21 09:43:48 PM MSK 2026
    | 20K   | 134.00 | ---    | ---    |
    | 25K   | 152.66 | 153.30 | 152.75 |
    | 30K   | 117.90 | 110.86 | 115.57 |
-   | 35K   | 82.64  | 85.04  | 83.63  | <-- NEW BEST
+   | 35K   | 82.64  | 85.04  | 83.63  |
 
 2. **v7 experiment (cosine LR, lambda_dm=0.001)**: 35K steps, GPU 7.
    Same cosine LR as v6, but stronger DM loss. More volatile trajectory.
@@ -75,16 +75,7 @@ Started: Sat Feb 21 09:43:48 PM MSK 2026
    | 30K   | 174.70 | 175.98 | 175.85 |
    | 35K   | 107.85 | 106.46 | 105.28 |
 
-3. **Paper updated**: Abstract, results tables, discussion, conclusion, FID figure
-   all updated with v6/v7 results. 10 pages.
-
-4. **Key insights from v6/v7**:
-   - Cosine LR prevents constant-LR overshoot (v5c degraded at 25K)
-   - Weak DM loss (5e-5) + cosine LR = smooth improvement to FID 82.64
-   - Strong DM loss (1e-3) + cosine LR = volatile, recovers to 107.85 at 35K
-   - lambda_dm sensitivity: 20x weaker DM loss gives 23% better FID
-
-5. **v8 experiment (50K steps, cosine LR, lambda_dm=5e-5)**: GPU 3.
+3. **v8 experiment (50K steps, cosine LR, lambda_dm=5e-5)**: GPU 3.
    Tested whether longer training improves over v6's 35K. Answer: NO.
    | Steps | FID    | DR-4   | DR-8   |
    |-------|--------|--------|--------|
@@ -97,7 +88,7 @@ Started: Sat Feb 21 09:43:48 PM MSK 2026
    | 50K   | 161.93 | 163.34 | 163.43 |
    v8 oscillates due to slower LR decay. v6's 35K schedule is optimal.
 
-6. **v9 experiment (40K steps, cosine LR, lambda_dm=5e-5)**: GPU 3.
+4. **v9 experiment (40K steps, cosine LR, lambda_dm=5e-5)**: GPU 3.
    Tested 40K as sweet spot between 35K and 50K. Answer: NO, 35K still best.
    | Steps | FID    | DR-4   | DR-8   |
    |-------|--------|--------|--------|
@@ -107,35 +98,76 @@ Started: Sat Feb 21 09:43:48 PM MSK 2026
    | 40K   | 125.86 | 124.60 | 127.15 |
    v9 best at 30K (103.01). Same oscillation pattern as v8.
 
-7. **Paper updated**: Added schedule ablation discussion, v8/v9 findings.
-   Regenerated qualitative figure from v6 best model.
+## Session 4 (Feb 22, 2026)
+
+### Completed:
+1. **Paper audit and improvements**:
+   - Fixed warmup steps: paper said 500, actual v6 used 1000. Corrected.
+   - Fixed citations: Sauer et al. ECCV 2024 (was arXiv 2023), added Hinton to Krizhevsky 2009.
+   - Added schedule length ablation table (Section 5.4) with v5c/v6/v8/v9 comparison.
+   - Rewrote abstract, DR verification discussion (honest about hurting best model).
+   - Improved writing quality throughout to ICML A* level.
+   - Regenerated FID trajectory and schedule ablation figures.
+   - Verified ALL FID numbers against results.json files.
+
+2. **v10 warmup=200 experiment**: 35K steps, cosine LR, lambda_dm=5e-5, GPU 0.
+   Testing shorter warmup. Result: much worse, degrades after 25K like constant LR.
+   | Steps | FID    | DR-4   | DR-8   |
+   |-------|--------|--------|--------|
+   | 20K   | 150.57 | 151.41 | 151.66 |
+   | 25K   | 107.94 | 104.69 | 104.24 |
+   | 30K   | 112.90 | 113.75 | 114.05 |
+   | 35K   | 152.35 | 155.46 | 154.80 |
+
+3. **v10 warmup=2000 experiment**: 35K steps, cosine LR, lambda_dm=5e-5, GPU 1.
+   Testing longer warmup. Result: **NEW BEST by a large margin!**
+   | Steps | FID    | DR-4   | DR-8   |
+   |-------|--------|--------|--------|
+   | 15K   | 166.49 | 165.69 | 165.70 |
+   | 20K   | 186.98 | 188.21 | 191.32 |
+   | 25K   | 180.24 | 179.68 | 177.97 |
+   | 30K   | 90.32  | 92.30  | 91.81  |
+   | 35K   | 55.45  | 58.14  | 58.08  | <-- **NEW BEST**
+
+4. **Paper updated with warmup ablation results**:
+   - NEW best FID: 55.45 (was 82.64), 75% improvement over MSE baseline
+   - Updated abstract, introduction, training details, main results table
+   - Added warmup ablation section (Section 5.5) with Table 8 and Figure 8
+   - Updated DR verification table with warmup=2K data
+   - Updated Discussion (FID gap, cosine LR, limitations)
+   - Updated Conclusion with new best FID
+   - Regenerated FID trajectory figure with warmup=2K trajectory
+   - Generated warmup ablation figure
+   - Regenerated qualitative comparison from warmup=2K best model
+   - Updated appendix hyperparameters table (warmup 2000)
+   - Clean LaTeX compilation (11 pages, no errors)
 
 ### Best Result:
-FID = 82.64 (standard, cosine LR, lambda_dm=5e-5, 35K steps, v6)
+**FID = 55.45** (standard, cosine LR, warmup=2000, lambda_dm=5e-5, 35K steps, v10)
+FID = 82.64 (standard, cosine LR, warmup=1000, lambda_dm=5e-5, 35K steps, v6)
 FID = 101.96 (standard, cosine LR, lambda_dm=5e-5, 50K sched @ 40K, v8)
 FID = 103.01 (standard, cosine LR, lambda_dm=5e-5, 40K sched @ 30K, v9)
-FID = 105.28 (DR-8, cosine LR, lambda_dm=0.001, 35K steps, v7)
-FID = 110.38 (DR-8, constant LR, 20K steps, v5c)
+FID = 107.94 (standard, cosine LR, warmup=200, lambda_dm=5e-5, 35K @ 25K, v10)
 
-### Schedule Length Ablation Summary:
-| Schedule | Best FID | Best Step |
-|----------|----------|-----------|
-| 25K const LR (v5c) | 115.01 | 20K |
-| 35K cosine (v6)     | 82.64  | 35K | <-- BEST
-| 40K cosine (v9)     | 103.01 | 30K |
-| 50K cosine (v8)     | 101.96 | 40K |
+### Warmup Ablation Summary:
+| Warmup | 20K FID | 25K FID | 30K FID | 35K FID | Best |
+|--------|---------|---------|---------|---------|------|
+| 200    | 150.57  | 107.94  | 112.90  | 152.35  | 107.94 (25K) |
+| 1,000  | 134.00  | ---     | 117.90  | 82.64   | 82.64 (35K) |
+| 2,000  | 186.98  | 180.24  | 90.32   | **55.45** | **55.45 (35K)** |
 
-### Key Findings:
-1. Cosine LR schedule is critical for long-horizon DMD training.
-   Constant LR overshoots the optimum at 25K+, causing degradation.
-2. Weaker DM loss (5e-5 vs 0.001) produces smoother optimization
-   with cosine LR, yielding 82.64 FID at 35K.
-3. LPIPS regression remains essential as persistent anchor.
-4. Schedule length matters: 35K cosine > 40K > 50K cosine.
-   The rapid final LR decay in 35K schedule is key.
-   Longer schedules keep LR too high too long, causing oscillation.
+### Key Findings (All Sessions):
+1. **Warmup duration is critical** for LoRA-based DMD: 2000 > 1000 > 200.
+   Extended warmup stabilizes LoRA adapter before full LR engages.
+   warmup=200 degrades after 25K (like constant LR).
+   warmup=2000 lags early but achieves 33% better final FID than warmup=1000.
+2. Cosine LR schedule prevents late-training degradation (constant LR overshoots at 25K+).
+3. Weaker DM loss (5e-5 vs 0.001) produces smoother optimization with cosine LR.
+4. LPIPS regression remains essential as persistent anchor.
+5. Schedule length matters: 35K cosine > 40K > 50K cosine.
+6. DR verification helps intermediate models but hurts converged models.
 
 ### Remaining (Not Completed):
 - ImageNet / text-to-image experiments (GPU memory constrained by sglang servers)
 - SD v1.5 distillation (implemented but needs free GPU memory)
-- Ablation on min_lr_ratio and warmup steps
+- Further warmup exploration (3000, 4000 steps might be even better)

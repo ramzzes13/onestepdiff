@@ -3,46 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: icml2025.bst
 Database file #1: refs.bib
-Warning--empty journal in krizhevsky2009learning
 You've used 18 entries,
             2773 wiz_defined-function locations,
-            674 strings with 8146 characters,
-and the built_in function-call counts, 10245 in all, are:
-= -- 850
-> -- 790
-< -- 12
-+ -- 266
-- -- 246
-* -- 848
-:= -- 1568
-add.period$ -- 56
+            676 strings with 8189 characters,
+and the built_in function-call counts, 10483 in all, are:
+= -- 883
+> -- 801
+< -- 13
++ -- 269
+- -- 249
+* -- 868
+:= -- 1596
+add.period$ -- 57
 call.type$ -- 18
-change.case$ -- 136
+change.case$ -- 138
 chr.to.int$ -- 16
-cite$ -- 37
-duplicate$ -- 447
-empty$ -- 727
-format.name$ -- 272
-if$ -- 2150
+cite$ -- 36
+duplicate$ -- 454
+empty$ -- 741
+format.name$ -- 277
+if$ -- 2212
 int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 18
+missing$ -- 17
 newline$ -- 98
 num.names$ -- 72
-pop$ -- 301
+pop$ -- 299
 preamble$ -- 1
-purify$ -- 118
+purify$ -- 119
 quote$ -- 0
-skip$ -- 374
+skip$ -- 383
 stack$ -- 0
-substring$ -- 228
-swap$ -- 85
-text.length$ -- 7
+substring$ -- 255
+swap$ -- 93
+text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 198
-warning$ -- 1
-while$ -- 69
+warning$ -- 0
+while$ -- 72
 width$ -- 0
-write$ -- 232
-(There was 1 warning)
+write$ -- 236

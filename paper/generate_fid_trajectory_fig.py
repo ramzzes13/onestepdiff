@@ -14,41 +14,50 @@ v5b_fid =   [232.78, 140.16, 139.80, 139.77, 155.91, 174.83, 152.72]
 v5c_steps = [10, 15, 20, 25]
 v5c_fid =   [180.72, 141.18, 115.01, 138.74]
 
-# v6: constant regression weight, cosine LR, lambda_dm=5e-5
+# v6: constant regression weight, cosine LR (warmup=1000), lambda_dm=5e-5
 v6_steps = [10, 15, 20, 25, 30, 35]
 v6_fid =   [178.42, 185.16, 134.00, 152.66, 117.90, 82.64]
 
-# v7: constant regression weight, cosine LR, lambda_dm=0.001
+# v7: constant regression weight, cosine LR (warmup=1000), lambda_dm=0.001
 v7_steps = [10, 15, 20, 25, 30, 35]
 v7_fid =   [216.04, 158.65, 148.18, 151.36, 174.70, 107.85]
 
+# v10_warmup2000: cosine LR (warmup=2000), lambda_dm=5e-5
+v10w2k_steps = [15, 20, 25, 30, 35]
+v10w2k_fid =   [166.49, 186.98, 180.24, 90.32, 55.45]
+
 fig, ax = plt.subplots(1, 1, figsize=(5.5, 3.8))
 
-ax.plot(v5b_steps, v5b_fid, 'o-', color='#2196F3', linewidth=1.5, markersize=5,
-        label='Decay reg, const LR', alpha=0.8)
-ax.plot(v5c_steps, v5c_fid, 's-', color='#FF9800', linewidth=1.5, markersize=5,
-        label='Const reg, const LR', alpha=0.8)
-ax.plot(v6_steps, v6_fid, 'D-', color='#4CAF50', linewidth=2.5, markersize=6,
-        label=r'Cosine LR, $\lambda_{\mathrm{DM}}$=5e-5', alpha=0.9)
-ax.plot(v7_steps, v7_fid, '^--', color='#9C27B0', linewidth=1.5, markersize=5,
-        label=r'Cosine LR, $\lambda_{\mathrm{DM}}$=1e-3', alpha=0.7)
+ax.plot(v5b_steps, v5b_fid, 'o-', color='#2196F3', linewidth=1.2, markersize=4,
+        label='Decay reg, const LR', alpha=0.6)
+ax.plot(v5c_steps, v5c_fid, 's-', color='#FF9800', linewidth=1.2, markersize=4,
+        label='Const reg, const LR', alpha=0.6)
+ax.plot(v6_steps, v6_fid, 'D-', color='#4CAF50', linewidth=1.8, markersize=5,
+        label=r'Cosine, w=1K, $\lambda_{\mathrm{DM}}$=5e-5', alpha=0.8)
+ax.plot(v7_steps, v7_fid, '^--', color='#9C27B0', linewidth=1.2, markersize=4,
+        label=r'Cosine, w=1K, $\lambda_{\mathrm{DM}}$=1e-3', alpha=0.6)
+ax.plot(v10w2k_steps, v10w2k_fid, 'P-', color='#E91E63', linewidth=2.5, markersize=7,
+        label=r'Cosine, w=2K, $\lambda_{\mathrm{DM}}$=5e-5', alpha=0.95)
 
 # Annotate key results
-ax.annotate('82.64', xy=(35, 82.64), xytext=(31.5, 68),
-            fontsize=9, fontweight='bold', color='#4CAF50',
-            arrowprops=dict(arrowstyle='->', color='#4CAF50', lw=1.2))
+ax.annotate('55.45', xy=(35, 55.45), xytext=(30, 42),
+            fontsize=9, fontweight='bold', color='#E91E63',
+            arrowprops=dict(arrowstyle='->', color='#E91E63', lw=1.2))
+ax.annotate('82.64', xy=(35, 82.64), xytext=(31, 95),
+            fontsize=8, color='#4CAF50',
+            arrowprops=dict(arrowstyle='->', color='#4CAF50', lw=1))
 ax.annotate('115.01', xy=(20, 115.01), xytext=(14, 102),
             fontsize=8, color='#FF9800',
             arrowprops=dict(arrowstyle='->', color='#FF9800', lw=1))
 
 ax.set_xlabel('Training Steps (K)', fontsize=11)
 ax.set_ylabel('FID', fontsize=11)
-ax.legend(fontsize=8, loc='upper right')
-ax.set_ylim(60, 240)
+ax.legend(fontsize=7, loc='upper right')
+ax.set_ylim(30, 240)
 ax.set_xlim(3, 37)
 ax.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('paper/figures/fid_trajectory.pdf', bbox_inches='tight', dpi=300)
-plt.savefig('paper/figures/fid_trajectory.png', bbox_inches='tight', dpi=150)
+plt.savefig('figures/fid_trajectory.pdf', bbox_inches='tight', dpi=300)
+plt.savefig('figures/fid_trajectory.png', bbox_inches='tight', dpi=150)
 print("Saved fid_trajectory.pdf and fid_trajectory.png")

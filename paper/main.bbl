@@ -34,10 +34,11 @@ Hu, E.~J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., and
 \newblock {LoRA}: Low-rank adaptation of large language models.
 \newblock In \emph{International Conference on Learning Representations}, 2022.
 
-\bibitem[Krizhevsky(2009)]{krizhevsky2009learning}
-Krizhevsky, A.
+\bibitem[Krizhevsky \& Hinton(2009)Krizhevsky and
+  Hinton]{krizhevsky2009learning}
+Krizhevsky, A. and Hinton, G.
 \newblock Learning multiple layers of features from tiny images.
-\newblock 2009.
+\newblock Technical report, University of Toronto, 2009.
 
 \bibitem[Liu et~al.(2024)Liu, Zhang, Ma, Peng, and Liu]{liu2024instaflow}
 Liu, X., Zhang, X., Ma, J., Peng, J., and Liu, Q.
@@ -77,11 +78,12 @@ Salimans, T. and Ho, J.
 \newblock Progressive distillation for fast sampling of diffusion models.
 \newblock In \emph{International Conference on Learning Representations}, 2022.
 
-\bibitem[Sauer et~al.(2023)Sauer, Lorenz, Blattmann, and
+\bibitem[Sauer et~al.(2024)Sauer, Lorenz, Blattmann, and
   Rombach]{sauer2023adversarial}
 Sauer, A., Lorenz, D., Blattmann, A., and Rombach, R.
 \newblock Adversarial diffusion distillation.
-\newblock \emph{arXiv preprint arXiv:2311.17042}, 2023.
+\newblock In \emph{European Conference on Computer Vision}, pp.\  87--103.
+  Springer, 2024.
 
 \bibitem[Song et~al.(2021)Song, Sohl-Dickstein, Kingma, Kumar, Ermon, and
   Poole]{song2021scorebased}
