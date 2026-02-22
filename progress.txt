@@ -84,10 +84,26 @@ Started: Sat Feb 21 09:43:48 PM MSK 2026
    - Strong DM loss (1e-3) + cosine LR = volatile, recovers to 107.85 at 35K
    - lambda_dm sensitivity: 20x weaker DM loss gives 23% better FID
 
+5. **v8 experiment (50K steps, cosine LR, lambda_dm=5e-5)**: GPU 3.
+   Tested whether longer training improves over v6's 35K. Answer: NO.
+   | Steps | FID    | DR-4   | DR-8   |
+   |-------|--------|--------|--------|
+   | 20K   | 106.52 | 104.23 | 105.62 |
+   | 25K   | 147.97 | 148.51 | 147.15 |
+   | 30K   | 139.59 | 141.36 | 141.98 |
+   | 35K   | 153.88 | 156.46 | 157.58 |
+   | 40K   | 101.96 | 102.98 | 103.30 |
+   | 45K   | 127.10 | 127.82 | 127.46 |
+   | 50K   | 161.93 | 163.34 | 163.43 |
+   v8 oscillates due to slower LR decay. v6's 35K schedule is optimal.
+
+6. **Paper updated**: Added schedule ablation discussion, v8 findings.
+
 ### Best Result:
-FID = 82.64 (standard, cosine LR, lambda_dm=5e-5, 35K steps)
-FID = 105.28 (DR-8, cosine LR, lambda_dm=0.001, 35K steps)
-FID = 110.38 (DR-8, constant LR, 20K steps)
+FID = 82.64 (standard, cosine LR, lambda_dm=5e-5, 35K steps, v6)
+FID = 101.96 (standard, cosine LR, lambda_dm=5e-5, 50K sched @ 40K, v8)
+FID = 105.28 (DR-8, cosine LR, lambda_dm=0.001, 35K steps, v7)
+FID = 110.38 (DR-8, constant LR, 20K steps, v5c)
 
 ### Key Findings:
 1. Cosine LR schedule is critical for long-horizon DMD training.
@@ -95,9 +111,12 @@ FID = 110.38 (DR-8, constant LR, 20K steps)
 2. Weaker DM loss (5e-5 vs 0.001) produces smoother optimization
    with cosine LR, yielding 82.64 FID at 35K.
 3. LPIPS regression remains essential as persistent anchor.
+4. Schedule length matters: 35K cosine > 50K cosine.
+   The rapid final LR decay in 35K schedule is key.
+   50K schedule keeps LR too high too long, causing oscillation.
 
 ### Remaining (Not Completed):
 - ImageNet / text-to-image experiments (GPU memory constrained by sglang servers)
 - SD v1.5 distillation (implemented but needs free GPU memory)
-- Even longer training (50K+) with cosine LR (v6 still improving at 35K)
 - Ablation on min_lr_ratio and warmup steps
+- Trying 40K cosine schedule (potentially sweet spot between 35K and 50K)
