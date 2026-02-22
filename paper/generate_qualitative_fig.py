@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
 
-# Load images
-teacher = np.array(Image.open('../outputs/cifar10_v5c/samples/teacher_targets.png'))
-student_20k = np.array(Image.open('../outputs/cifar10_v5c/samples/step_20000.png'))
-paired_20k = np.array(Image.open('../outputs/cifar10_v5c/samples/paired_20000.png'))
+# Load images from v6 best model (35K steps, FID 82.64)
+teacher = np.array(Image.open('../outputs/cifar10_v6/samples/teacher_targets.png'))
+student_35k = np.array(Image.open('../outputs/cifar10_v6/samples/step_35000.png'))
+paired_35k = np.array(Image.open('../outputs/cifar10_v6/samples/paired_35000.png'))
 
 # Extract first 2 rows (16 images) from each 8x8 grid
 # Each image is ~32px + 2px padding in the grid
@@ -30,7 +30,7 @@ def extract_row(grid, row_idx, ncols=8):
 fig, axes = plt.subplots(3, 1, figsize=(8, 3.6))
 
 for ax, img, title in zip(axes,
-    [teacher, student_20k, paired_20k],
+    [teacher, student_35k, paired_35k],
     ['DDPM Teacher (100-step)', 'AdaDMD Student (1-step, random noise)', 'AdaDMD Student (1-step, paired noise)']):
     # Show first 2 rows concatenated
     row0 = extract_row(img, 0)
@@ -41,7 +41,7 @@ for ax, img, title in zip(axes,
     ax.set_xticks([])
     ax.set_yticks([])
 
-plt.suptitle('Qualitative Comparison (CIFAR-10 32×32, v5c at 20K steps)', fontsize=10, y=0.98)
+plt.suptitle('Qualitative Comparison (CIFAR-10 32×32, v6 at 35K steps, FID 82.64)', fontsize=10, y=0.98)
 plt.tight_layout(rect=[0.22, 0, 1, 0.96])
 plt.savefig('figures/qualitative_comparison.pdf', dpi=200, bbox_inches='tight')
 plt.savefig('figures/qualitative_comparison.png', dpi=200, bbox_inches='tight')
