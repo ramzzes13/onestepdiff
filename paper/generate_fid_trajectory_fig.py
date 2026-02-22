@@ -22,25 +22,25 @@ v6_fid =   [178.42, 185.16, 134.00, 152.66, 117.90, 82.64]
 v7_steps = [10, 15, 20, 25, 30, 35]
 v7_fid =   [216.04, 158.65, 148.18, 151.36, 174.70, 107.85]
 
-# v10_warmup2000: cosine LR (warmup=2000), lambda_dm=5e-5
-v10w2k_steps = [15, 20, 25, 30, 35]
-v10w2k_fid =   [166.49, 186.98, 180.24, 90.32, 55.45]
+# v10_warmup5000: cosine LR (warmup=5000, phase-aligned), lambda_dm=5e-5
+v10w5k_steps = [20, 25, 30, 35]
+v10w5k_fid =   [114.71, 50.05, 28.06, 29.81]
 
 fig, ax = plt.subplots(1, 1, figsize=(5.5, 3.8))
 
-ax.plot(v5b_steps, v5b_fid, 'o-', color='#2196F3', linewidth=1.2, markersize=4,
-        label='Decay reg, const LR', alpha=0.6)
-ax.plot(v5c_steps, v5c_fid, 's-', color='#FF9800', linewidth=1.2, markersize=4,
-        label='Const reg, const LR', alpha=0.6)
-ax.plot(v6_steps, v6_fid, 'D-', color='#4CAF50', linewidth=1.8, markersize=5,
-        label=r'Cosine, w=1K, $\lambda_{\mathrm{DM}}$=5e-5', alpha=0.8)
-ax.plot(v7_steps, v7_fid, '^--', color='#9C27B0', linewidth=1.2, markersize=4,
-        label=r'Cosine, w=1K, $\lambda_{\mathrm{DM}}$=1e-3', alpha=0.6)
-ax.plot(v10w2k_steps, v10w2k_fid, 'P-', color='#E91E63', linewidth=2.5, markersize=7,
-        label=r'Cosine, w=2K, $\lambda_{\mathrm{DM}}$=5e-5', alpha=0.95)
+ax.plot(v5b_steps, v5b_fid, 'o-', color='#2196F3', linewidth=1.0, markersize=3,
+        label='Decay reg, const LR', alpha=0.5)
+ax.plot(v5c_steps, v5c_fid, 's-', color='#FF9800', linewidth=1.0, markersize=3,
+        label='Const reg, const LR', alpha=0.5)
+ax.plot(v6_steps, v6_fid, 'D-', color='#4CAF50', linewidth=1.5, markersize=4,
+        label=r'Cosine, w=1K', alpha=0.7)
+ax.plot(v7_steps, v7_fid, '^--', color='#9C27B0', linewidth=1.0, markersize=3,
+        label=r'Cosine, w=1K, $\lambda_{\mathrm{DM}}$=1e-3', alpha=0.5)
+ax.plot(v10w5k_steps, v10w5k_fid, 'P-', color='#E91E63', linewidth=2.5, markersize=7,
+        label=r'Cosine, w=5K (phase-aligned)', alpha=0.95)
 
 # Annotate key results
-ax.annotate('55.45', xy=(35, 55.45), xytext=(30, 42),
+ax.annotate('28.06', xy=(30, 28.06), xytext=(25, 18),
             fontsize=9, fontweight='bold', color='#E91E63',
             arrowprops=dict(arrowstyle='->', color='#E91E63', lw=1.2))
 ax.annotate('82.64', xy=(35, 82.64), xytext=(31, 95),
@@ -53,7 +53,7 @@ ax.annotate('115.01', xy=(20, 115.01), xytext=(14, 102),
 ax.set_xlabel('Training Steps (K)', fontsize=11)
 ax.set_ylabel('FID', fontsize=11)
 ax.legend(fontsize=7, loc='upper right')
-ax.set_ylim(30, 240)
+ax.set_ylim(10, 240)
 ax.set_xlim(3, 37)
 ax.grid(True, alpha=0.3)
 

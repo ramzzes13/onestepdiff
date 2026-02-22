@@ -86,35 +86,33 @@
 \newlabel{fig:ablations@cref}{{[figure][1][]1}{[1][4][]5}}
 \newlabel{tab:regularization}{{3}{5}{Regularization ablation (SmallUNet, 5K steps)}{table.3}{}}
 \newlabel{tab:regularization@cref}{{[table][3][]3}{[1][4][]5}}
-\newlabel{tab:main_results}{{4}{5}{CIFAR-10 distillation results (5K generated vs.\ test set). DR-$N$: best-of-$N$ density-ratio verification}{table.4}{}}
-\newlabel{tab:main_results@cref}{{[table][4][]4}{[1][5][]5}}
+\newlabel{fig:fid_trajectory}{{2}{5}{FID trajectory during training. Phase-aligned warmup (5K, matching Phase 1) achieves FID 28.06 at 30K, outperforming all other configurations by a wide margin}{figure.2}{}}
+\newlabel{fig:fid_trajectory@cref}{{[figure][2][]2}{[1][5][]5}}
+\newlabel{sec:schedule}{{4.4}{5}{}{subsection.4.4}{}}
+\newlabel{sec:schedule@cref}{{[subsection][4][4]4.4}{[1][5][]5}}
 \citation{yin2024onestep}
-\newlabel{fig:fid_trajectory}{{2}{6}{FID trajectory during training across configurations. Constant LR peaks at FID 115 (20K) then degrades. Cosine LR with 1K warmup reaches FID 82.64 at 35K; extending to 2K warmup achieves FID 55.45. Decaying regression plateaus at FID 140}{figure.2}{}}
-\newlabel{fig:fid_trajectory@cref}{{[figure][2][]2}{[1][5][]6}}
-\newlabel{fig:dr_verify}{{3}{6}{Density-ratio verification (best-of-$N$) effect on FID. DR verification improves intermediate models (up to 7.0 points at 30K) but slightly hurts the well-converged 35K model}{figure.3}{}}
-\newlabel{fig:dr_verify@cref}{{[figure][3][]3}{[1][5][]6}}
-\newlabel{sec:schedule}{{4.4}{6}{}{subsection.4.4}{}}
-\newlabel{sec:schedule@cref}{{[subsection][4][4]4.4}{[1][5][]6}}
+\newlabel{tab:main_results}{{4}{6}{CIFAR-10 distillation results (5K generated vs.\ test set). DR-$N$: best-of-$N$ density-ratio verification}{table.4}{}}
+\newlabel{tab:main_results@cref}{{[table][4][]4}{[1][5][]6}}
 \newlabel{sec:warmup}{{4.5}{6}{}{subsection.4.5}{}}
 \newlabel{sec:warmup@cref}{{[subsection][5][4]4.5}{[1][6][]6}}
+\newlabel{fig:dr_verify}{{3}{6}{Density-ratio verification (best-of-$N$) effect on FID. DR verification improves intermediate models (up to 7.0 points at 30K) but slightly hurts the well-converged 35K model}{figure.3}{}}
+\newlabel{fig:dr_verify@cref}{{[figure][3][]3}{[1][5][]6}}
 \newlabel{tab:dr_verify}{{5}{6}{Density-ratio verification effect on FID}{table.5}{}}
 \newlabel{tab:dr_verify@cref}{{[table][5][]5}{[1][5][]6}}
-\newlabel{tab:schedule}{{6}{6}{Schedule length ablation (cosine LR, $\lambda _{\text {DM}} = 5\times 10^{-5}$). All use identical hyperparameters except total step count}{table.6}{}}
-\newlabel{tab:schedule@cref}{{[table][6][]6}{[1][6][]6}}
 \newlabel{sec:memory}{{4.6}{6}{}{subsection.4.6}{}}
 \newlabel{sec:memory@cref}{{[subsection][6][4]4.6}{[1][6][]6}}
 \newlabel{sec:discussion}{{5}{6}{}{section.5}{}}
 \newlabel{sec:discussion@cref}{{[section][5][]5}{[1][6][]6}}
 \citation{zhang2018unreasonable}
 \citation{yin2024dmd2}
+\newlabel{tab:schedule}{{6}{7}{Schedule length ablation (cosine LR, $\lambda _{\text {DM}} = 5\times 10^{-5}$). All use identical hyperparameters except total step count}{table.6}{}}
+\newlabel{tab:schedule@cref}{{[table][6][]6}{[1][6][]7}}
 \newlabel{fig:schedule_ablation}{{4}{7}{FID trajectories for different cosine schedule lengths. The 35K schedule achieves the best final FID. Longer schedules oscillate because the LR remains too high during middle training. Stars mark each schedule's best checkpoint}{figure.4}{}}
 \newlabel{fig:schedule_ablation@cref}{{[figure][4][]4}{[1][6][]7}}
-\newlabel{tab:warmup}{{7}{7}{Warmup duration ablation (35K cosine, $\lambda _{\text {DM}} = 5\times 10^{-5}$)}{table.7}{}}
+\newlabel{tab:warmup}{{7}{7}{Warmup duration ablation (35K cosine, $\lambda _{\text {DM}} = 5\times 10^{-5}$). Phase 1 (regression-only) lasts 5,000 steps}{table.7}{}}
 \newlabel{tab:warmup@cref}{{[table][7][]7}{[1][6][]7}}
-\newlabel{fig:warmup_ablation}{{5}{7}{FID trajectories for different warmup durations. Warmup=200 degrades after 25K (like constant LR). Warmup=2,000 starts slowly but achieves dramatically better final FID (55.45 vs.\ 82.64 for warmup=1,000). Stars mark each configuration's best checkpoint}{figure.5}{}}
+\newlabel{fig:warmup_ablation}{{5}{7}{FID trajectories for different warmup durations. Phase-aligned warmup (5K = Phase 1 length) achieves FID 28.06, outperforming all alternatives by a wide margin. The relationship is non-monotonic: 3K warmup is worse than 2K. Stars mark each configuration's best checkpoint}{figure.5}{}}
 \newlabel{fig:warmup_ablation@cref}{{[figure][5][]5}{[1][6][]7}}
-\newlabel{fig:memory}{{6}{7}{Memory breakdown: LoRA (AdaDMD) vs.\ full copy (DMD). The fake score model shrinks from 147\,MB to 4\,MB}{figure.6}{}}
-\newlabel{fig:memory@cref}{{[figure][6][]6}{[1][6][]7}}
 \bibdata{refs}
 \bibcite{gutmann2010noise}{{1}{2010}{{Gutmann \& Hyv{\"a}rinen}}{{Gutmann and Hyv{\"a}rinen}}}
 \bibcite{heusel2017gans}{{2}{2017}{{Heusel et~al.}}{{Heusel, Ramsauer, Unterthiner, Nessler, and Hochreiter}}}
@@ -122,13 +120,15 @@
 \bibcite{hu2022lora}{{4}{2022}{{Hu et~al.}}{{Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and Chen}}}
 \bibcite{krizhevsky2009learning}{{5}{2009}{{Krizhevsky \& Hinton}}{{Krizhevsky and Hinton}}}
 \bibcite{liu2024instaflow}{{6}{2024}{{Liu et~al.}}{{Liu, Zhang, Ma, Peng, and Liu}}}
-\bibcite{loshchilov2019decoupled}{{7}{2019}{{Loshchilov \& Hutter}}{{Loshchilov and Hutter}}}
-\bibcite{luo2023latent}{{8}{2023{a}}{{Luo et~al.}}{{Luo, Tan, Huang, Li, and Zhao}}}
-\bibcite{luo2023lcmlora}{{9}{2023{b}}{{Luo et~al.}}{{Luo, Tan, Patil, Gu, von Platen, Passos, Huang, Li, and Zhao}}}
+\newlabel{fig:memory}{{6}{8}{Memory breakdown: LoRA (AdaDMD) vs.\ full copy (DMD). The fake score model shrinks from 147\,MB to 4\,MB}{figure.6}{}}
+\newlabel{fig:memory@cref}{{[figure][6][]6}{[1][6][]8}}
 \newlabel{tab:memory}{{8}{8}{Training memory profile (HF DDPM base)}{table.8}{}}
 \newlabel{tab:memory@cref}{{[table][8][]8}{[1][6][]8}}
 \newlabel{sec:conclusion}{{6}{8}{}{section.6}{}}
 \newlabel{sec:conclusion@cref}{{[section][6][]6}{[1][8][]8}}
+\bibcite{loshchilov2019decoupled}{{7}{2019}{{Loshchilov \& Hutter}}{{Loshchilov and Hutter}}}
+\bibcite{luo2023latent}{{8}{2023{a}}{{Luo et~al.}}{{Luo, Tan, Huang, Li, and Zhao}}}
+\bibcite{luo2023lcmlora}{{9}{2023{b}}{{Luo et~al.}}{{Luo, Tan, Patil, Gu, von Platen, Passos, Huang, Li, and Zhao}}}
 \bibcite{nguyen2024swiftbrush}{{10}{2024}{{Nguyen \& Tran}}{{Nguyen and Tran}}}
 \bibcite{salimans2022progressive}{{11}{2022}{{Salimans \& Ho}}{{Salimans and Ho}}}
 \bibcite{sauer2023adversarial}{{12}{2024}{{Sauer et~al.}}{{Sauer, Lorenz, Blattmann, and Rombach}}}
@@ -147,6 +147,6 @@
 \newlabel{fig:training_dynamics@cref}{{[figure][7][2147483647]7}{[1][9][]10}}
 \newlabel{app:samples}{{C}{10}{}{appendix.C}{}}
 \newlabel{app:samples@cref}{{[appendix][3][2147483647]C}{[1][10][]10}}
-\newlabel{fig:qualitative}{{8}{11}{Qualitative comparison on CIFAR-10 32$\times $32 (best model: warmup=2K at 35K steps, FID 55.45). Top: 100-step DDPM teacher outputs. Middle: AdaDMD single-step outputs from random noise. Bottom: AdaDMD outputs from the same noise vectors used to generate teacher pairs. The student captures coarse structure and color statistics while maintaining diversity}{figure.8}{}}
-\newlabel{fig:qualitative@cref}{{[figure][8][2147483647]8}{[1][10][]11}}
-\gdef \@abspage@last{11}
+\newlabel{fig:qualitative}{{8}{12}{Qualitative comparison on CIFAR-10 32$\times $32 (best model: phase-aligned warmup at 30K steps, FID 28.06). Top: 100-step DDPM teacher outputs. Middle: AdaDMD single-step outputs from random noise. Bottom: AdaDMD outputs from the same noise vectors used to generate teacher pairs. The student captures recognizable structure and color statistics with increasing fidelity}{figure.8}{}}
+\newlabel{fig:qualitative@cref}{{[figure][8][2147483647]8}{[1][11][]12}}
+\gdef \@abspage@last{12}

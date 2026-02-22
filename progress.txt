@@ -142,32 +142,62 @@ Started: Sat Feb 21 09:43:48 PM MSK 2026
    - Updated appendix hyperparameters table (warmup 2000)
    - Clean LaTeX compilation (11 pages, no errors)
 
-### Best Result:
-**FID = 55.45** (standard, cosine LR, warmup=2000, lambda_dm=5e-5, 35K steps, v10)
-FID = 82.64 (standard, cosine LR, warmup=1000, lambda_dm=5e-5, 35K steps, v6)
-FID = 101.96 (standard, cosine LR, lambda_dm=5e-5, 50K sched @ 40K, v8)
-FID = 103.01 (standard, cosine LR, lambda_dm=5e-5, 40K sched @ 30K, v9)
-FID = 107.94 (standard, cosine LR, warmup=200, lambda_dm=5e-5, 35K @ 25K, v10)
+5. **v10 warmup=3000 experiment**: 35K steps, cosine LR, lambda_dm=5e-5, GPU 2.
+   Worse than warmup=2000. Non-monotonic warmup effect.
+   | Steps | FID    | DR-4   | DR-8   |
+   |-------|--------|--------|--------|
+   | 25K   | 99.33  | 100.40 | 100.15 |
+   | 30K   | 123.23 | 123.48 | 125.11 |
+   | 35K   | 99.07  | 94.18  | 95.72  |
 
-### Warmup Ablation Summary:
+6. **v10 warmup=5000 experiment (PHASE-ALIGNED)**: 35K steps, cosine LR, lambda_dm=5e-5, GPU 3.
+   BREAKTHROUGH: warmup=5000 matches Phase 1 duration (regression-only phase).
+   LR peaks exactly when DM loss activates, then immediately decays.
+   | Steps | FID    | DR-4   | DR-8   |
+   |-------|--------|--------|--------|
+   | 20K   | 114.71 | 115.04 | 117.33 |
+   | 25K   | 50.05  | 54.55  | 53.46  |
+   | 30K   | 28.06  | 28.46  | 26.64  | <-- **NEW BEST**
+   | 35K   | 29.81  | 35.63  | 32.07  |
+
+7. **Paper updated with phase-aligned warmup discovery**:
+   - NEW best FID: 28.06 (was 55.45), 87% improvement over MSE baseline
+   - Added phase-aligned warmup as key contribution
+   - Updated abstract, intro, training details, all results tables
+   - Expanded warmup ablation to 5 configurations (200, 1K, 2K, 3K, 5K)
+   - Added "phase alignment" insight: warmup matching Phase 1 is optimal
+   - Regenerated all figures (FID trajectory, warmup ablation, qualitative)
+   - Clean LaTeX compilation (12 pages, no errors)
+
+### Best Result:
+**FID = 28.06** (standard, cosine LR, warmup=5000 phase-aligned, lambda_dm=5e-5, 30K step, v10)
+**FID = 26.64** (DR-8 verified, same model)
+FID = 55.45 (standard, cosine LR, warmup=2000, lambda_dm=5e-5, 35K steps, v10)
+FID = 82.64 (standard, cosine LR, warmup=1000, lambda_dm=5e-5, 35K steps, v6)
+
+### Warmup Ablation Summary (Phase-Aligned Discovery):
 | Warmup | 20K FID | 25K FID | 30K FID | 35K FID | Best |
 |--------|---------|---------|---------|---------|------|
 | 200    | 150.57  | 107.94  | 112.90  | 152.35  | 107.94 (25K) |
 | 1,000  | 134.00  | ---     | 117.90  | 82.64   | 82.64 (35K) |
-| 2,000  | 186.98  | 180.24  | 90.32   | **55.45** | **55.45 (35K)** |
+| 2,000  | 186.98  | 180.24  | 90.32   | 55.45   | 55.45 (35K) |
+| 3,000  | ---     | 99.33   | 123.23  | 99.07   | 99.07 (35K) |
+| **5,000** | 114.71 | 50.05 | **28.06** | 29.81 | **28.06 (30K)** |
 
 ### Key Findings (All Sessions):
-1. **Warmup duration is critical** for LoRA-based DMD: 2000 > 1000 > 200.
-   Extended warmup stabilizes LoRA adapter before full LR engages.
-   warmup=200 degrades after 25K (like constant LR).
-   warmup=2000 lags early but achieves 33% better final FID than warmup=1000.
-2. Cosine LR schedule prevents late-training degradation (constant LR overshoots at 25K+).
-3. Weaker DM loss (5e-5 vs 0.001) produces smoother optimization with cosine LR.
-4. LPIPS regression remains essential as persistent anchor.
-5. Schedule length matters: 35K cosine > 40K > 50K cosine.
-6. DR verification helps intermediate models but hurts converged models.
+1. **PHASE-ALIGNED WARMUP is the breakthrough**: warmup=5000 (= Phase 1 length) gives
+   FID 28.06, a 3x improvement over warmup=1000 (82.64). The DM phase never sees
+   an increasing LR, preventing noisy DM gradients from destabilizing the generator.
+2. **Non-monotonic warmup effect**: 5000 > 2000 > 1000 > 3000 > 200.
+   warmup=3000 is WORSE than warmup=2000, suggesting alignment with Phase 1 matters
+   more than warmup duration per se.
+3. Cosine LR schedule prevents late-training degradation (constant LR overshoots at 25K+).
+4. Weaker DM loss (5e-5 vs 0.001) produces smoother optimization with cosine LR.
+5. LPIPS regression remains essential as persistent anchor.
+6. Schedule length matters: 35K cosine > 40K > 50K cosine.
+7. DR verification provides marginal improvement for the best model (28.06 → 26.64 with DR-8).
 
 ### Remaining (Not Completed):
 - ImageNet / text-to-image experiments (GPU memory constrained by sglang servers)
 - SD v1.5 distillation (implemented but needs free GPU memory)
-- Further warmup exploration (3000, 4000 steps might be even better)
+- Investigate warmup=5000 with different Phase 1 lengths to confirm alignment hypothesis

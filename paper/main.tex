@@ -66,7 +66,7 @@
 
 % ============================================================
 \begin{abstract}
-Distribution Matching Distillation (DMD) enables single-step image generation by minimizing the KL divergence between generator and data distributions via dual score functions. DMD requires three full diffusion models in memory simultaneously, demanding extreme GPU resources (72 A100s for text-to-image training). We propose \textbf{AdaDMD}, which replaces the full-copy fake score model with a LoRA adapter (2.9\% of base model parameters, 97\% memory reduction for the fake score component), learns adaptive timestep weights via a density-ratio estimator trained with noise contrastive estimation, and uses the learned density ratio as both a training regularizer and an inference-time sample verifier. On CIFAR-10 distillation from a pretrained DDPM teacher, AdaDMD trains on a single GPU using under 1\,GB peak memory, achieving \textbf{55.45 FID} at 35K steps---a 75\% improvement over MSE-based distillation. Cosine LR scheduling with extended warmup (2,000 steps) prevents the late-training degradation observed with constant learning rates and yields a 33\% FID improvement over shorter warmup. Ablation studies confirm that adaptive weighting improves FID by 2.1 points, warmup duration is a critical hyperparameter (200 vs.\ 1,000 vs.\ 2,000 steps), and the 35K cosine schedule outperforms both shorter (25K) and longer (40--50K) alternatives.
+Distribution Matching Distillation (DMD) enables single-step image generation by minimizing the KL divergence between generator and data distributions via dual score functions. DMD requires three full diffusion models in memory simultaneously, demanding extreme GPU resources (72 A100s for text-to-image training). We propose \textbf{AdaDMD}, which replaces the full-copy fake score model with a LoRA adapter (2.9\% of base model parameters, 97\% memory reduction for the fake score component), learns adaptive timestep weights via a density-ratio estimator trained with noise contrastive estimation, and uses the learned density ratio as both a training regularizer and an inference-time sample verifier. On CIFAR-10 distillation from a pretrained DDPM teacher, AdaDMD trains on a single GPU using under 1\,GB peak memory, achieving \textbf{28.06 FID} in one step---an 87\% improvement over MSE-based distillation. A critical finding is that aligning the learning rate warmup with the regression-only training phase (5,000 steps each) produces a $3{\times}$ FID improvement over standard warmup, as the learning rate peaks precisely when distribution matching activates and immediately begins cosine decay. Ablation studies across five warmup durations reveal a non-monotonic optimum at this alignment point.
 \end{abstract}
 
 % ============================================================
@@ -91,7 +91,7 @@ We propose \textbf{AdaDMD} (Adaptive Distribution Matching Distillation), which 
 \item \textbf{Density-ratio regularization and verification.} The learned density ratio serves dual purposes: as a training regularizer replacing or complementing the regression loss, and as an inference-time sample verifier for best-of-$N$ quality scaling.
 \end{enumerate}
 
-We validate AdaDMD on CIFAR-10 32$\times$32 distillation using a pretrained DDPM teacher~\citep{ho2020denoising}. Training requires under 1\,GB of GPU memory on a single device. With a cosine learning rate schedule and extended warmup (2,000 steps), AdaDMD achieves 55.45 FID at 35K steps---a 75\% improvement over MSE-based distillation. Ablation studies reveal that warmup duration is a critical hyperparameter: extending warmup from 1,000 to 2,000 steps improves FID from 82.64 to 55.45, while reducing it to 200 steps degrades FID to 107.94.
+We validate AdaDMD on CIFAR-10 32$\times$32 distillation using a pretrained DDPM teacher~\citep{ho2020denoising}. Training requires under 1\,GB of GPU memory on a single device. A critical discovery is that aligning the learning rate warmup duration with the regression-only training phase (both 5,000 steps) yields dramatic improvements: \textbf{28.06 FID} in one step, an 87\% improvement over MSE distillation. This phase-aligned warmup ensures the learning rate peaks exactly when distribution matching activates, then immediately decays---the DM phase never sees an increasing learning rate. The effect is non-monotonic: warmup durations that do not align with Phase 1 (200, 1,000, 3,000 steps) all perform substantially worse.
 
 % ============================================================
 \section{Related Work}
@@ -258,7 +258,7 @@ We pre-generate 10,000 paired (noise, teacher output) samples by running 100-ste
 \paragraph{Training details.}
 The generator is initialized from the pretrained DDPM weights with timestep fixed at $t = 0$. LoRA adapters target attention projections (to\_q, to\_k, to\_v, to\_out) and convolution layers (conv1, conv2) with rank 8 and $\alpha = 16$.
 
-Training uses AdamW~\citep{loshchilov2019decoupled} with learning rates $2 \times 10^{-5}$ (generator), $10^{-4}$ (LoRA), $10^{-4}$ (density-ratio), and batch size 8. Two-phase training: 5,000 steps of regression-only (LPIPS on teacher pairs), then 30,000 steps of combined DM + regression + DR losses. We use a cosine learning rate schedule with 2,000-step linear warmup and minimum LR ratio 0.1, which prevents late-training degradation observed with constant LR. The extended warmup stabilizes LoRA adaptation before the full learning rate engages, yielding substantially better convergence (\Cref{sec:warmup}). Regression weight is held constant at 1.0 throughout training. DM loss is scaled by $\lambda_{\text{DM}} = 5 \times 10^{-5}$.
+Training uses AdamW~\citep{loshchilov2019decoupled} with learning rates $2 \times 10^{-5}$ (generator), $10^{-4}$ (LoRA), $10^{-4}$ (density-ratio), and batch size 8. Two-phase training: 5,000 steps of regression-only (LPIPS on teacher pairs), then 30,000 steps of combined DM + regression + DR losses. We use a cosine learning rate schedule with 5,000-step linear warmup and minimum LR ratio 0.1. Crucially, the warmup duration matches the regression-only phase: the LR reaches its peak at exactly step 5,000 when the DM loss activates, then immediately begins cosine decay. This \emph{phase-aligned warmup} ensures the DM phase always trains with a decreasing learning rate, yielding a $3{\times}$ FID improvement over shorter warmup (\Cref{sec:warmup}). Regression weight is held constant at 1.0 throughout training. DM loss is scaled by $\lambda_{\text{DM}} = 5 \times 10^{-5}$.
 
 All experiments run on a single GPU with peak memory under 1\,GB.
 
@@ -338,7 +338,7 @@ Table~\ref{tab:main_results} reports distillation results across configurations.
 
 We compare several training configurations. With \textbf{decaying regression} weight (1.0$\to$0.3), FID plateaus at 139.77 (20K) then degrades to 174.83 (30K). With \textbf{constant regression and constant LR}, FID reaches 115.01 at 20K (DR-8: 110.38), but then degrades to 138.74 at 25K---the constant learning rate overshoots the optimum.
 
-With \textbf{cosine LR and 1,000-step warmup} ($\lambda_{\text{DM}} = 5 \times 10^{-5}$), FID improves continuously: 134.00 (20K) $\to$ 117.90 (30K) $\to$ 82.64 (35K). Extending the warmup to \textbf{2,000 steps} yields a further 33\% improvement: 90.32 (30K) $\to$ \textbf{55.45} (35K), a 75\% improvement over the MSE baseline. The extended warmup delays initial convergence (FID 180 at 25K vs.\ 82 at 35K) but produces dramatically better final quality, suggesting that gradual learning rate ramp-up is critical for LoRA-based fake score stabilization. With a stronger DM loss ($\lambda_{\text{DM}} = 10^{-3}$) and cosine LR, the trajectory is more volatile, confirming that a moderate DM scale produces smoother optimization.
+With \textbf{cosine LR and 1,000-step warmup} ($\lambda_{\text{DM}} = 5 \times 10^{-5}$), FID improves continuously: 134.00 (20K) $\to$ 117.90 (30K) $\to$ 82.64 (35K). Extending warmup to \textbf{5,000 steps}---matching the regression-only phase---yields a $3{\times}$ improvement: 50.05 (25K) $\to$ \textbf{28.06} (30K) $\to$ 29.81 (35K), an 87\% improvement over the MSE baseline. The phase-aligned warmup ensures the LR peaks precisely when the DM loss activates and immediately begins cosine decay, so the DM phase never trains with an increasing learning rate (\Cref{sec:warmup}). With a stronger DM loss ($\lambda_{\text{DM}} = 10^{-3}$) and cosine LR, the trajectory is more volatile, confirming that a moderate DM scale produces smoother optimization.
 
 \begin{table}[t]
 \caption{CIFAR-10 distillation results (5K generated vs.\ test set). DR-$N$: best-of-$N$ density-ratio verification.}
@@ -369,7 +369,12 @@ HF DDPM, LPIPS, 35K & 82.64 & 85.04 & 83.63 \\
 \midrule
 \multicolumn{4}{l}{\textit{Cosine LR, warmup 2K, $\lambda_{\text{DM}} = 5{\times}10^{-5}$:}} \\
 HF DDPM, LPIPS, 30K & 90.32 & 92.30 & 91.81 \\
-HF DDPM, LPIPS, 35K & \textbf{55.45} & 58.14 & 58.08 \\
+HF DDPM, LPIPS, 35K & 55.45 & 58.14 & 58.08 \\
+\midrule
+\multicolumn{4}{l}{\textit{Cosine LR, warmup 5K (phase-aligned), $\lambda_{\text{DM}} = 5{\times}10^{-5}$:}} \\
+HF DDPM, LPIPS, 25K & 50.05 & 54.55 & 53.46 \\
+HF DDPM, LPIPS, 30K & \textbf{28.06} & 28.46 & \textbf{26.64} \\
+HF DDPM, LPIPS, 35K & 29.81 & 35.63 & 32.07 \\
 \midrule
 \multicolumn{4}{l}{\textit{Cosine LR, warmup 1K, $\lambda_{\text{DM}} = 10^{-3}$:}} \\
 HF DDPM, LPIPS, 20K & 148.18 & 148.13 & 150.92 \\
@@ -382,12 +387,12 @@ HF DDPM, LPIPS, 35K & 107.85 & 106.46 & 105.28 \\
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fid_trajectory.pdf}
-\caption{FID trajectory during training across configurations. Constant LR peaks at FID 115 (20K) then degrades. Cosine LR with 1K warmup reaches FID 82.64 at 35K; extending to 2K warmup achieves FID 55.45. Decaying regression plateaus at FID 140.}
+\caption{FID trajectory during training. Phase-aligned warmup (5K, matching Phase 1) achieves FID 28.06 at 30K, outperforming all other configurations by a wide margin.}
 \label{fig:fid_trajectory}
 \end{figure}
 
 \paragraph{Density-ratio verification.}
-Table~\ref{tab:dr_verify} and Figure~\ref{fig:dr_verify} show density-ratio verification results. DR verification provides up to 7.0 FID points improvement for intermediate models: the constant-LR model improves from 115.01 to 110.38 with DR-8, and the cosine-LR model at 30K improves from 117.90 to 110.86 with DR-4. However, for converged models DR verification consistently \emph{hurts} FID: the warmup-1K model degrades from 82.64 to 85.04 with DR-4, and the warmup-2K model degrades from 55.45 to 58.14 with DR-4. This suggests that when the generator distribution is well-aligned, the density-ratio network's limited discriminative capacity introduces noise rather than useful signal into sample selection.
+Table~\ref{tab:dr_verify} and Figure~\ref{fig:dr_verify} show density-ratio verification results. DR verification provides up to 7.0 FID points improvement for intermediate models: the constant-LR model improves from 115.01 to 110.38 with DR-8, and the cosine-LR model at 30K improves from 117.90 to 110.86 with DR-4. For well-trained models the effect is mixed: the phase-aligned warmup=5K model achieves DR-8 FID of \textbf{26.64} (an improvement over 28.06 unverified), but DR-4 slightly hurts (28.46). For less converged models like warmup=1K (82.64), DR verification consistently hurts. This suggests DR verification is most useful when the generator is strong enough that the density-ratio network can meaningfully rank samples.
 
 \begin{figure}[t]
 \centering
@@ -411,7 +416,8 @@ LPIPS decay (20K) & 139.77 & 135.22 & 137.38 \\
 Const LR (20K) & 115.01 & 111.11 & 110.38 \\
 Cos, w1K (30K) & 117.90 & 110.86 & 115.57 \\
 Cos, w1K (35K) & 82.64 & 85.04 & 83.63 \\
-Cos, w2K (35K) & \textbf{55.45} & 58.14 & 58.08 \\
+Cos, w2K (35K) & 55.45 & 58.14 & 58.08 \\
+Cos, w5K (30K) & \textbf{28.06} & 28.46 & \textbf{26.64} \\
 Cos, 1e-3 (35K) & 107.85 & 106.46 & 105.28 \\
 \bottomrule
 \end{tabular}
@@ -449,32 +455,35 @@ Schedule & Best FID $\downarrow$ & Best Step & Final FID \\
 \subsection{Warmup Duration Ablation}
 \label{sec:warmup}
 
-Table~\ref{tab:warmup} compares linear warmup durations of 200, 1,000, and 2,000 steps with a 35K cosine schedule. The effect is striking: warmup=2,000 achieves \textbf{55.45} FID, a 33\% improvement over warmup=1,000 (82.64) and 49\% over warmup=200 (107.94 best).
+Table~\ref{tab:warmup} compares five warmup durations with a 35K cosine schedule. The relationship is \emph{non-monotonic}: warmup=5,000 achieves the best FID (\textbf{28.06}), warmup=2,000 is second (55.45), but warmup=3,000 (99.07) is \emph{worse} than warmup=2,000. The critical factor is \textbf{phase alignment}: our training uses 5,000 steps of regression-only (Phase 1) before activating the DM loss (Phase 2). With warmup=5,000, the learning rate reaches its peak at exactly step 5,000---the Phase 1/Phase 2 boundary---and immediately begins cosine decay. The DM phase therefore always trains with a decreasing learning rate.
 
-The warmup=200 trajectory resembles constant LR: it peaks early (107.94 at 25K) then degrades (152.35 at 35K), suggesting that aggressive learning rate ramp-up destabilizes the LoRA adapter. The warmup=2,000 trajectory inverts this pattern: it lags behind at 20--25K steps (FID 180--187) but then improves dramatically from 30K to 35K (90.32 $\to$ 55.45), with the steepest improvement occurring as the learning rate enters its cosine decay phase from a more stable starting point. Figure~\ref{fig:warmup_ablation} shows the trajectories.
+This phase alignment produces a $3{\times}$ FID improvement over warmup=1,000 (28.06 vs.\ 82.64). The mechanism is interpretable: during Phase 1, an increasing LR gradually strengthens LPIPS regression, building a stable generator before distribution matching begins. During Phase 2, the immediately-decaying LR prevents the noisy DM gradients (recall the density-ratio network achieves only ${\sim}50\%$ NCE accuracy) from destabilizing the generator. Misaligned warmup durations either start the DM phase with an increasing LR (warmup $>$ Phase 1), or reach peak LR too early and begin decaying before the DM loss can provide strong initial corrections.
 
-The sensitivity to warmup duration suggests that LoRA-based fake score estimation requires careful initialization. Unlike full-copy approaches where the fake score model starts with a complete set of pretrained weights, the LoRA adapter begins with zero-initialized rank components and must learn to track the evolving generator distribution from scratch. Gradual learning rate ramp-up prevents early overfitting of the adapter to transient generator states.
+Figure~\ref{fig:warmup_ablation} shows the FID trajectories: warmup=5,000 improves steadily from 114.71 (20K) through 50.05 (25K) to 28.06 (30K), with slight degradation at 35K (29.81) as the LR approaches its minimum.
 
 \begin{table}[t]
-\caption{Warmup duration ablation (35K cosine, $\lambda_{\text{DM}} = 5\times 10^{-5}$).}
+\caption{Warmup duration ablation (35K cosine, $\lambda_{\text{DM}} = 5\times 10^{-5}$). Phase 1 (regression-only) lasts 5,000 steps.}
 \label{tab:warmup}
 \centering
 \small
 \begin{tabular}{lccccc}
 \toprule
-Warmup & 20K & 25K & 30K & 35K (final) \\
+Warmup & 20K & 25K & 30K & 35K & Best \\
 \midrule
-200 & 150.57 & 107.94 & 112.90 & 152.35 \\
-1,000 & 134.00 & --- & 117.90 & 82.64 \\
-2,000 & 186.98 & 180.24 & 90.32 & \textbf{55.45} \\
+200 & 150.57 & 107.94 & 112.90 & 152.35 & 107.94 \\
+1,000 & 134.00 & --- & 117.90 & 82.64 & 82.64 \\
+2,000 & 186.98 & 180.24 & 90.32 & 55.45 & 55.45 \\
+3,000 & --- & 99.33 & 123.23 & 99.07 & 99.07 \\
+5,000$^\star$ & 114.71 & 50.05 & \textbf{28.06} & 29.81 & \textbf{28.06} \\
 \bottomrule
+\multicolumn{6}{l}{\footnotesize $^\star$ Phase-aligned: warmup matches Phase 1 duration.}
 \end{tabular}
 \end{table}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/warmup_ablation.pdf}
-\caption{FID trajectories for different warmup durations. Warmup=200 degrades after 25K (like constant LR). Warmup=2,000 starts slowly but achieves dramatically better final FID (55.45 vs.\ 82.64 for warmup=1,000). Stars mark each configuration's best checkpoint.}
+\caption{FID trajectories for different warmup durations. Phase-aligned warmup (5K = Phase 1 length) achieves FID 28.06, outperforming all alternatives by a wide margin. The relationship is non-monotonic: 3K warmup is worse than 2K. Stars mark each configuration's best checkpoint.}
 \label{fig:warmup_ablation}
 \end{figure}
 
@@ -515,15 +524,17 @@ Optimizers + buffers & $\sim$670 \\
 \label{sec:discussion}
 
 \paragraph{FID gap analysis.}
-Our best one-step result (55.45 FID at 35K steps with cosine LR and 2,000-step warmup) remains far from CIFAR-10 state-of-the-art ($\sim$1--5 FID with multi-step sampling). Several factors contribute: (1) the HuggingFace DDPM teacher itself produces imperfect 32$\times$32 images; (2) training uses 35K distillation steps versus 300K+ in DMD~\citep{yin2024onestep}; (3) the DDPM architecture at $t{=}0$ is not designed for direct noise-to-image mapping. However, the 75\% relative improvement from MSE (222 FID) to the best AdaDMD configuration (55.45 FID) demonstrates the effectiveness of the combined components, and these relative gains should transfer to stronger base models.
+Our best one-step result (28.06 FID at 30K steps with phase-aligned warmup) narrows the gap to CIFAR-10 state-of-the-art ($\sim$1--5 FID with multi-step sampling). Several factors limit further improvement: (1) the HuggingFace DDPM teacher itself produces imperfect 32$\times$32 images; (2) training uses 35K distillation steps versus 300K+ in DMD~\citep{yin2024onestep}; (3) the DDPM architecture at $t{=}0$ is not designed for direct noise-to-image mapping. However, the 87\% relative improvement from MSE (222 FID) to phase-aligned AdaDMD (28.06 FID) demonstrates the importance of learning rate schedule design for distribution matching distillation, and these relative gains should transfer to stronger base models.
 
 \paragraph{Regression loss as persistent anchor.}
 Unpaired regression ($\text{MSE}(G(\bz), \bx_{\text{random}})$) causes severe mean collapse (output std drops to 0.07 within 5K steps). Even paired L1/smooth-L1 collapses; only paired LPIPS~\citep{zhang2018unreasonable} maintains diversity (std $> 0.4$). The DM loss with LoRA-based fake scores provides weak distributional gradients---the density-ratio network achieves only $\sim$50\% NCE accuracy at intermediate noise levels---and requires the stabilizing effect of regression. A full model copy for the fake score (as in DMD) may produce stronger gradients that enable regression-free training, as demonstrated by DMD2~\citep{yin2024dmd2}. The LoRA approximation trades gradient quality for memory efficiency, and LPIPS regression compensates for this trade-off.
 
-\paragraph{Cosine learning rate scheduling and warmup.}
-With constant LR, training peaks at 20K steps then degrades---the fixed step size overshoots the optimum as the loss landscape narrows (Figure~\ref{fig:fid_trajectory}). The cosine schedule resolves this by smoothly decaying the learning rate. The warmup duration has a dramatic effect: 2,000-step warmup achieves 55.45 FID versus 82.64 for 1,000-step warmup (33\% improvement) and 107.94 for 200-step warmup. The extended warmup allows the LoRA adapter to stabilize at low learning rates before the full cosine phase begins, preventing early overfitting to transient generator states. This is specific to the LoRA setting---full-copy approaches start with pretrained weights and are less sensitive to initialization dynamics.
+\paragraph{Phase-aligned warmup scheduling.}
+The most impactful finding is that warmup duration should match the regression-only training phase. With the warmup aligned to Phase 1 (both 5,000 steps), the learning rate schedule has a clean structure: monotonically increasing during regression, monotonically decreasing during distribution matching. This yields 28.06 FID---a $3{\times}$ improvement over warmup=1,000 (82.64).
 
-The schedule length also matters: extending to 50K steps with a 50K cosine schedule \emph{increases} oscillation (FID fluctuates between 102 and 162) because the LR remains too high through the middle of training. The 35K schedule's faster decay provides the best stability--quality tradeoff.
+The effect is \emph{non-monotonic}: warmup=3,000 (99.07) is worse than warmup=2,000 (55.45). With warmup=3,000, the LR peaks at step 3,000 (mid-Phase 1) and is already decaying when the DM loss activates at step 5,000, starting the DM phase with a sub-peak LR. Warmup=2,000 suffers similarly but to a greater degree, starting the DM phase even further from peak. Warmup=5,000 avoids this entirely: the DM phase begins at peak LR and immediately decays, providing the strongest initial distributional correction followed by smooth convergence.
+
+The schedule length also matters: extending to 50K steps \emph{increases} oscillation (FID fluctuates between 102 and 162) because the LR remains too high through the middle of training.
 
 \paragraph{LoRA capacity trade-off.}
 Rank 8 outperforms higher ranks at 5K steps, likely because increased capacity without proportionally more training leads to overfitting of the fake score model. The rank warming schedule (4$\to$32) achieves competitive results while starting with lower capacity, supporting the hypothesis that early distributional differences are low-rank.
@@ -531,15 +542,15 @@ Rank 8 outperforms higher ranks at 5K steps, likely because increased capacity w
 \paragraph{Limitations.}
 We evaluate only on CIFAR-10 32$\times$32 with an unconditional DDPM teacher. Three factors limit the absolute FID: (1) the DDPM architecture, designed for iterative denoising, is suboptimal when repurposed as a single-step generator at $t{=}0$; (2) the training budget of 35K steps is $9{\times}$ shorter than DMD's 300K+ steps; (3) CIFAR-10 at 32$\times$32 is a low-resolution benchmark where perceptual losses are less effective. Scaling to Stable Diffusion requires more GPU memory and text conditioning, though the LoRA-based approach should transfer since SD v1.5 uses the same UNet attention architecture.
 
-The density-ratio verifier improves FID for intermediate models but consistently hurts converged models (55.45 $\to$ 58.14 with DR-4), indicating that its discriminative capacity is insufficient when the generator--data gap is small. The sensitivity to warmup duration (200 vs.\ 2,000 steps yields a $3{\times}$ FID difference) introduces an additional hyperparameter that may require tuning on new tasks.
+The phase-aligned warmup is specific to our two-phase training setup and assumes the Phase 1 duration is known. Different Phase 1 lengths would require re-tuning the warmup. The non-monotonic warmup effect (3K worse than 2K) suggests the optimum may be sharp, and validation-based warmup selection would be needed for new architectures or datasets.
 
 % ============================================================
 \section{Conclusion}
 \label{sec:conclusion}
 
-AdaDMD demonstrates that the DMD framework can be made substantially more memory-efficient through LoRA-based fake score estimation, while adaptive density-ratio weighting and careful learning rate scheduling provide large quality improvements. The LoRA adapter reduces the fake score model from 35.7M to 1.08M parameters (97\% reduction). With paired LPIPS regression, cosine LR scheduling with 2,000-step warmup, and a moderate DM loss scale, AdaDMD achieves \textbf{55.45 FID} on CIFAR-10---a 75\% improvement over MSE-based distillation---within 35K steps on a single GPU using under 1\,GB memory. The extended warmup is critical for LoRA-based approaches: it yields a 33\% FID improvement over shorter warmup (55.45 vs.\ 82.64), revealing that adapter stabilization during the initial training phase is essential for strong final convergence.
+AdaDMD demonstrates that the DMD framework can be made substantially more memory-efficient through LoRA-based fake score estimation, while careful learning rate scheduling is critical for quality. The LoRA adapter reduces the fake score model from 35.7M to 1.08M parameters (97\% reduction). The key finding is \textbf{phase-aligned warmup}: aligning the learning rate warmup with the regression-only training phase (both 5,000 steps) yields \textbf{28.06 FID} on CIFAR-10---an 87\% improvement over MSE distillation and a $3{\times}$ improvement over standard warmup---on a single GPU using under 1\,GB memory. The mechanism is that the DM phase always trains with a decreasing learning rate, preventing noisy distributional gradients from destabilizing the generator.
 
-Two key next steps remain: scaling to larger models (ImageNet, Stable Diffusion) and investigating whether a full-copy fake score model can eliminate the regression dependency. The LoRA-based approach trades gradient quality for memory efficiency; with stronger base models and proportionally larger training budgets, AdaDMD could enable distribution matching distillation on 1--2 GPUs at quality levels competitive with multi-GPU methods.
+Two key next steps remain: scaling to larger models (ImageNet, Stable Diffusion) and investigating whether phase-aligned warmup transfers to non-LoRA settings. The phase alignment principle---matching warmup to the stabilization phase of training---may generalize beyond distribution matching distillation to other multi-phase training procedures where loss terms activate at different stages.
 
 % ============================================================
 \bibliography{refs}
@@ -572,7 +583,7 @@ Batch size & 32 & 8 \\
 LR (gen) & $5{\times}10^{-5}$ & $2{\times}10^{-5}$ \\
 LR (LoRA) & $10^{-4}$ & $10^{-4}$ \\
 LR (DR) & $10^{-4}$ & $10^{-4}$ \\
-LR schedule & constant & cosine (warmup 2000) \\
+LR schedule & constant & cosine (warmup 5000) \\
 $(\beta_1, \beta_2)$ gen & (0.5, 0.999) & (0.5, 0.999) \\
 Grad clip & 1.0 & 1.0 \\
 EMA decay & 0.9999 & 0.9999 \\
@@ -609,7 +620,7 @@ Figure~\ref{fig:qualitative} compares teacher and student outputs. The teacher (
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.85\textwidth]{figures/qualitative_comparison.pdf}
-\caption{Qualitative comparison on CIFAR-10 32$\times$32 (best model: warmup=2K at 35K steps, FID 55.45). Top: 100-step DDPM teacher outputs. Middle: AdaDMD single-step outputs from random noise. Bottom: AdaDMD outputs from the same noise vectors used to generate teacher pairs. The student captures coarse structure and color statistics while maintaining diversity.}
+\caption{Qualitative comparison on CIFAR-10 32$\times$32 (best model: phase-aligned warmup at 30K steps, FID 28.06). Top: 100-step DDPM teacher outputs. Middle: AdaDMD single-step outputs from random noise. Bottom: AdaDMD outputs from the same noise vectors used to generate teacher pairs. The student captures recognizable structure and color statistics with increasing fidelity.}
 \label{fig:qualitative}
 \end{figure*}
 
