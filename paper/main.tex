@@ -457,7 +457,7 @@ Schedule & Best FID $\downarrow$ & Best Step & Final FID \\
 
 Table~\ref{tab:warmup} compares five warmup durations with a 35K cosine schedule. The relationship is \emph{non-monotonic}: warmup=5,000 achieves the best FID (\textbf{28.06}), warmup=2,000 is second (55.45), but warmup=3,000 (99.07) is \emph{worse} than warmup=2,000. The critical factor is \textbf{phase alignment}: our training uses 5,000 steps of regression-only (Phase 1) before activating the DM loss (Phase 2). With warmup=5,000, the learning rate reaches its peak at exactly step 5,000---the Phase 1/Phase 2 boundary---and immediately begins cosine decay. The DM phase therefore always trains with a decreasing learning rate.
 
-This produces a $3{\times}$ FID improvement over warmup=1,000 (28.06 vs.\ 82.64). The mechanism: during Phase 1, an increasing LR gradually strengthens LPIPS regression, building a stable generator before distribution matching begins. During Phase 2, the immediately-decaying LR prevents the noisy DM gradients (the density-ratio network achieves only ${\sim}50\%$ NCE accuracy) from destabilizing the generator. Shorter warmup durations reach peak LR too early and begin decaying before Phase 2 activates. We validate in \Cref{sec:phase_validation} that this effect compounds with Phase 1 duration: the 5K regression length is itself a sweet spot, and alignment produces the largest gains at this optimum.
+This produces a $3{\times}$ FID improvement over warmup=1,000 (28.06 vs.\ 82.64). Figure~\ref{fig:lr_schedule} visualizes the mechanism: during Phase 1, an increasing LR gradually strengthens LPIPS regression, building a stable generator before distribution matching begins. During Phase 2, the immediately-decaying LR prevents the noisy DM gradients (the density-ratio network achieves only ${\sim}50\%$ NCE accuracy) from destabilizing the generator. Shorter warmup durations reach peak LR too early and begin decaying before Phase 2 activates. We validate in \Cref{sec:phase_validation} that this effect compounds with Phase 1 duration: the 5K regression length is itself a sweet spot, and alignment produces the largest gains at this optimum.
 
 Figure~\ref{fig:warmup_ablation} shows the FID trajectories: warmup=5,000 improves steadily from 114.71 (20K) through 50.05 (25K) to 28.06 (30K), with slight degradation at 35K (29.81) as the LR approaches its minimum.
 
@@ -485,6 +485,13 @@ Warmup & 20K & 25K & 30K & 35K & Best \\
 \includegraphics[width=\columnwidth]{figures/warmup_ablation.pdf}
 \caption{FID trajectories for different warmup durations. Phase-aligned warmup (5K = Phase 1 length) achieves FID 28.06, outperforming all alternatives by a wide margin. The relationship is non-monotonic: 3K warmup is worse than 2K. Stars mark each configuration's best checkpoint.}
 \label{fig:warmup_ablation}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/lr_schedule.pdf}
+\caption{Learning rate schedules for three warmup durations. With 5K warmup (phase-aligned), the LR peaks at the Phase~1/Phase~2 boundary and immediately decays. Shorter warmup causes the LR to peak during Phase~1 and partially decay before the DM loss activates.}
+\label{fig:lr_schedule}
 \end{figure}
 
 \subsection{Phase Duration Validation}
