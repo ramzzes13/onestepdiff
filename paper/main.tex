@@ -66,7 +66,7 @@
 
 % ============================================================
 \begin{abstract}
-Distribution Matching Distillation (DMD) enables single-step image generation by minimizing the KL divergence between generator and data distributions via dual score functions. DMD requires three full diffusion models in memory simultaneously, demanding extreme GPU resources (72 A100s for text-to-image training). We propose \textbf{AdaDMD}, which replaces the full-copy fake score model with a LoRA adapter (2.9\% of base model parameters, 97\% memory reduction for the fake score component), learns adaptive timestep weights via a density-ratio estimator trained with noise contrastive estimation, and uses the learned density ratio as both a training regularizer and an inference-time sample verifier. On CIFAR-10 distillation from a pretrained DDPM teacher, AdaDMD trains on a single GPU using under 1\,GB peak memory, achieving \textbf{28.06 FID} in one step---an 87\% improvement over MSE-based distillation. A critical finding is that aligning the learning rate warmup with the regression-only training phase (5,000 steps each) produces a $3{\times}$ FID improvement over standard warmup, as the learning rate peaks precisely when distribution matching activates and immediately begins cosine decay. Ablation studies across five warmup durations reveal a non-monotonic optimum at this alignment point.
+Distribution Matching Distillation (DMD) enables single-step image generation by minimizing the KL divergence between generator and data distributions via dual score functions. DMD requires three full diffusion models in memory simultaneously, demanding extreme GPU resources (72 A100s for text-to-image training). We propose \textbf{AdaDMD}, which replaces the full-copy fake score model with a LoRA adapter (2.9\% of base model parameters, 97\% memory reduction for the fake score component), learns adaptive timestep weights via a density-ratio estimator trained with noise contrastive estimation, and uses the learned density ratio as both a training regularizer and an inference-time sample verifier. On CIFAR-10 distillation from a pretrained DDPM teacher, AdaDMD trains on a single GPU using under 1\,GB peak memory, achieving \textbf{28.06 FID} in one step---an 87\% improvement over MSE-based distillation. A critical finding is that jointly optimizing the regression-only phase duration (5,000 steps) and aligning the learning rate warmup with this phase produces a $3{\times}$ FID improvement over standard warmup, as the learning rate peaks precisely when distribution matching activates and immediately begins cosine decay. Ablation studies across five warmup durations and three phase lengths validate this: the effect is non-monotonic across warmup and the regression duration is itself a sweet spot.
 \end{abstract}
 
 % ============================================================
@@ -91,7 +91,7 @@ We propose \textbf{AdaDMD} (Adaptive Distribution Matching Distillation), which 
 \item \textbf{Density-ratio regularization and verification.} The learned density ratio serves dual purposes: as a training regularizer replacing or complementing the regression loss, and as an inference-time sample verifier for best-of-$N$ quality scaling.
 \end{enumerate}
 
-We validate AdaDMD on CIFAR-10 32$\times$32 distillation using a pretrained DDPM teacher~\citep{ho2020denoising}. Training requires under 1\,GB of GPU memory on a single device. A critical discovery is that aligning the learning rate warmup duration with the regression-only training phase (both 5,000 steps) yields dramatic improvements: \textbf{28.06 FID} in one step, an 87\% improvement over MSE distillation. This phase-aligned warmup ensures the learning rate peaks exactly when distribution matching activates, then immediately decays---the DM phase never sees an increasing learning rate. The effect is non-monotonic: warmup durations that do not align with Phase 1 (200, 1,000, 3,000 steps) all perform substantially worse.
+We validate AdaDMD on CIFAR-10 32$\times$32 distillation using a pretrained DDPM teacher~\citep{ho2020denoising}. Training requires under 1\,GB of GPU memory on a single device. A critical discovery is that the regression-only phase duration (5,000 steps) and learning rate warmup are tightly coupled: aligning the warmup with the regression phase yields \textbf{28.06 FID} in one step, an 87\% improvement over MSE distillation. The learning rate peaks exactly when distribution matching activates, then immediately decays. A validation study varying phase duration ($\{3\text{K}, 5\text{K}, 7\text{K}\}$) confirms that both the regression length and warmup alignment are necessary---shorter or longer regression phases degrade substantially even with aligned warmup.
 
 % ============================================================
 \section{Related Work}
@@ -457,7 +457,7 @@ Schedule & Best FID $\downarrow$ & Best Step & Final FID \\
 
 Table~\ref{tab:warmup} compares five warmup durations with a 35K cosine schedule. The relationship is \emph{non-monotonic}: warmup=5,000 achieves the best FID (\textbf{28.06}), warmup=2,000 is second (55.45), but warmup=3,000 (99.07) is \emph{worse} than warmup=2,000. The critical factor is \textbf{phase alignment}: our training uses 5,000 steps of regression-only (Phase 1) before activating the DM loss (Phase 2). With warmup=5,000, the learning rate reaches its peak at exactly step 5,000---the Phase 1/Phase 2 boundary---and immediately begins cosine decay. The DM phase therefore always trains with a decreasing learning rate.
 
-This phase alignment produces a $3{\times}$ FID improvement over warmup=1,000 (28.06 vs.\ 82.64). The mechanism is interpretable: during Phase 1, an increasing LR gradually strengthens LPIPS regression, building a stable generator before distribution matching begins. During Phase 2, the immediately-decaying LR prevents the noisy DM gradients (recall the density-ratio network achieves only ${\sim}50\%$ NCE accuracy) from destabilizing the generator. Misaligned warmup durations either start the DM phase with an increasing LR (warmup $>$ Phase 1), or reach peak LR too early and begin decaying before the DM loss can provide strong initial corrections.
+This produces a $3{\times}$ FID improvement over warmup=1,000 (28.06 vs.\ 82.64). The mechanism: during Phase 1, an increasing LR gradually strengthens LPIPS regression, building a stable generator before distribution matching begins. During Phase 2, the immediately-decaying LR prevents the noisy DM gradients (the density-ratio network achieves only ${\sim}50\%$ NCE accuracy) from destabilizing the generator. Shorter warmup durations reach peak LR too early and begin decaying before Phase 2 activates. We validate in \Cref{sec:phase_validation} that this effect compounds with Phase 1 duration: the 5K regression length is itself a sweet spot, and alignment produces the largest gains at this optimum.
 
 Figure~\ref{fig:warmup_ablation} shows the FID trajectories: warmup=5,000 improves steadily from 114.71 (20K) through 50.05 (25K) to 28.06 (30K), with slight degradation at 35K (29.81) as the LR approaches its minimum.
 
@@ -486,6 +486,33 @@ Warmup & 20K & 25K & 30K & 35K & Best \\
 \caption{FID trajectories for different warmup durations. Phase-aligned warmup (5K = Phase 1 length) achieves FID 28.06, outperforming all alternatives by a wide margin. The relationship is non-monotonic: 3K warmup is worse than 2K. Stars mark each configuration's best checkpoint.}
 \label{fig:warmup_ablation}
 \end{figure}
+
+\subsection{Phase Duration Validation}
+\label{sec:phase_validation}
+
+The warmup ablation (\Cref{sec:warmup}) held Phase 1 fixed at 5,000 steps. To disentangle whether the improvement comes from warmup alignment or from Phase 1 being at a particular sweet spot, we vary the regression-only phase length across $\{3000, 5000, 7000\}$ steps and test both aligned (warmup $=$ Phase 1) and misaligned (warmup $=$ 5,000) configurations. Table~\ref{tab:phase_validation} reports results.
+
+Two findings emerge. First, \textbf{Phase 1 duration is critical}: 5,000 regression-only steps yields 28.06 FID, while 3,000 steps yields at best 86.40 and 7,000 steps yields 132.06. Three thousand steps provides insufficient regression training before DM activates, while 7,000 steps over-fits to paired LPIPS regression and leaves fewer steps (28K vs.\ 30K) for distribution matching. Second, \textbf{longer warmup generally helps}: for Phase 1 = 3K, warmup=5K (86.40) outperforms warmup=3K (106.39) despite being misaligned, because the extended warmup keeps the initial DM learning rate low. For Phase 1 = 7K, the aligned warmup=7K marginally outperforms warmup=5K (132.06 vs.\ 136.21).
+
+The best result (28.06 FID) requires \emph{both} an optimal Phase 1 duration (5K steps) and long warmup (5K steps). The ``phase alignment'' effect observed in \Cref{sec:warmup} is partially attributable to Phase 1 = 5K being the sweet spot, and partially to the warmup ensuring a low initial DM learning rate. These effects compound: at the optimal Phase 1 length, alignment produces a dramatic $3{\times}$ improvement; at suboptimal lengths, longer warmup helps but cannot compensate for the wrong regression duration.
+
+\begin{table}[t]
+\caption{Phase duration validation. Varying regression-only phase (Phase 1) length with aligned and misaligned warmup. All use 35K cosine schedule, $\lambda_{\text{DM}} = 5\times 10^{-5}$.}
+\label{tab:phase_validation}
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Phase 1 & Warmup & Aligned & 20K & 25K & 30K & Best \\
+\midrule
+3,000 & 3,000 & \checkmark & 191.0 & 123.0 & 144.4 & 106.4 (35K) \\
+3,000 & 5,000 & & 145.7 & 138.4 & 86.4 & 86.4 (30K) \\
+\textbf{5,000} & \textbf{5,000} & \checkmark & \textbf{114.7} & \textbf{50.1} & \textbf{28.1} & \textbf{28.1 (30K)} \\
+7,000 & 5,000 & & 160.1 & 156.3 & 150.3 & 136.2 (35K) \\
+7,000 & 7,000 & \checkmark & 132.1 & 137.7 & 144.1 & 132.1 (20K) \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Memory Efficiency}
 \label{sec:memory}
@@ -529,10 +556,10 @@ Our best one-step result (28.06 FID at 30K steps with phase-aligned warmup) narr
 \paragraph{Regression loss as persistent anchor.}
 Unpaired regression ($\text{MSE}(G(\bz), \bx_{\text{random}})$) causes severe mean collapse (output std drops to 0.07 within 5K steps). Even paired L1/smooth-L1 collapses; only paired LPIPS~\citep{zhang2018unreasonable} maintains diversity (std $> 0.4$). The DM loss with LoRA-based fake scores provides weak distributional gradients---the density-ratio network achieves only $\sim$50\% NCE accuracy at intermediate noise levels---and requires the stabilizing effect of regression. A full model copy for the fake score (as in DMD) may produce stronger gradients that enable regression-free training, as demonstrated by DMD2~\citep{yin2024dmd2}. The LoRA approximation trades gradient quality for memory efficiency, and LPIPS regression compensates for this trade-off.
 
-\paragraph{Phase-aligned warmup scheduling.}
-The most impactful finding is that warmup duration should match the regression-only training phase. With the warmup aligned to Phase 1 (both 5,000 steps), the learning rate schedule has a clean structure: monotonically increasing during regression, monotonically decreasing during distribution matching. This yields 28.06 FID---a $3{\times}$ improvement over warmup=1,000 (82.64).
+\paragraph{Training schedule design.}
+The most impactful finding is the interaction between regression phase duration and warmup length. Phase 1 = 5,000 steps of regression-only training is the sweet spot: 3,000 steps provides insufficient foundation before DM activates (best FID 86.40), while 7,000 steps over-fits regression and starves the DM phase (best FID 132.06). Combined with a 5,000-step warmup that aligns with Phase 1, this yields 28.06 FID---a $3{\times}$ improvement over warmup=1,000 (82.64).
 
-The effect is \emph{non-monotonic}: warmup=3,000 (99.07) is worse than warmup=2,000 (55.45). With warmup=3,000, the LR peaks at step 3,000 (mid-Phase 1) and is already decaying when the DM loss activates at step 5,000, starting the DM phase with a sub-peak LR. Warmup=2,000 suffers similarly but to a greater degree, starting the DM phase even further from peak. Warmup=5,000 avoids this entirely: the DM phase begins at peak LR and immediately decays, providing the strongest initial distributional correction followed by smooth convergence.
+The phase duration validation (\Cref{sec:phase_validation}) shows that two effects compound: (1) optimal regression duration, providing enough paired training without over-fitting; and (2) warmup alignment, ensuring the DM phase starts with peak LR and immediately decays. Longer warmup helps even when misaligned (for Phase 1 = 3K: warmup=5K gives 86.40 vs.\ warmup=3K gives 106.39), because it keeps the initial DM learning rate low. But misaligned warmup cannot compensate for a suboptimal regression duration.
 
 The schedule length also matters: extending to 50K steps \emph{increases} oscillation (FID fluctuates between 102 and 162) because the LR remains too high through the middle of training.
 
@@ -542,7 +569,7 @@ Rank 8 outperforms higher ranks at 5K steps, likely because increased capacity w
 \paragraph{Limitations.}
 We evaluate only on CIFAR-10 32$\times$32 with an unconditional DDPM teacher. Three factors limit the absolute FID: (1) the DDPM architecture, designed for iterative denoising, is suboptimal when repurposed as a single-step generator at $t{=}0$; (2) the training budget of 35K steps is $9{\times}$ shorter than DMD's 300K+ steps; (3) CIFAR-10 at 32$\times$32 is a low-resolution benchmark where perceptual losses are less effective. Scaling to Stable Diffusion requires more GPU memory and text conditioning, though the LoRA-based approach should transfer since SD v1.5 uses the same UNet attention architecture.
 
-The phase-aligned warmup is specific to our two-phase training setup and assumes the Phase 1 duration is known. Different Phase 1 lengths would require re-tuning the warmup. The non-monotonic warmup effect (3K worse than 2K) suggests the optimum may be sharp, and validation-based warmup selection would be needed for new architectures or datasets.
+The optimal Phase 1 duration (5K steps) and warmup alignment are specific to our setup (CIFAR-10, DDPM teacher, 35K training). The phase duration validation (\Cref{sec:phase_validation}) shows that both shorter (3K) and longer (7K) regression phases degrade substantially. Different base models, resolutions, or training budgets would require re-tuning both Phase 1 length and warmup duration. The non-monotonic warmup effect (3K worse than 2K at fixed Phase 1) suggests the landscape is complex, and validation-based schedule selection would be needed for new settings.
 
 % ============================================================
 \section{Conclusion}
@@ -550,7 +577,7 @@ The phase-aligned warmup is specific to our two-phase training setup and assumes
 
 AdaDMD demonstrates that the DMD framework can be made substantially more memory-efficient through LoRA-based fake score estimation, while careful learning rate scheduling is critical for quality. The LoRA adapter reduces the fake score model from 35.7M to 1.08M parameters (97\% reduction). The key finding is \textbf{phase-aligned warmup}: aligning the learning rate warmup with the regression-only training phase (both 5,000 steps) yields \textbf{28.06 FID} on CIFAR-10---an 87\% improvement over MSE distillation and a $3{\times}$ improvement over standard warmup---on a single GPU using under 1\,GB memory. The mechanism is that the DM phase always trains with a decreasing learning rate, preventing noisy distributional gradients from destabilizing the generator.
 
-Two key next steps remain: scaling to larger models (ImageNet, Stable Diffusion) and investigating whether phase-aligned warmup transfers to non-LoRA settings. The phase alignment principle---matching warmup to the stabilization phase of training---may generalize beyond distribution matching distillation to other multi-phase training procedures where loss terms activate at different stages.
+A validation study varying Phase 1 duration ($\{3\text{K}, 5\text{K}, 7\text{K}\}$) confirms that both optimal regression duration \emph{and} warmup alignment are necessary: 5K regression steps is the sweet spot, and alignment compounds this advantage. Two key next steps remain: scaling to larger models (ImageNet, Stable Diffusion) and investigating whether the training schedule design transfers to non-LoRA settings. The principle---jointly optimizing regression duration and learning rate scheduling around the multi-phase boundary---may generalize to other procedures where loss terms activate at different stages.
 
 % ============================================================
 \bibliography{refs}

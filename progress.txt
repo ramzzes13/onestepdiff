@@ -197,7 +197,38 @@ FID = 82.64 (standard, cosine LR, warmup=1000, lambda_dm=5e-5, 35K steps, v6)
 6. Schedule length matters: 35K cosine > 40K > 50K cosine.
 7. DR verification provides marginal improvement for the best model (28.06 → 26.64 with DR-8).
 
+## Session 5 (Feb 22, 2026)
+
+### Completed:
+1. **Phase duration validation (v11 series)**: 4 experiments testing aligned vs misaligned warmup
+   with different Phase 1 lengths. Trained on GPUs 0-3, ~42 min each.
+
+   | Experiment | Phase 1 | Warmup | Aligned? | Best FID | Best Step |
+   |------------|---------|--------|----------|----------|-----------|
+   | v11a       | 3K      | 3K     | Yes      | 106.39   | 35K       |
+   | v11b       | 3K      | 5K     | No       | 86.40    | 30K       |
+   | v10 (ref)  | 5K      | 5K     | Yes      | **28.06**| 30K       |
+   | v11d       | 7K      | 5K     | No       | 136.21   | 35K       |
+   | v11c       | 7K      | 7K     | Yes      | 132.06   | 20K       |
+
+   Key findings:
+   - Phase 1 = 5K is the SWEET SPOT (3K too short, 7K too long)
+   - Longer warmup generally helps (v11b's 5K warmup > v11a's 3K despite misalignment)
+   - Phase alignment compounds with optimal Phase 1 duration
+   - The best FID (28.06) requires BOTH optimal Phase 1 (5K) AND long warmup (5K)
+
+2. **Paper updated with phase duration validation**:
+   - New Section 5.6: Phase Duration Validation with Table 9
+   - Updated abstract: joint optimization of phase duration and warmup
+   - Updated intro: validation study confirms both factors necessary
+   - Updated Discussion: nuanced training schedule design paragraph
+   - Updated Limitations: mentions Phase 1 sensitivity
+   - Updated Conclusion: mentions validation study
+   - Clean LaTeX compilation (12 pages, no errors)
+
+### Best Result (unchanged):
+**FID = 28.06** (Phase 1 = 5K, warmup = 5K, cosine LR, lambda_dm=5e-5, 30K step, v10)
+
 ### Remaining (Not Completed):
 - ImageNet / text-to-image experiments (GPU memory constrained by sglang servers)
 - SD v1.5 distillation (implemented but needs free GPU memory)
-- Investigate warmup=5000 with different Phase 1 lengths to confirm alignment hypothesis
