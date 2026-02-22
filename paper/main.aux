@@ -24,6 +24,8 @@
 \citation{yin2024onestep}
 \citation{yin2024dmd2}
 \citation{song2023consistency}
+\citation{song2024improved}
+\citation{kim2024consistency}
 \citation{luo2023latent}
 \citation{luo2023lcmlora}
 \citation{sauer2023adversarial}
@@ -35,7 +37,6 @@
 \citation{hu2022lora}
 \citation{yin2024onestep}
 \citation{yin2024onestep}
-\citation{hu2022lora}
 \newlabel{sec:related}{{2}{2}{}{section.2}{}}
 \newlabel{sec:related@cref}{{[section][2][]2}{[1][2][]2}}
 \newlabel{sec:method}{{3}{2}{}{section.3}{}}
@@ -50,10 +51,11 @@
 \newlabel{eq:score_diff@cref}{{[equation][3][]3}{[1][2][]2}}
 \newlabel{sec:lora_score}{{3.2}{2}{}{subsection.3.2}{}}
 \newlabel{sec:lora_score@cref}{{[subsection][2][3]3.2}{[1][2][]2}}
-\newlabel{eq:lora_score}{{4}{2}{}{equation.3.4}{}}
-\newlabel{eq:lora_score@cref}{{[equation][4][]4}{[1][2][]2}}
+\citation{hu2022lora}
 \citation{ho2020denoising}
 \citation{krizhevsky2009learning}
+\newlabel{eq:lora_score}{{4}{3}{}{equation.3.4}{}}
+\newlabel{eq:lora_score@cref}{{[equation][4][]4}{[1][2][]3}}
 \newlabel{sec:density_ratio}{{3.3}{3}{}{subsection.3.3}{}}
 \newlabel{sec:density_ratio@cref}{{[subsection][3][3]3.3}{[1][3][]3}}
 \newlabel{eq:nce}{{6}{3}{}{equation.3.6}{}}
@@ -90,63 +92,94 @@
 \newlabel{fig:fid_trajectory@cref}{{[figure][2][]2}{[1][5][]5}}
 \newlabel{sec:schedule}{{4.4}{5}{}{subsection.4.4}{}}
 \newlabel{sec:schedule@cref}{{[subsection][4][4]4.4}{[1][5][]5}}
-\citation{yin2024onestep}
 \newlabel{tab:main_results}{{4}{6}{CIFAR-10 distillation results (5K generated vs.\ test set). DR-$N$: best-of-$N$ density-ratio verification}{table.4}{}}
 \newlabel{tab:main_results@cref}{{[table][4][]4}{[1][5][]6}}
-\newlabel{sec:warmup}{{4.5}{6}{}{subsection.4.5}{}}
-\newlabel{sec:warmup@cref}{{[subsection][5][4]4.5}{[1][6][]6}}
+\newlabel{sec:sensitivity}{{4.5}{6}{}{subsection.4.5}{}}
+\newlabel{sec:sensitivity@cref}{{[subsection][5][4]4.5}{[1][6][]6}}
 \newlabel{fig:dr_verify}{{3}{6}{Density-ratio verification (best-of-$N$) effect on FID. DR verification improves intermediate models (up to 7.0 points at 30K) but slightly hurts the well-converged 35K model}{figure.3}{}}
 \newlabel{fig:dr_verify@cref}{{[figure][3][]3}{[1][5][]6}}
 \newlabel{tab:dr_verify}{{5}{6}{Density-ratio verification effect on FID}{table.5}{}}
 \newlabel{tab:dr_verify@cref}{{[table][5][]5}{[1][5][]6}}
-\newlabel{sec:memory}{{4.6}{6}{}{subsection.4.6}{}}
-\newlabel{sec:memory@cref}{{[subsection][6][4]4.6}{[1][6][]6}}
-\newlabel{sec:discussion}{{5}{6}{}{section.5}{}}
-\newlabel{sec:discussion@cref}{{[section][5][]5}{[1][6][]6}}
-\citation{zhang2018unreasonable}
-\citation{yin2024dmd2}
+\newlabel{sec:warmup}{{4.6}{6}{}{subsection.4.6}{}}
+\newlabel{sec:warmup@cref}{{[subsection][6][4]4.6}{[1][6][]6}}
+\citation{karras2022elucidating}
+\citation{salimans2022progressive}
+\citation{luhman2021knowledge}
+\citation{ho2020denoising}
+\citation{zheng2024diffinstruct}
+\citation{yin2024onestep}
+\citation{song2024improved}
+\citation{zhou2024score}
+\citation{kim2024consistency}
+\citation{luhman2021knowledge}
+\citation{salimans2022progressive}
 \newlabel{tab:schedule}{{6}{7}{Schedule length ablation (cosine LR, $\lambda _{\text {DM}} = 5\times 10^{-5}$). All use identical hyperparameters except total step count}{table.6}{}}
 \newlabel{tab:schedule@cref}{{[table][6][]6}{[1][6][]7}}
 \newlabel{fig:schedule_ablation}{{4}{7}{FID trajectories for different cosine schedule lengths. The 35K schedule achieves the best final FID. Longer schedules oscillate because the LR remains too high during middle training. Stars mark each schedule's best checkpoint}{figure.4}{}}
 \newlabel{fig:schedule_ablation@cref}{{[figure][4][]4}{[1][6][]7}}
-\newlabel{tab:warmup}{{7}{7}{Warmup duration ablation (35K cosine, $\lambda _{\text {DM}} = 5\times 10^{-5}$). Phase 1 (regression-only) lasts 5,000 steps}{table.7}{}}
-\newlabel{tab:warmup@cref}{{[table][7][]7}{[1][6][]7}}
-\newlabel{fig:warmup_ablation}{{5}{7}{FID trajectories for different warmup durations. Phase-aligned warmup (5K = Phase 1 length) achieves FID 28.06, outperforming all alternatives by a wide margin. The relationship is non-monotonic: 3K warmup is worse than 2K. Stars mark each configuration's best checkpoint}{figure.5}{}}
-\newlabel{fig:warmup_ablation@cref}{{[figure][5][]5}{[1][6][]7}}
+\newlabel{sec:phase_validation}{{4.7}{7}{}{subsection.4.7}{}}
+\newlabel{sec:phase_validation@cref}{{[subsection][7][4]4.7}{[1][7][]7}}
+\newlabel{tab:sensitivity}{{7}{7}{Hyperparameter sensitivity. Each row varies one setting from the optimal configuration (35K, batch 8, $\lambda _{\text {DM}} = 5{\times }10^{-5}$, warmup 5K)}{table.7}{}}
+\newlabel{tab:sensitivity@cref}{{[table][7][]7}{[1][6][]7}}
+\newlabel{tab:warmup}{{8}{7}{Warmup duration ablation (35K cosine, $\lambda _{\text {DM}} = 5\times 10^{-5}$). Phase 1 (regression-only) lasts 5,000 steps}{table.8}{}}
+\newlabel{tab:warmup@cref}{{[table][8][]8}{[1][7][]7}}
+\newlabel{sec:comparison}{{4.8}{7}{}{subsection.4.8}{}}
+\newlabel{sec:comparison@cref}{{[subsection][8][4]4.8}{[1][7][]7}}
+\citation{karras2022elucidating}
+\citation{yin2024onestep}
+\citation{zhang2018unreasonable}
+\citation{yin2024dmd2}
+\newlabel{fig:warmup_ablation}{{5}{8}{FID trajectories for different warmup durations. Phase-aligned warmup (5K = Phase 1 length) achieves FID 28.06, outperforming all alternatives by a wide margin. The relationship is non-monotonic: 3K warmup is worse than 2K. Stars mark each configuration's best checkpoint}{figure.5}{}}
+\newlabel{fig:warmup_ablation@cref}{{[figure][5][]5}{[1][7][]8}}
+\newlabel{tab:phase_validation}{{9}{8}{Phase duration validation. Varying regression-only phase (Phase 1) length with aligned and misaligned warmup. All use 35K cosine schedule, $\lambda _{\text {DM}} = 5\times 10^{-5}$}{table.9}{}}
+\newlabel{tab:phase_validation@cref}{{[table][9][]9}{[1][7][]8}}
+\newlabel{sec:memory}{{4.9}{8}{}{subsection.4.9}{}}
+\newlabel{sec:memory@cref}{{[subsection][9][4]4.9}{[1][8][]8}}
+\newlabel{sec:discussion}{{5}{8}{}{section.5}{}}
+\newlabel{sec:discussion@cref}{{[section][5][]5}{[1][8][]8}}
+\newlabel{fig:lr_schedule}{{6}{8}{Learning rate schedules for three warmup durations. With 5K warmup (phase-aligned), the LR peaks at the Phase~1/Phase~2 boundary and immediately decays. Shorter warmup causes the LR to peak during Phase~1 and partially decay before the DM loss activates}{figure.6}{}}
+\newlabel{fig:lr_schedule@cref}{{[figure][6][]6}{[1][7][]8}}
+\newlabel{tab:comparison}{{10}{8}{Comparison with published one-step methods on unconditional CIFAR-10 32$\times $32. $^\dagger $EDM teacher. $^\ddagger $DDPM teacher. $^\S $Single GPU, $<$1\,GB, 35K steps}{table.10}{}}
+\newlabel{tab:comparison@cref}{{[table][10][]10}{[1][7][]8}}
 \bibdata{refs}
+\newlabel{fig:memory}{{7}{9}{Memory breakdown: LoRA (AdaDMD) vs.\ full copy (DMD). The fake score model shrinks from 147\,MB to 4\,MB}{figure.7}{}}
+\newlabel{fig:memory@cref}{{[figure][7][]7}{[1][8][]9}}
+\newlabel{tab:memory}{{11}{9}{Training memory profile (HF DDPM base)}{table.11}{}}
+\newlabel{tab:memory@cref}{{[table][11][]11}{[1][8][]9}}
+\newlabel{sec:conclusion}{{6}{9}{}{section.6}{}}
+\newlabel{sec:conclusion@cref}{{[section][6][]6}{[1][9][]9}}
 \bibcite{gutmann2010noise}{{1}{2010}{{Gutmann \& Hyv{\"a}rinen}}{{Gutmann and Hyv{\"a}rinen}}}
 \bibcite{heusel2017gans}{{2}{2017}{{Heusel et~al.}}{{Heusel, Ramsauer, Unterthiner, Nessler, and Hochreiter}}}
 \bibcite{ho2020denoising}{{3}{2020}{{Ho et~al.}}{{Ho, Jain, and Abbeel}}}
 \bibcite{hu2022lora}{{4}{2022}{{Hu et~al.}}{{Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and Chen}}}
-\bibcite{krizhevsky2009learning}{{5}{2009}{{Krizhevsky \& Hinton}}{{Krizhevsky and Hinton}}}
-\bibcite{liu2024instaflow}{{6}{2024}{{Liu et~al.}}{{Liu, Zhang, Ma, Peng, and Liu}}}
-\newlabel{fig:memory}{{6}{8}{Memory breakdown: LoRA (AdaDMD) vs.\ full copy (DMD). The fake score model shrinks from 147\,MB to 4\,MB}{figure.6}{}}
-\newlabel{fig:memory@cref}{{[figure][6][]6}{[1][6][]8}}
-\newlabel{tab:memory}{{8}{8}{Training memory profile (HF DDPM base)}{table.8}{}}
-\newlabel{tab:memory@cref}{{[table][8][]8}{[1][6][]8}}
-\newlabel{sec:conclusion}{{6}{8}{}{section.6}{}}
-\newlabel{sec:conclusion@cref}{{[section][6][]6}{[1][8][]8}}
-\bibcite{loshchilov2019decoupled}{{7}{2019}{{Loshchilov \& Hutter}}{{Loshchilov and Hutter}}}
-\bibcite{luo2023latent}{{8}{2023{a}}{{Luo et~al.}}{{Luo, Tan, Huang, Li, and Zhao}}}
-\bibcite{luo2023lcmlora}{{9}{2023{b}}{{Luo et~al.}}{{Luo, Tan, Patil, Gu, von Platen, Passos, Huang, Li, and Zhao}}}
-\bibcite{nguyen2024swiftbrush}{{10}{2024}{{Nguyen \& Tran}}{{Nguyen and Tran}}}
-\bibcite{salimans2022progressive}{{11}{2022}{{Salimans \& Ho}}{{Salimans and Ho}}}
-\bibcite{sauer2023adversarial}{{12}{2024}{{Sauer et~al.}}{{Sauer, Lorenz, Blattmann, and Rombach}}}
-\bibcite{song2021scorebased}{{13}{2021}{{Song et~al.}}{{Song, Sohl-Dickstein, Kingma, Kumar, Ermon, and Poole}}}
-\bibcite{song2023consistency}{{14}{2023}{{Song et~al.}}{{Song, Dhariwal, Chen, and Sutskever}}}
-\bibcite{yin2024dmd2}{{15}{2024{a}}{{Yin et~al.}}{{Yin, Gharbi, Zhang, Shechtman, Durand, Freeman, and Park}}}
-\bibcite{yin2024onestep}{{16}{2024{b}}{{Yin et~al.}}{{Yin, Gharbi, Zhang, Shechtman, Durand, Freeman, and Park}}}
-\bibcite{zhang2018unreasonable}{{17}{2018}{{Zhang et~al.}}{{Zhang, Isola, Efros, Shechtman, and Wang}}}
-\bibcite{zhou2024score}{{18}{2024}{{Zhou et~al.}}{{Zhou, Zheng, Wang, Yin, and Huang}}}
+\bibcite{karras2022elucidating}{{5}{2022}{{Karras et~al.}}{{Karras, Aittala, Aila, and Laine}}}
+\bibcite{kim2024consistency}{{6}{2024}{{Kim et~al.}}{{Kim, Lai, Liao, Murata, Takida, Uesaka, He, Mitsufuji, and Ermon}}}
+\bibcite{krizhevsky2009learning}{{7}{2009}{{Krizhevsky \& Hinton}}{{Krizhevsky and Hinton}}}
+\bibcite{liu2024instaflow}{{8}{2024}{{Liu et~al.}}{{Liu, Zhang, Ma, Peng, and Liu}}}
+\bibcite{loshchilov2019decoupled}{{9}{2019}{{Loshchilov \& Hutter}}{{Loshchilov and Hutter}}}
+\bibcite{luhman2021knowledge}{{10}{2021}{{Luhman \& Luhman}}{{Luhman and Luhman}}}
+\bibcite{luo2023latent}{{11}{2023{a}}{{Luo et~al.}}{{Luo, Tan, Huang, Li, and Zhao}}}
+\bibcite{luo2023lcmlora}{{12}{2023{b}}{{Luo et~al.}}{{Luo, Tan, Patil, Gu, von Platen, Passos, Huang, Li, and Zhao}}}
+\bibcite{nguyen2024swiftbrush}{{13}{2024}{{Nguyen \& Tran}}{{Nguyen and Tran}}}
+\bibcite{salimans2022progressive}{{14}{2022}{{Salimans \& Ho}}{{Salimans and Ho}}}
+\bibcite{sauer2023adversarial}{{15}{2024}{{Sauer et~al.}}{{Sauer, Lorenz, Blattmann, and Rombach}}}
+\bibcite{song2024improved}{{16}{2024}{{Song \& Dhariwal}}{{Song and Dhariwal}}}
+\bibcite{song2021scorebased}{{17}{2021}{{Song et~al.}}{{Song, Sohl-Dickstein, Kingma, Kumar, Ermon, and Poole}}}
+\bibcite{song2023consistency}{{18}{2023}{{Song et~al.}}{{Song, Dhariwal, Chen, and Sutskever}}}
+\bibcite{yin2024dmd2}{{19}{2024{a}}{{Yin et~al.}}{{Yin, Gharbi, Zhang, Shechtman, Durand, Freeman, and Park}}}
+\bibcite{yin2024onestep}{{20}{2024{b}}{{Yin et~al.}}{{Yin, Gharbi, Zhang, Shechtman, Durand, Freeman, and Park}}}
+\bibcite{zhang2018unreasonable}{{21}{2018}{{Zhang et~al.}}{{Zhang, Isola, Efros, Shechtman, and Wang}}}
+\bibcite{zheng2024diffinstruct}{{22}{2023}{{Zheng et~al.}}{{Zheng, Hong, Mei, Chen, and Li}}}
+\bibcite{zhou2024score}{{23}{2024}{{Zhou et~al.}}{{Zhou, Zheng, Wang, Yin, and Huang}}}
 \bibstyle{icml2025}
-\newlabel{app:details}{{A}{9}{}{appendix.A}{}}
-\newlabel{app:details@cref}{{[appendix][1][2147483647]A}{[1][9][]9}}
-\newlabel{app:dynamics}{{B}{9}{}{appendix.B}{}}
-\newlabel{app:dynamics@cref}{{[appendix][2][2147483647]B}{[1][9][]9}}
-\newlabel{fig:training_dynamics}{{7}{10}{Training dynamics comparison: decaying regression (v5b, blue) vs.\ constant regression (v5c, orange). (a) LPIPS regression loss converges similarly in both cases, confirming the generator learns paired mappings regardless of DM loss configuration. (b) NCE accuracy drops from $\sim $87\% (Phase 1) to $\sim $50\% (Phase 2) as distributions become harder to distinguish after the DM loss activates. (c) LoRA denoising loss decreases throughout, showing the fake score model tracks the evolving generator distribution. (d) Output standard deviation remains above 0.35 for both schedules, confirming no mean collapse occurs. Dashed gray line marks the Phase 1/Phase 2 transition at step 5,000}{figure.7}{}}
-\newlabel{fig:training_dynamics@cref}{{[figure][7][2147483647]7}{[1][9][]10}}
-\newlabel{app:samples}{{C}{10}{}{appendix.C}{}}
-\newlabel{app:samples@cref}{{[appendix][3][2147483647]C}{[1][10][]10}}
-\newlabel{fig:qualitative}{{8}{12}{Qualitative comparison on CIFAR-10 32$\times $32 (best model: phase-aligned warmup at 30K steps, FID 28.06). Top: 100-step DDPM teacher outputs. Middle: AdaDMD single-step outputs from random noise. Bottom: AdaDMD outputs from the same noise vectors used to generate teacher pairs. The student captures recognizable structure and color statistics with increasing fidelity}{figure.8}{}}
-\newlabel{fig:qualitative@cref}{{[figure][8][2147483647]8}{[1][11][]12}}
-\gdef \@abspage@last{12}
+\newlabel{app:details}{{A}{11}{}{appendix.A}{}}
+\newlabel{app:details@cref}{{[appendix][1][2147483647]A}{[1][10][]11}}
+\newlabel{app:dynamics}{{B}{11}{}{appendix.B}{}}
+\newlabel{app:dynamics@cref}{{[appendix][2][2147483647]B}{[1][11][]11}}
+\newlabel{app:samples}{{C}{11}{}{appendix.C}{}}
+\newlabel{app:samples@cref}{{[appendix][3][2147483647]C}{[1][11][]11}}
+\newlabel{fig:training_dynamics}{{8}{12}{Training dynamics comparison: decaying regression (v5b, blue) vs.\ constant regression (v5c, orange). (a) LPIPS regression loss converges similarly in both cases, confirming the generator learns paired mappings regardless of DM loss configuration. (b) NCE accuracy drops from $\sim $87\% (Phase 1) to $\sim $50\% (Phase 2) as distributions become harder to distinguish after the DM loss activates. (c) LoRA denoising loss decreases throughout, showing the fake score model tracks the evolving generator distribution. (d) Output standard deviation remains above 0.35 for both schedules, confirming no mean collapse occurs. Dashed gray line marks the Phase 1/Phase 2 transition at step 5,000}{figure.8}{}}
+\newlabel{fig:training_dynamics@cref}{{[figure][8][2147483647]8}{[1][11][]12}}
+\newlabel{fig:qualitative}{{9}{13}{Qualitative comparison on CIFAR-10 32$\times $32 (best model: phase-aligned warmup at 30K steps, FID 28.06). Top: 100-step DDPM teacher outputs. Middle: AdaDMD single-step outputs from random noise. Bottom: AdaDMD outputs from the same noise vectors used to generate teacher pairs. The student captures recognizable structure and color statistics with increasing fidelity}{figure.9}{}}
+\newlabel{fig:qualitative@cref}{{[figure][9][2147483647]9}{[1][11][]13}}
+\gdef \@abspage@last{13}

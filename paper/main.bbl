@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{23}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -34,6 +34,21 @@ Hu, E.~J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., and
 \newblock {LoRA}: Low-rank adaptation of large language models.
 \newblock In \emph{International Conference on Learning Representations}, 2022.
 
+\bibitem[Karras et~al.(2022)Karras, Aittala, Aila, and
+  Laine]{karras2022elucidating}
+Karras, T., Aittala, M., Aila, T., and Laine, S.
+\newblock Elucidating the design space of diffusion-based generative models.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35, pp.\  26565--26577, 2022.
+
+\bibitem[Kim et~al.(2024)Kim, Lai, Liao, Murata, Takida, Uesaka, He, Mitsufuji,
+  and Ermon]{kim2024consistency}
+Kim, D., Lai, C.-H., Liao, W.-H., Murata, N., Takida, Y., Uesaka, T., He, Y.,
+  Mitsufuji, Y., and Ermon, S.
+\newblock Consistency trajectory models: Learning probability flow {ODE}
+  trajectory of diffusion.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+
 \bibitem[Krizhevsky \& Hinton(2009)Krizhevsky and
   Hinton]{krizhevsky2009learning}
 Krizhevsky, A. and Hinton, G.
@@ -51,6 +66,12 @@ Liu, X., Zhang, X., Ma, J., Peng, J., and Liu, Q.
 Loshchilov, I. and Hutter, F.
 \newblock Decoupled weight decay regularization.
 \newblock In \emph{International Conference on Learning Representations}, 2019.
+
+\bibitem[Luhman \& Luhman(2021)Luhman and Luhman]{luhman2021knowledge}
+Luhman, E. and Luhman, T.
+\newblock Knowledge distillation in iterative generative models for improved
+  sampling speed.
+\newblock \emph{arXiv preprint arXiv:2101.02388}, 2021.
 
 \bibitem[Luo et~al.(2023{\natexlab{a}})Luo, Tan, Huang, Li, and
   Zhao]{luo2023latent}
@@ -84,6 +105,11 @@ Sauer, A., Lorenz, D., Blattmann, A., and Rombach, R.
 \newblock Adversarial diffusion distillation.
 \newblock In \emph{European Conference on Computer Vision}, pp.\  87--103.
   Springer, 2024.
+
+\bibitem[Song \& Dhariwal(2024)Song and Dhariwal]{song2024improved}
+Song, Y. and Dhariwal, P.
+\newblock Improved techniques for training consistency models.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
 
 \bibitem[Song et~al.(2021)Song, Sohl-Dickstein, Kingma, Kumar, Ermon, and
   Poole]{song2021scorebased}
@@ -123,6 +149,14 @@ Zhang, R., Isola, P., Efros, A.~A., Shechtman, E., and Wang, O.
   metric.
 \newblock \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and
   Pattern Recognition}, pp.\  586--595, 2018.
+
+\bibitem[Zheng et~al.(2023)Zheng, Hong, Mei, Chen, and
+  Li]{zheng2024diffinstruct}
+Zheng, W., Hong, Y., Mei, J., Chen, J., and Li, P.
+\newblock Diff-instruct: A universal approach for transferring knowledge from
+  pre-trained diffusion models.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36, 2023.
 
 \bibitem[Zhou et~al.(2024)Zhou, Zheng, Wang, Yin, and Huang]{zhou2024score}
 Zhou, M., Zheng, H., Wang, Z., Yin, M., and Huang, H.

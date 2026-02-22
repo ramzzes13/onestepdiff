@@ -426,7 +426,7 @@ Cos, 1e-3 (35K) & 107.85 & 106.46 & 105.28 \\
 \subsection{Schedule Length Ablation}
 \label{sec:schedule}
 
-Table~\ref{tab:schedule} compares cosine LR schedules of different lengths, all using $\lambda_{\text{DM}} = 5 \times 10^{-5}$ and warmup=1,000. The 35K schedule achieves the best FID (82.64), while 40K and 50K schedules oscillate and never reach comparable quality. The 50K schedule's best FID (101.96 at 40K steps) occurs roughly 80\% through training---the same relative position where the 35K schedule achieves its best---but at a worse absolute value because the slower LR decay keeps the learning rate too high through the middle phase. With 2,000-step warmup, the 35K schedule further improves to 55.45 (\Cref{sec:warmup}). Figure~\ref{fig:schedule_ablation} shows the FID trajectories.
+Table~\ref{tab:schedule} compares cosine LR schedules of different lengths, all using $\lambda_{\text{DM}} = 5 \times 10^{-5}$. With warmup=1K, the 35K schedule achieves the best FID (82.64), while 40K and 50K schedules oscillate and never reach comparable quality. The 50K schedule's best FID (101.96 at 40K steps) occurs roughly 80\% through training---the same relative position where the 35K schedule achieves its best---but at a worse absolute value because the slower LR decay keeps the learning rate too high through the middle phase. Notably, phase-aligned warmup (5K) does not rescue the 40K schedule: the best FID degrades to 111.34 with severe final-step collapse (237.56 at 40K), confirming that 35K is the right schedule length independent of warmup. With 2,000-step warmup, the 35K schedule further improves to 55.45 (\Cref{sec:warmup}). Figure~\ref{fig:schedule_ablation} shows the FID trajectories.
 
 \begin{table}[t]
 \caption{Schedule length ablation (cosine LR, $\lambda_{\text{DM}} = 5\times 10^{-5}$). All use identical hyperparameters except total step count.}
@@ -440,8 +440,10 @@ Schedule & Best FID $\downarrow$ & Best Step & Final FID \\
 25K, const LR & 115.01 & 20K & 138.74 \\
 35K, cosine & \textbf{82.64} & 35K & \textbf{82.64} \\
 40K, cosine & 103.01 & 30K & 125.86 \\
+40K, cos, w5K$^\star$ & 111.34 & 25K & 237.56 \\
 50K, cosine & 101.96 & 40K & 161.93 \\
 \bottomrule
+\multicolumn{4}{l}{\footnotesize $^\star$ Phase-aligned warmup. All others use warmup=1K.}
 \end{tabular}
 \end{table}
 
@@ -451,6 +453,28 @@ Schedule & Best FID $\downarrow$ & Best Step & Final FID \\
 \caption{FID trajectories for different cosine schedule lengths. The 35K schedule achieves the best final FID. Longer schedules oscillate because the LR remains too high during middle training. Stars mark each schedule's best checkpoint.}
 \label{fig:schedule_ablation}
 \end{figure}
+
+\subsection{Hyperparameter Sensitivity}
+\label{sec:sensitivity}
+
+Table~\ref{tab:sensitivity} evaluates sensitivity to three key hyperparameters, varying each while keeping the rest at the optimal configuration (35K cosine, warmup 5K, batch 8, $\lambda_{\text{DM}} = 5 \times 10^{-5}$). Extending to a 40K schedule degrades best FID from 28.06 to 111.34 because the slower decay keeps the LR too high during the critical middle phase. Doubling batch size to 16 further degrades to 148.38, likely because the generator sees fewer gradient updates per training step. Doubling the DM loss scale ($\lambda_{\text{DM}} = 10^{-4}$) gives 120.27---the stronger DM signal introduces more noise without proportional benefit. These results confirm the original configuration occupies a tight optimum in hyperparameter space.
+
+\begin{table}[t]
+\caption{Hyperparameter sensitivity. Each row varies one setting from the optimal configuration (35K, batch 8, $\lambda_{\text{DM}} = 5{\times}10^{-5}$, warmup 5K).}
+\label{tab:sensitivity}
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Variation & Best FID $\downarrow$ & Step & Baseline \\
+\midrule
+Optimal (v10) & \textbf{28.06} & 30K & --- \\
+40K schedule (v12a) & 111.34 & 25K & 28.06 \\
+Batch 16 (v12b) & 148.38 & 30K & 28.06 \\
+$\lambda_{\text{DM}} = 10^{-4}$ (v12c) & 120.27 & 35K & 28.06 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Warmup Duration Ablation}
 \label{sec:warmup}
