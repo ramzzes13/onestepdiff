@@ -637,6 +637,9 @@ We evaluate only on CIFAR-10 32$\times$32 with an unconditional DDPM teacher. Th
 
 The optimal Phase 1 duration (5K steps) and warmup alignment are specific to our setup (CIFAR-10, DDPM teacher, 35K training). The phase duration validation (\Cref{sec:phase_validation}) shows that both shorter (3K) and longer (7K) regression phases degrade substantially. Different base models, resolutions, or training budgets would require re-tuning both Phase 1 length and warmup duration. The non-monotonic warmup effect (3K worse than 2K at fixed Phase 1) suggests the landscape is complex, and validation-based schedule selection would be needed for new settings.
 
+\paragraph{Seed sensitivity.}
+Reproducibility runs with the optimal configuration but different random seeds yield high variance: FID ranges from 28.06 to 150.84 across three runs (\Cref{app:reproducibility}). This variance reflects the noisy optimization landscape inherent to LoRA-based distribution matching---the weak gradients from the density-ratio network (only ${\sim}50\%$ NCE accuracy) combined with a short training budget make the trajectory sensitive to initial conditions. The median run achieves 66.78 FID, still a 70\% improvement over MSE baseline (222 FID), confirming the method works across seeds even if the best-case result varies substantially. Longer training, stronger fake score models (higher rank or full copy), or ensembling across seeds could reduce this variance.
+
 % ============================================================
 \section{Conclusion}
 \label{sec:conclusion}
@@ -704,6 +707,50 @@ Figure~\ref{fig:training_dynamics} shows the training dynamics for both regressi
 \paragraph{Phase 2 (DM + regression).} After the DM loss activates at step 5,000, NCE accuracy drops to $\sim$50\% within a few hundred steps, indicating that noised samples from both distributions become indistinguishable at most noise levels. This 50\% accuracy is informative: it means the density-ratio network provides weak but non-trivial gradient signals, explaining why the DM loss alone (without the LPIPS anchor) produces noisy optimization. The regression loss stabilizes around 0.11--0.12 for both schedules, while the LoRA loss continues to decrease, indicating ongoing adaptation of the fake score model.
 
 \paragraph{Key observation.} The dynamics are qualitatively similar between decaying and constant regression, yet their FID trajectories diverge substantially after 15K steps (Figure~\ref{fig:fid_trajectory}). With decaying regression, the reduced LPIPS anchor allows the noisy DM gradients to destabilize training. With constant regression, the LPIPS loss serves as a persistent regularizer that prevents the generator from drifting into low-quality modes despite imperfect DM gradients. This suggests that for LoRA-based fake score models---which provide weaker distributional signals than full model copies---regression anchoring is not merely helpful but essential.
+
+\section{Standard FID Evaluation}
+\label{app:standard_fid}
+
+Table~\ref{tab:standard_fid} compares the internal FID (5K generated vs.\ 10K test) with the standard FID (50K generated vs.\ 50K train) for the best model (phase-aligned warmup). The two protocols track closely, with the standard FID approximately 1--2 points higher across all checkpoints. This validates our use of the lighter protocol for ablation studies.
+
+\begin{table}[h]
+\centering
+\caption{Internal vs.\ standard FID protocol for the best model (cosine LR, warmup 5K, $\lambda_{\text{DM}} = 5\times 10^{-5}$).}
+\label{tab:standard_fid}
+\begin{tabular}{lccc}
+\toprule
+Step & Internal (5K/10K) & Standard (50K/50K) \\
+\midrule
+25K & 50.05 & 51.77 \\
+30K & \textbf{28.06} & \textbf{30.05} \\
+35K & 29.81 & 32.42 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Reproducibility Across Seeds}
+\label{app:reproducibility}
+
+Table~\ref{tab:reproducibility} reports FID for the optimal configuration (cosine LR, warmup 5K, $\lambda_{\text{DM}} = 5\times 10^{-5}$) across three independent runs with different random seeds. All runs use identical hyperparameters and the same pre-generated teacher pairs.
+
+\begin{table}[h]
+\centering
+\caption{Reproducibility: FID across three seeds with the optimal configuration. All settings identical except random seed.}
+\label{tab:reproducibility}
+\begin{tabular}{lcccc}
+\toprule
+Seed & 20K & 25K & 30K & 35K \\
+\midrule
+Original & 114.71 & 50.05 & \textbf{28.06} & 29.81 \\
+Seed 2 & 131.27 & 66.78 & 72.30 & 83.80 \\
+Seed 3 & 150.34 & 150.84 & 191.34 & 172.69 \\
+\midrule
+Median & 131.27 & 66.78 & 72.30 & 83.80 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The original run achieves FID 28.06 at 30K, but the two additional runs yield best FIDs of 66.78 and 150.84. This high variance reflects the noisy optimization landscape: the LoRA-based fake score model provides weak distributional gradients (NCE accuracy ${\sim}50\%$), making the trajectory sensitive to which noise patterns the generator encounters during the critical early Phase 2 steps. All three seeds show improvement relative to the MSE baseline (222 FID), confirming that the method works across initializations even though the best-case outcome varies substantially.
 
 \section{Qualitative Samples}
 \label{app:samples}

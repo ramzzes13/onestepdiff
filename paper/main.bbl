@@ -87,6 +87,14 @@ Luo, S., Tan, Y., Patil, S., Gu, D., von Platen, P., Passos, A., Huang, L., Li,
 \newblock {LCM-LoRA}: A universal stable-diffusion acceleration module.
 \newblock \emph{arXiv preprint arXiv:2311.05556}, 2023{\natexlab{b}}.
 
+\bibitem[Luo et~al.(2023{\natexlab{c}})Luo, Hu, Zhang, Sun, Li, and
+  Zhang]{luo2024diffinstruct}
+Luo, W., Hu, T., Zhang, S., Sun, J., Li, Z., and Zhang, Z.
+\newblock Diff-instruct: A universal approach for transferring knowledge from
+  pre-trained diffusion models.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36, 2023{\natexlab{c}}.
+
 \bibitem[Nguyen \& Tran(2024)Nguyen and Tran]{nguyen2024swiftbrush}
 Nguyen, T.~H. and Tran, A.
 \newblock {SwiftBrush}: One-step text-to-image diffusion model with variational
@@ -149,14 +157,6 @@ Zhang, R., Isola, P., Efros, A.~A., Shechtman, E., and Wang, O.
   metric.
 \newblock \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and
   Pattern Recognition}, pp.\  586--595, 2018.
-
-\bibitem[Zheng et~al.(2023)Zheng, Hong, Mei, Chen, and
-  Li]{zheng2024diffinstruct}
-Zheng, W., Hong, Y., Mei, J., Chen, J., and Li, P.
-\newblock Diff-instruct: A universal approach for transferring knowledge from
-  pre-trained diffusion models.
-\newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~36, 2023.
 
 \bibitem[Zhou et~al.(2024)Zhou, Zheng, Wang, Yin, and Huang]{zhou2024score}
 Zhou, M., Zheng, H., Wang, Z., Yin, M., and Huang, H.
