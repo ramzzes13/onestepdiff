@@ -66,7 +66,7 @@
 
 % ============================================================
 \begin{abstract}
-Distribution Matching Distillation (DMD) enables single-step image generation by minimizing the KL divergence between generator and data distributions via dual score functions. DMD requires three full diffusion models in memory simultaneously, demanding extreme GPU resources (72 A100s for text-to-image training). We propose \textbf{AdaDMD}, which replaces the full-copy fake score model with a LoRA adapter (2.9\% of base model parameters, 97\% memory reduction for the fake score component), learns adaptive timestep weights via a density-ratio estimator trained with noise contrastive estimation, and uses the learned density ratio as both a training regularizer and an inference-time sample verifier. On CIFAR-10 distillation from a pretrained DDPM teacher, AdaDMD trains on a single GPU using under 1\,GB peak memory, achieving \textbf{28.06 FID} in one step---an 87\% improvement over MSE-based distillation. A critical finding is that jointly optimizing the regression-only phase duration (5,000 steps) and aligning the learning rate warmup with this phase produces a $3{\times}$ FID improvement over standard warmup, as the learning rate peaks precisely when distribution matching activates and immediately begins cosine decay. Ablation studies across five warmup durations and three phase lengths validate this: the effect is non-monotonic across warmup and the regression duration is itself a sweet spot.
+Distribution Matching Distillation (DMD) enables single-step image generation via dual score functions but requires three full diffusion models in memory (72 A100s for text-to-image). We propose \textbf{AdaDMD}, which replaces the full-copy fake score model with a LoRA adapter (2.9\% of base parameters), learns adaptive timestep weights from a density-ratio estimator, and uses the density ratio as both a training regularizer and inference-time sample verifier. On CIFAR-10, AdaDMD trains on a single GPU under 1\,GB memory, achieving \textbf{28.06 FID} in one step---an 87\% improvement over MSE distillation. The key finding is \textbf{phase-aligned warmup}: jointly optimizing the regression-only phase (5K steps) and matching the learning rate warmup to this phase yields a $3{\times}$ improvement over standard warmup (28.06 vs.\ 82.64 FID). The LR peaks when distribution matching activates and immediately decays, preventing noisy distributional gradients from destabilizing the generator. Ablation across five warmup durations and three phase lengths confirms the effect is non-monotonic and the regression duration is itself a sweet spot.
 \end{abstract}
 
 % ============================================================
@@ -218,7 +218,7 @@ selecting the candidate most consistent with the real distribution. This provide
 \caption{AdaDMD Training}
 \label{alg:adadmd}
 \begin{algorithmic}[1]
-\REQUIRE Pretrained model $\bepsilon^{\text{real}}$, dataset $\mathcal{D}$
+\REQUIRE Pretrained model $\bepsilon^{\text{real}}$, dataset $\mathcal{D}$, Phase 1 steps $T_1$
 \STATE Init $G_{\btheta} \leftarrow \bepsilon^{\text{real}}$ (weights)
 \STATE Init LoRA adapter $\Delta_{\bphi}$ with rank $r_0$
 \STATE Init density-ratio network $r_{\bpsi}$
@@ -232,13 +232,13 @@ selecting the candidate most consistent with the real distribution. This provide
     \STATE \textit{// Update density-ratio}
     \STATE $\mathcal{L}_{\text{NCE}}$ from noised real/fake (Eq.~\ref{eq:nce})
     \STATE Update $\bpsi$
-    \STATE \textit{// Update generator}
-    \STATE $w_t^{\text{ada}}$ from Eq.~\ref{eq:ada_weight}
-    \STATE $\mathcal{L}_{\text{total}}$ from Eq.~\ref{eq:total_loss}
-    \STATE Update $\btheta$; EMA update
-    \IF{step mod $K = 0$ and $r < r_{\max}$}
-        \STATE $r \leftarrow \min(2r, r_{\max})$
+    \STATE \textit{// Update generator (two-phase)}
+    \IF{step $\leq T_1$}
+        \STATE $\mathcal{L} \leftarrow \lambda_{\text{reg}} \mathcal{L}_{\text{reg}}$ \quad\textit{// Phase 1: regression only}
+    \ELSE
+        \STATE $\mathcal{L} \leftarrow \mathcal{L}_{\text{total}}$ from Eq.~\ref{eq:total_loss} \quad\textit{// Phase 2}
     \ENDIF
+    \STATE Update $\btheta$; EMA update
 \ENDFOR
 \end{algorithmic}
 \end{algorithm}
