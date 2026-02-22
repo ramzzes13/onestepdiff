@@ -518,10 +518,10 @@ Phase 1 & Warmup & Aligned & 20K & 25K & 30K & 35K & Best \\
 \subsection{Comparison with Published Methods}
 \label{sec:comparison}
 
-Table~\ref{tab:comparison} places AdaDMD in the context of published one-step generation methods on CIFAR-10. Methods achieving FID $<5$ (DMD, CTM, SiD, iCT-deep) use EDM-class teachers~\citep{karras2022elucidating} trained with 200M+ images and 300K+ distillation steps on multi-GPU setups. AdaDMD uses a standard DDPM teacher~\citep{ho2020denoising} with 35K distillation steps on a \emph{single GPU under 1\,GB memory}. The FID gap (28.06 vs.\ ${\sim}2$) reflects this resource difference, not a methodological limitation: the LoRA-based framework, phase-aligned warmup, and density-ratio weighting are orthogonal to the choice of teacher model.
+Table~\ref{tab:comparison} places AdaDMD in context. Methods achieving FID $<5$ use EDM teachers~\citep{karras2022elucidating} with 300K+ distillation steps on multi-GPU setups. Prior DDPM-teacher baselines (Progressive Distillation~\citep{salimans2022progressive}, Luhman \& Luhman~\citep{luhman2021knowledge}) achieve 9.12--9.36 FID in one step with substantially more training compute. AdaDMD uses 35K steps on a single GPU under 1\,GB, reaching 28.06 FID---worse in absolute terms but demonstrating that distribution matching with LoRA-based fake scores is viable under extreme resource constraints.
 
 \begin{table}[t]
-\caption{Comparison with published one-step methods on unconditional CIFAR-10 32$\times$32. $^\dagger$Uses EDM teacher~\citep{karras2022elucidating}. $^\ddagger$Uses DDPM teacher~\citep{ho2020denoising} with 35K steps on a single GPU ($<$1\,GB).}
+\caption{Comparison with published one-step methods on unconditional CIFAR-10 32$\times$32. $^\dagger$EDM teacher. $^\ddagger$DDPM teacher. $^\S$Single GPU, $<$1\,GB, 35K steps.}
 \label{tab:comparison}
 \centering
 \small
@@ -540,12 +540,14 @@ SiD~\citep{zhou2024score} & 1 & 2.03 & ICML'24 \\
 CTM~\citep{kim2024consistency} & 1 & 1.98 & ICLR'24 \\
 \midrule
 \multicolumn{4}{l}{\textit{One-step, DDPM teacher$^\ddagger$:}} \\
-\textbf{AdaDMD (ours)} & \textbf{1} & \textbf{28.06} & --- \\
+Luhman \& Luhman~\citep{luhman2021knowledge} & 1 & 9.36 & arXiv'21 \\
+Prog.\ Distill.~\citep{salimans2022progressive} & 1 & 9.12 & ICLR'22 \\
+\textbf{AdaDMD (ours)}$^\S$ & \textbf{1} & \textbf{28.06} & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The comparison highlights that distribution matching methods (DMD, 3.77; SiD, 2.03) rely on strong EDM teachers and large compute budgets. AdaDMD, distilling a weaker DDPM teacher at $9{\times}$ fewer training steps, achieves an 87\% relative improvement from MSE baseline (222 FID). The contributions---LoRA-based fake scores, adaptive weighting, and phase-aligned warmup---are orthogonal to the teacher and should transfer to EDM-class models with standard compute.
+The gap between AdaDMD (28.06) and DDPM-teacher baselines (9.12--9.36) is attributable to our extreme resource constraint: 35K training steps versus significantly longer training in prior work. However, AdaDMD's 87\% relative improvement from MSE baseline (222 FID) demonstrates the effectiveness of the LoRA-based framework and phase-aligned warmup. The contributions---memory-efficient fake scores, adaptive weighting, and principled training schedule design---are orthogonal to the teacher and compute budget.
 
 \subsection{Memory Efficiency}
 \label{sec:memory}
