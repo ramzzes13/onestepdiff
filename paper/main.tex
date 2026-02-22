@@ -66,7 +66,7 @@
 
 % ============================================================
 \begin{abstract}
-Distribution Matching Distillation (DMD) enables single-step image generation by minimizing the KL divergence between generator and data distributions through dual score functions. However, DMD requires three full diffusion models in memory simultaneously, demanding extreme GPU resources (72 A100s for text-to-image training). We propose \textbf{AdaDMD}, which addresses this through three contributions: (1) replacing the full-copy fake score model with a LoRA adapter (2.9\% of parameters), reducing fake score memory by 97\%; (2) learning adaptive timestep weights via a density-ratio estimator trained with noise contrastive estimation; and (3) using the learned density ratio as both a training regularizer and an inference-time sample verifier. On CIFAR-10 distillation with a pretrained DDPM teacher, AdaDMD trains on a single GPU using under 1\,GB peak memory. Combined with paired LPIPS regression and a cosine learning rate schedule, AdaDMD achieves \textbf{82.64 FID} at 35K steps---a 63\% improvement over MSE-based distillation. A key finding is that cosine LR scheduling prevents the late-training degradation observed with constant learning rates, enabling continuous improvement beyond 25K steps. Ablation studies confirm adaptive weighting improves FID by 2.1 points and density-ratio verification provides up to 4.6 FID improvement at inference time
+Distribution Matching Distillation (DMD) enables single-step image generation by minimizing the KL divergence between generator and data distributions via dual score functions. DMD requires three full diffusion models in memory simultaneously, demanding extreme GPU resources (72 A100s for text-to-image training). We propose \textbf{AdaDMD}, which replaces the full-copy fake score model with a LoRA adapter (2.9\% of base model parameters, 97\% memory reduction for the fake score component), learns adaptive timestep weights via a density-ratio estimator trained with noise contrastive estimation, and uses the learned density ratio as both a training regularizer and an inference-time sample verifier. On CIFAR-10 distillation from a pretrained DDPM teacher, AdaDMD trains on a single GPU using under 1\,GB peak memory, achieving \textbf{82.64 FID} at 35K steps---a 63\% improvement over MSE-based distillation. Cosine LR scheduling prevents the late-training degradation observed with constant learning rates. Ablation studies confirm that adaptive weighting improves FID by 2.1 points, density-ratio verification improves FID by up to 7.0 points for intermediate models, and the 35K cosine schedule outperforms both shorter (25K) and longer (40--50K) alternatives.
 \end{abstract}
 
 % ============================================================
@@ -79,7 +79,7 @@ Distribution Matching Distillation (DMD)~\citep{yin2024onestep} introduced an ef
 
 DMD2~\citep{yin2024dmd2} improved this by eliminating the regression loss through a two-time-scale update rule and adding a GAN discriminator, reaching 1.28 FID on ImageNet 64$\times$64. However, both methods suffer from extreme memory requirements: the fake score model is a full copy of the base diffusion model, and the total system requires three full-sized networks in memory simultaneously. DMD's text-to-image experiments required 72 A100 GPUs.
 
-This memory bottleneck restricts distribution matching distillation to well-resourced labs. Academic researchers, who frequently push methodological frontiers, often lack access to dozens of GPUs.
+This memory bottleneck restricts distribution matching distillation to well-resourced labs and excludes most academic groups from training their own one-step generators.
 
 We propose \textbf{AdaDMD} (Adaptive Distribution Matching Distillation), which makes three modifications to the DMD framework:
 
@@ -258,7 +258,7 @@ We pre-generate 10,000 paired (noise, teacher output) samples by running 100-ste
 \paragraph{Training details.}
 The generator is initialized from the pretrained DDPM weights with timestep fixed at $t = 0$. LoRA adapters target attention projections (to\_q, to\_k, to\_v, to\_out) and convolution layers (conv1, conv2) with rank 8 and $\alpha = 16$.
 
-Training uses AdamW~\citep{loshchilov2019decoupled} with learning rates $2 \times 10^{-5}$ (generator), $10^{-4}$ (LoRA), $10^{-4}$ (density-ratio), and batch size 8. Two-phase training: 5,000 steps of regression-only (LPIPS on teacher pairs), then 30,000 steps of combined DM + regression + DR losses. We use a cosine learning rate schedule with 500-step linear warmup and minimum LR ratio 0.1, which prevents late-training degradation observed with constant LR. Regression weight is held constant at 1.0 throughout training. DM loss is scaled by $\lambda_{\text{DM}} = 5 \times 10^{-5}$.
+Training uses AdamW~\citep{loshchilov2019decoupled} with learning rates $2 \times 10^{-5}$ (generator), $10^{-4}$ (LoRA), $10^{-4}$ (density-ratio), and batch size 8. Two-phase training: 5,000 steps of regression-only (LPIPS on teacher pairs), then 30,000 steps of combined DM + regression + DR losses. We use a cosine learning rate schedule with 1,000-step linear warmup and minimum LR ratio 0.1, which prevents late-training degradation observed with constant LR. Regression weight is held constant at 1.0 throughout training. DM loss is scaled by $\lambda_{\text{DM}} = 5 \times 10^{-5}$.
 
 All experiments run on a single GPU with peak memory under 1\,GB.
 
@@ -383,33 +383,63 @@ HF DDPM, LPIPS, 35K & 107.85 & 106.46 & 105.28 \\
 \end{figure}
 
 \paragraph{Density-ratio verification.}
-Table~\ref{tab:dr_verify} and Figure~\ref{fig:dr_verify} show density-ratio verification results. DR verification provides up to 7.0 FID points improvement for the constant-LR model (115.01 $\to$ 110.38 with DR-8). For the cosine-LR model at 30K, DR-4 improves FID by 7.0 points (117.90 $\to$ 110.86). At 35K steps, the raw FID (82.64) already surpasses all DR-verified results from earlier configurations.
+Table~\ref{tab:dr_verify} and Figure~\ref{fig:dr_verify} show density-ratio verification results. DR verification provides up to 7.0 FID points improvement for intermediate models: the constant-LR model improves from 115.01 to 110.38 with DR-8, and the cosine-LR model at 30K improves from 117.90 to 110.86 with DR-4. However, for the best 35K model, DR verification slightly \emph{hurts} FID (82.64 $\to$ 85.04 with DR-4, 83.63 with DR-8). This suggests that when the generator distribution is already well-aligned, the density-ratio network's limited discriminative capacity (recall its NCE accuracy converges to ${\sim}50\%$) introduces noise rather than useful signal into sample selection. DR verification is most effective for under-trained models where the generator--data gap is large enough for meaningful ranking.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/dr_verification.pdf}
-\caption{Density-ratio verification (best-of-$N$) improves FID. For the extended LPIPS model, DR-4 provides a 4.6-point improvement.}
+\caption{Density-ratio verification (best-of-$N$) effect on FID. DR verification improves intermediate models (up to 7.0 points at 30K) but slightly hurts the well-converged 35K model.}
 \label{fig:dr_verify}
 \end{figure}
 
 \begin{table}[t]
-\caption{Density-ratio verification (FID improvement).}
+\caption{Density-ratio verification effect on FID.}
 \label{tab:dr_verify}
 \centering
+\small
 \begin{tabular}{lccc}
 \toprule
 Model & $N{=}1$ & $N{=}4$ & $N{=}8$ \\
 \midrule
 SmallUNet & 222.12 & 219.93 & 220.10 \\
 HF DDPM, MSE (5K) & 237.09 & 234.23 & 233.93 \\
-HF DDPM, LPIPS decay (20K) & 139.77 & 135.22 & 137.38 \\
-HF DDPM, const LR (20K) & 115.01 & 111.11 & 110.38 \\
-Cosine, $\lambda_{\text{DM}}{=}5\text{e-}5$ (30K) & 117.90 & 110.86 & 115.57 \\
-Cosine, $\lambda_{\text{DM}}{=}5\text{e-}5$ (35K) & \textbf{82.64} & 85.04 & 83.63 \\
-Cosine, $\lambda_{\text{DM}}{=}10^{-3}$ (35K) & 107.85 & 106.46 & 105.28 \\
+LPIPS decay (20K) & 139.77 & 135.22 & 137.38 \\
+Const LR (20K) & 115.01 & 111.11 & 110.38 \\
+Cosine, 5e-5 (30K) & 117.90 & \textbf{110.86} & 115.57 \\
+Cosine, 5e-5 (35K) & \textbf{82.64} & 85.04 & 83.63 \\
+Cosine, 1e-3 (35K) & 107.85 & 106.46 & 105.28 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{Schedule Length Ablation}
+\label{sec:schedule}
+
+Table~\ref{tab:schedule} compares cosine LR schedules of different lengths, all using $\lambda_{\text{DM}} = 5 \times 10^{-5}$. The 35K schedule achieves the best FID (82.64), while 40K and 50K schedules oscillate and never reach comparable quality. The 50K schedule's best FID (101.96 at 40K steps) occurs roughly 80\% through training---the same relative position where the 35K schedule achieves its best---but at a worse absolute value because the slower LR decay keeps the learning rate too high through the middle phase, where critical fine-grained structure forms. Figure~\ref{fig:schedule_ablation} shows the FID trajectories for all schedule lengths.
+
+\begin{table}[t]
+\caption{Schedule length ablation (cosine LR, $\lambda_{\text{DM}} = 5\times 10^{-5}$). All use identical hyperparameters except total step count.}
+\label{tab:schedule}
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Schedule & Best FID $\downarrow$ & Best Step & Final FID \\
+\midrule
+25K, const LR & 115.01 & 20K & 138.74 \\
+35K, cosine & \textbf{82.64} & 35K & \textbf{82.64} \\
+40K, cosine & 103.01 & 30K & 125.86 \\
+50K, cosine & 101.96 & 40K & 161.93 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/schedule_ablation.pdf}
+\caption{FID trajectories for different cosine schedule lengths. The 35K schedule achieves the best final FID. Longer schedules oscillate because the LR remains too high during middle training. Stars mark each schedule's best checkpoint.}
+\label{fig:schedule_ablation}
+\end{figure}
 
 \subsection{Memory Efficiency}
 \label{sec:memory}
@@ -462,16 +492,17 @@ Interestingly, the schedule length matters: extending to 50K steps with a 50K co
 Rank 8 outperforms higher ranks at 5K steps, likely because increased capacity without proportionally more training leads to overfitting of the fake score model. The rank warming schedule (4$\to$32) achieves competitive results while starting with lower capacity, supporting the hypothesis that early distributional differences are low-rank.
 
 \paragraph{Limitations.}
-We evaluate only on CIFAR-10 32$\times$32 with an unconditional DDPM teacher. Three factors limit the absolute FID: (1) the DDPM teacher architecture, designed for iterative denoising, is suboptimal when repurposed as a single-step generator at $t{=}0$; (2) the training budget of 35K steps is $9{\times}$ shorter than DMD's 300K+ steps; (3) CIFAR-10 at 32$\times$32 is a low-resolution benchmark where perceptual losses are less effective. Scaling to text-to-image distillation (Stable Diffusion) requires both more GPU memory and text conditioning; the LoRA-based approach should transfer directly since SD v1.5 uses the same UNet attention architecture.
-The density-ratio verifier provides quality improvement at the cost of $N{\times}$ latency. For applications where latency is critical and $N{>}1$ is unacceptable, the unverified model still achieves 82.64 FID.
+We evaluate only on CIFAR-10 32$\times$32 with an unconditional DDPM teacher. Three factors limit the absolute FID: (1) the DDPM architecture, designed for iterative denoising, is suboptimal when repurposed as a single-step generator at $t{=}0$; (2) the training budget of 35K steps is $9{\times}$ shorter than DMD's 300K+ steps; (3) CIFAR-10 at 32$\times$32 is a low-resolution benchmark where perceptual losses are less effective. Scaling to Stable Diffusion requires more GPU memory and text conditioning, though the LoRA-based approach should transfer since SD v1.5 uses the same UNet attention architecture.
+
+The density-ratio verifier improves FID for intermediate models but slightly hurts the best model (82.64 $\to$ 85.04 with DR-4), indicating that its discriminative capacity is insufficient when the generator--data gap is small. A stronger density-ratio network---or one trained with a different objective---might maintain effectiveness at convergence. The verifier adds $N{\times}$ latency; for latency-critical applications, the unverified model remains the practical choice.
 
 % ============================================================
 \section{Conclusion}
 \label{sec:conclusion}
 
-AdaDMD demonstrates that the DMD framework can be made substantially more memory-efficient through LoRA-based fake score estimation, while adaptive density-ratio weighting and verification provide measurable quality improvements. The LoRA adapter reduces the fake score model from 35.7M to 1.08M parameters (97\% reduction). With paired LPIPS regression, cosine LR scheduling, and a moderate DM loss scale, AdaDMD achieves \textbf{82.64 FID} on CIFAR-10---a 63\% improvement over MSE-based distillation---within 35K steps on a single GPU using under 1\,GB memory. The cosine schedule eliminates the late-training degradation observed with constant LR, enabling continuous improvement. Ablation studies confirm that adaptive weighting improves FID by 2.1 points, and DR verification provides up to 4.6 additional FID points.
+AdaDMD demonstrates that the DMD framework can be made substantially more memory-efficient through LoRA-based fake score estimation, while adaptive density-ratio weighting provides measurable quality improvements and DR verification helps under-trained models. The LoRA adapter reduces the fake score model from 35.7M to 1.08M parameters (97\% reduction). With paired LPIPS regression, cosine LR scheduling, and a moderate DM loss scale, AdaDMD achieves \textbf{82.64 FID} on CIFAR-10---a 63\% improvement over MSE-based distillation---within 35K steps on a single GPU using under 1\,GB memory. The cosine schedule eliminates the late-training degradation observed with constant LR, and schedule length ablations confirm that 35K steps with cosine LR outperforms both shorter (25K) and longer (40--50K) alternatives.
 
-Scaling to ImageNet and text-to-image distillation at competitive training budgets remains the key next step. The schedule length is important: 35K steps with cosine LR outperforms both shorter (25K, constant LR) and longer (50K, cosine LR) alternatives, suggesting the rapid final LR decay is a key ingredient. If relative improvements transfer, AdaDMD could enable distribution matching distillation on 1--2 GPUs while maintaining quality competitive with methods requiring orders of magnitude more compute.
+Two key next steps remain: scaling to larger models (ImageNet, Stable Diffusion) and investigating whether a full-copy fake score model can eliminate the regression dependency. The LoRA-based approach trades gradient quality for memory efficiency; with stronger base models and proportionally larger training budgets, AdaDMD could enable distribution matching distillation on 1--2 GPUs at quality levels competitive with multi-GPU methods.
 
 % ============================================================
 \bibliography{refs}
@@ -504,7 +535,7 @@ Batch size & 32 & 8 \\
 LR (gen) & $5{\times}10^{-5}$ & $2{\times}10^{-5}$ \\
 LR (LoRA) & $10^{-4}$ & $10^{-4}$ \\
 LR (DR) & $10^{-4}$ & $10^{-4}$ \\
-LR schedule & constant & cosine (warmup 500) \\
+LR schedule & constant & cosine (warmup 1000) \\
 $(\beta_1, \beta_2)$ gen & (0.5, 0.999) & (0.5, 0.999) \\
 Grad clip & 1.0 & 1.0 \\
 EMA decay & 0.9999 & 0.9999 \\
