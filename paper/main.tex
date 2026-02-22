@@ -6,7 +6,7 @@
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{booktabs}
-\usepackage{hyperref}
+\usepackage[hypertexnames=false]{hyperref}
 
 \newcommand{\theHalgorithm}{\arabic{algorithm}}
 
@@ -103,11 +103,11 @@ DMD~\citep{yin2024onestep} framed one-step distillation as minimizing the KL div
 \paragraph{Consistency-based methods.}
 Consistency Models~\citep{song2023consistency} enforce self-consistency along the probability flow ODE trajectory. Improved Consistency Training (iCT)~\citep{song2024improved} reached 2.51 FID on unconditional CIFAR-10 in one step. Consistency Trajectory Models (CTM)~\citep{kim2024consistency} generalized this to arbitrary trajectory traversal, achieving 1.98 FID on CIFAR-10. Latent Consistency Models (LCM)~\citep{luo2023latent} adapted consistency training to latent diffusion, and LCM-LoRA~\citep{luo2023lcmlora} showed that LoRA adapters can serve as universal acceleration modules. These methods operate on sampling acceleration rather than full distribution matching.
 
-\paragraph{Adversarial distillation.}
-Adversarial Diffusion Distillation~\citep{sauer2023adversarial} combined score distillation with adversarial training for real-time generation. Score Identity Distillation~\citep{zhou2024score} achieved exponentially fast distillation by leveraging score identities on semi-implicit distributions.
+\paragraph{Score and adversarial distillation.}
+Diff-Instruct~\citep{luo2024diffinstruct} introduced integral probability metrics for transferring knowledge from pretrained diffusion models without requiring generated pairs. Adversarial Diffusion Distillation~\citep{sauer2023adversarial} combined score distillation with adversarial training for real-time generation. Score Identity Distillation~\citep{zhou2024score} achieved exponentially fast distillation via score identities on semi-implicit distributions.
 
-\paragraph{Progressive and simplified distillation.}
-Progressive Distillation~\citep{salimans2022progressive} halves the number of sampling steps iteratively. InstaFlow~\citep{liu2024instaflow} used rectified flow for one-step text-to-image generation. SwiftBrush~\citep{nguyen2024swiftbrush} applied variational score distillation.
+\paragraph{Progressive distillation.}
+Progressive Distillation~\citep{salimans2022progressive} halves the number of sampling steps iteratively, reaching 9.12 FID on CIFAR-10 in one step. Luhman \& Luhman~\citep{luhman2021knowledge} distilled DDPM into a single-step student with 9.36 FID. InstaFlow~\citep{liu2024instaflow} used rectified flow for one-step text-to-image generation. SwiftBrush~\citep{nguyen2024swiftbrush} applied variational score distillation.
 
 \paragraph{Memory-efficient approaches.}
 LCM-LoRA~\citep{luo2023lcmlora} demonstrated LoRA-based few-step sampling with minimal fine-tuning, though for sampling acceleration rather than distribution matching. Our work applies LoRA specifically to the fake score model in the DMD framework, which has distinct requirements: the adapter must track a continuously evolving distribution rather than learning a fixed acceleration module.
@@ -151,7 +151,7 @@ This motivates a low-rank parameterization. We replace $\bepsilon^{\text{fake}}_
 \bepsilon^{\text{fake}}(\bx_t, t) = \bepsilon^{\text{real}}(\bx_t, t; W + \Delta W_{\text{LoRA}})
 \label{eq:lora_score}
 \end{equation}
-where $\Delta W_{\text{LoRA}} = BA$ with $B \in \R^{d \times r}$, $A \in \R^{r \times k}$, applied to attention and convolution layers. We use PEFT~\citep{hu2022lora} LoRA adapters on the frozen base model, targeting query, key, value, output projections, and convolution layers.
+where $\Delta W_{\text{LoRA}} = BA$ with $B \in \R^{d \times r}$, $A \in \R^{r \times k}$, applied to attention and convolution layers. We apply LoRA adapters on the frozen base model, targeting query, key, value, output projections, and convolution layers.
 
 \paragraph{Rank warming.} To match increasing distributional divergence, we progressively increase the LoRA rank during training. Starting from rank $r_0$, we double it every $K$ steps up to $r_{\max}$:
 \begin{equation}
@@ -433,7 +433,7 @@ Table~\ref{tab:schedule} compares cosine LR schedules of different lengths, all 
 \label{tab:schedule}
 \centering
 \small
-\begin{tabular}{lcccc}
+\begin{tabular}{lccc}
 \toprule
 Schedule & Best FID $\downarrow$ & Best Step & Final FID \\
 \midrule
@@ -564,10 +564,10 @@ Method & Steps & FID $\downarrow$ & Venue \\
 DDPM~\citep{ho2020denoising} & 1000 & 3.17 & NeurIPS'20 \\
 \midrule
 \multicolumn{4}{l}{\textit{One-step, EDM teacher$^\dagger$:}} \\
-Diff-Instruct~\citep{zheng2024diffinstruct} & 1 & 4.53 & NeurIPS'23 \\
+Diff-Instruct~\citep{luo2024diffinstruct} & 1 & 4.53 & NeurIPS'23 \\
 DMD~\citep{yin2024onestep} & 1 & 3.77 & CVPR'24 \\
 iCT-deep~\citep{song2024improved} & 1 & 2.51 & ICLR'24 \\
-SiD~\citep{zhou2024score} & 1 & 2.03 & ICML'24 \\
+SiD~\citep{zhou2024score} & 1 & 1.92 & ICML'24 \\
 CTM~\citep{kim2024consistency} & 1 & 1.98 & ICLR'24 \\
 \midrule
 \multicolumn{4}{l}{\textit{One-step, DDPM teacher$^\ddagger$:}} \\
@@ -617,7 +617,7 @@ Optimizers + buffers & $\sim$670 \\
 \label{sec:discussion}
 
 \paragraph{FID gap analysis.}
-Our best one-step result (28.06 FID) remains far from state-of-the-art CIFAR-10 distillation (CTM: 1.98, SiD: 2.03; Table~\ref{tab:comparison}). Three factors account for this gap: (1) the DDPM teacher produces lower-quality images than EDM~\citep{karras2022elucidating}; (2) we train for 35K steps versus 300K+ in DMD~\citep{yin2024onestep}; (3) the DDPM UNet at $t{=}0$ is architecturally suboptimal for direct noise-to-image mapping. The 87\% relative improvement from MSE baseline (222 FID) to phase-aligned AdaDMD (28.06) under these constraints demonstrates the effectiveness of our training schedule design, and the method's contributions are orthogonal to the choice of teacher.
+Our best one-step result (28.06 FID) remains far from state-of-the-art CIFAR-10 distillation (CTM: 1.98, SiD: 1.92; Table~\ref{tab:comparison}). Three factors account for this gap: (1) the DDPM teacher produces lower-quality images than EDM~\citep{karras2022elucidating}; (2) we train for 35K steps versus 300K+ in DMD~\citep{yin2024onestep}; (3) the DDPM UNet at $t{=}0$ is architecturally suboptimal for direct noise-to-image mapping. The 87\% relative improvement from MSE baseline (222 FID) to phase-aligned AdaDMD (28.06) under these constraints demonstrates the effectiveness of our training schedule design, and the method's contributions are orthogonal to the choice of teacher.
 
 \paragraph{Regression loss as persistent anchor.}
 Unpaired regression ($\text{MSE}(G(\bz), \bx_{\text{random}})$) causes severe mean collapse (output std drops to 0.07 within 5K steps). Even paired L1/smooth-L1 collapses; only paired LPIPS~\citep{zhang2018unreasonable} maintains diversity (std $> 0.4$). The DM loss with LoRA-based fake scores provides weak distributional gradients---the density-ratio network achieves only $\sim$50\% NCE accuracy at intermediate noise levels---and requires the stabilizing effect of regression. A full model copy for the fake score (as in DMD) may produce stronger gradients that enable regression-free training, as demonstrated by DMD2~\citep{yin2024dmd2}. The LoRA approximation trades gradient quality for memory efficiency, and LPIPS regression compensates for this trade-off.
