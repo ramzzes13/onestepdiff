@@ -263,7 +263,7 @@ Training uses AdamW~\citep{loshchilov2019decoupled} with learning rates $2 \time
 All experiments run on a single GPU with peak memory under 1\,GB.
 
 \paragraph{Evaluation.}
-FID~\citep{heusel2017gans} is computed between 5,000 generated samples and the CIFAR-10 test set using Inception v3 features. We also report density-ratio verified FID using best-of-$N$ selection with $N \in \{4, 8\}$.
+FID~\citep{heusel2017gans} is computed between 5,000 generated samples and the CIFAR-10 test set (10K images) using Inception v3 features. This lighter protocol enables faster iteration across many configurations. For the best model, we additionally compute the standard benchmark FID (50K generated vs.\ 50K training images) for direct comparison with published methods. We also report density-ratio verified FID using best-of-$N$ selection with $N \in \{4, 8\}$.
 
 \paragraph{Ablations.}
 Ablation studies use a custom SmallUNet (6.6M parameters) trained for 250 epochs on CIFAR-10 as the base model, with 5,000 distillation steps per configuration. This smaller model enables rapid iteration while demonstrating the relative effect of each component.
@@ -338,7 +338,7 @@ Table~\ref{tab:main_results} reports distillation results across configurations.
 
 We compare several training configurations. With \textbf{decaying regression} weight (1.0$\to$0.3), FID plateaus at 139.77 (20K) then degrades to 174.83 (30K). With \textbf{constant regression and constant LR}, FID reaches 115.01 at 20K (DR-8: 110.38), but then degrades to 138.74 at 25K---the constant learning rate overshoots the optimum.
 
-With \textbf{cosine LR and 1,000-step warmup} ($\lambda_{\text{DM}} = 5 \times 10^{-5}$), FID improves continuously: 134.00 (20K) $\to$ 117.90 (30K) $\to$ 82.64 (35K). Extending warmup to \textbf{5,000 steps}---matching the regression-only phase---yields a $3{\times}$ improvement: 50.05 (25K) $\to$ \textbf{28.06} (30K) $\to$ 29.81 (35K), an 87\% improvement over the MSE baseline. The phase-aligned warmup ensures the LR peaks precisely when the DM loss activates and immediately begins cosine decay, so the DM phase never trains with an increasing learning rate (\Cref{sec:warmup}). With a stronger DM loss ($\lambda_{\text{DM}} = 10^{-3}$) and cosine LR, the trajectory is more volatile, confirming that a moderate DM scale produces smoother optimization.
+With \textbf{cosine LR and 1,000-step warmup} ($\lambda_{\text{DM}} = 5 \times 10^{-5}$), FID improves continuously: 134.00 (20K) $\to$ 117.90 (30K) $\to$ 82.64 (35K). Extending warmup to \textbf{5,000 steps}---matching the regression-only phase---yields a $3{\times}$ improvement: 50.05 (25K) $\to$ \textbf{28.06} (30K) $\to$ 29.81 (35K), an 87\% improvement over the MSE baseline. Under the standard 50K/50K protocol, the same model achieves \textbf{30.05 FID}, confirming that our lighter evaluation protocol closely tracks the standard metric. The phase-aligned warmup ensures the LR peaks precisely when the DM loss activates and immediately begins cosine decay, so the DM phase never trains with an increasing learning rate (\Cref{sec:warmup}). With a stronger DM loss ($\lambda_{\text{DM}} = 10^{-3}$) and cosine LR, the trajectory is more volatile, confirming that a moderate DM scale produces smoother optimization.
 
 \begin{table}[t]
 \caption{CIFAR-10 distillation results (5K generated vs.\ test set). DR-$N$: best-of-$N$ density-ratio verification.}
@@ -552,7 +552,7 @@ Phase 1 & Warmup & Aligned & 20K & 25K & 30K & 35K & Best \\
 Table~\ref{tab:comparison} places AdaDMD in context. Methods achieving FID $<5$ use EDM teachers~\citep{karras2022elucidating} with 300K+ distillation steps on multi-GPU setups. Prior DDPM-teacher baselines (Progressive Distillation~\citep{salimans2022progressive}, Luhman \& Luhman~\citep{luhman2021knowledge}) achieve 9.12--9.36 FID in one step with substantially more training compute. AdaDMD uses 35K steps on a single GPU under 1\,GB, reaching 28.06 FID---worse in absolute terms but demonstrating that distribution matching with LoRA-based fake scores is viable under extreme resource constraints.
 
 \begin{table}[t]
-\caption{Comparison with published one-step methods on unconditional CIFAR-10 32$\times$32. $^\dagger$EDM teacher. $^\ddagger$DDPM teacher. $^\S$Single GPU, $<$1\,GB, 35K steps.}
+\caption{Comparison with published one-step methods on unconditional CIFAR-10 32$\times$32. All use standard 50K/50K FID protocol. $^\dagger$EDM teacher. $^\ddagger$DDPM teacher. $^\S$Single GPU, $<$1\,GB, 35K steps.}
 \label{tab:comparison}
 \centering
 \small
@@ -573,17 +573,17 @@ CTM~\citep{kim2024consistency} & 1 & 1.98 & ICLR'24 \\
 \multicolumn{4}{l}{\textit{One-step, DDPM teacher$^\ddagger$:}} \\
 Luhman \& Luhman~\citep{luhman2021knowledge} & 1 & 9.36 & arXiv'21 \\
 Prog.\ Distill.~\citep{salimans2022progressive} & 1 & 9.12 & ICLR'22 \\
-\textbf{AdaDMD (ours)}$^\S$ & \textbf{1} & \textbf{28.06} & --- \\
+\textbf{AdaDMD (ours)}$^\S$ & \textbf{1} & \textbf{30.05} & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The gap between AdaDMD (28.06) and DDPM-teacher baselines (9.12--9.36) is attributable to our extreme resource constraint: 35K training steps versus significantly longer training in prior work. However, AdaDMD's 87\% relative improvement from MSE baseline (222 FID) demonstrates the effectiveness of the LoRA-based framework and phase-aligned warmup. The contributions---memory-efficient fake scores, adaptive weighting, and principled training schedule design---are orthogonal to the teacher and compute budget.
+The gap between AdaDMD (30.05 FID, standard protocol) and DDPM-teacher baselines (9.12--9.36) is attributable to our extreme resource constraint: 35K training steps on a single GPU versus significantly longer training in prior work. AdaDMD's 87\% relative improvement from MSE baseline (222 FID) demonstrates the effectiveness of the LoRA-based framework and phase-aligned warmup. The contributions---memory-efficient fake scores, adaptive weighting, and principled training schedule design---are orthogonal to the teacher and compute budget.
 
 \subsection{Memory Efficiency}
 \label{sec:memory}
 
-Table~\ref{tab:memory} and Figure~\ref{fig:memory} profile peak GPU memory. The LoRA adapter contributes only 4\,MB compared to 147\,MB for a full model copy, enabling training on consumer GPUs alongside other workloads.
+Table~\ref{tab:memory} and Figure~\ref{fig:memory} profile peak GPU memory. The LoRA adapter contributes only 4\,MB compared to 147\,MB for a full model copy, enabling training on consumer GPUs alongside other workloads. The full 35K-step training run completes in approximately 60 minutes on a single H100 GPU, excluding teacher pair generation (which takes ${\sim}$45 minutes for 10K pairs and is amortized across experiments).
 
 \begin{figure}[t]
 \centering
@@ -617,7 +617,7 @@ Optimizers + buffers & $\sim$670 \\
 \label{sec:discussion}
 
 \paragraph{FID gap analysis.}
-Our best one-step result (28.06 FID) remains far from state-of-the-art CIFAR-10 distillation (CTM: 1.98, SiD: 1.92; Table~\ref{tab:comparison}). Three factors account for this gap: (1) the DDPM teacher produces lower-quality images than EDM~\citep{karras2022elucidating}; (2) we train for 35K steps versus 300K+ in DMD~\citep{yin2024onestep}; (3) the DDPM UNet at $t{=}0$ is architecturally suboptimal for direct noise-to-image mapping. The 87\% relative improvement from MSE baseline (222 FID) to phase-aligned AdaDMD (28.06) under these constraints demonstrates the effectiveness of our training schedule design, and the method's contributions are orthogonal to the choice of teacher.
+Our best one-step result (30.05 FID, standard 50K/50K protocol) remains far from published CIFAR-10 distillation results (CTM: 1.98, SiD: 1.92; Table~\ref{tab:comparison}). Three factors account for this gap: (1) the DDPM teacher produces lower-quality images than EDM~\citep{karras2022elucidating}; (2) we train for 35K steps versus 300K+ in DMD~\citep{yin2024onestep}; (3) the DDPM UNet at $t{=}0$ is architecturally suboptimal for direct noise-to-image mapping. The 87\% relative improvement from MSE baseline to phase-aligned AdaDMD under these constraints demonstrates the effectiveness of our training schedule design, and the method's contributions are orthogonal to the choice of teacher.
 
 \paragraph{Regression loss as persistent anchor.}
 Unpaired regression ($\text{MSE}(G(\bz), \bx_{\text{random}})$) causes severe mean collapse (output std drops to 0.07 within 5K steps). Even paired L1/smooth-L1 collapses; only paired LPIPS~\citep{zhang2018unreasonable} maintains diversity (std $> 0.4$). The DM loss with LoRA-based fake scores provides weak distributional gradients---the density-ratio network achieves only $\sim$50\% NCE accuracy at intermediate noise levels---and requires the stabilizing effect of regression. A full model copy for the fake score (as in DMD) may produce stronger gradients that enable regression-free training, as demonstrated by DMD2~\citep{yin2024dmd2}. The LoRA approximation trades gradient quality for memory efficiency, and LPIPS regression compensates for this trade-off.
@@ -641,7 +641,7 @@ The optimal Phase 1 duration (5K steps) and warmup alignment are specific to our
 \section{Conclusion}
 \label{sec:conclusion}
 
-AdaDMD demonstrates that the DMD framework can be made substantially more memory-efficient through LoRA-based fake score estimation, while careful learning rate scheduling is critical for quality. The LoRA adapter reduces the fake score model from 35.7M to 1.08M parameters (97\% reduction). The key finding is \textbf{phase-aligned warmup}: aligning the learning rate warmup with the regression-only training phase (both 5,000 steps) yields \textbf{28.06 FID} on CIFAR-10---an 87\% improvement over MSE distillation and a $3{\times}$ improvement over standard warmup---on a single GPU using under 1\,GB memory. The mechanism is that the DM phase always trains with a decreasing learning rate, preventing noisy distributional gradients from destabilizing the generator.
+AdaDMD demonstrates that the DMD framework can be made substantially more memory-efficient through LoRA-based fake score estimation, while careful learning rate scheduling is critical for quality. The LoRA adapter reduces the fake score model from 35.7M to 1.08M parameters (97\% reduction). The key finding is \textbf{phase-aligned warmup}: aligning the learning rate warmup with the regression-only training phase (both 5,000 steps) yields \textbf{30.05 FID} on CIFAR-10 (standard 50K/50K protocol)---an 87\% improvement over MSE distillation and a $3{\times}$ improvement over standard warmup---on a single GPU using under 1\,GB memory. The mechanism is that the DM phase always trains with a decreasing learning rate, preventing noisy distributional gradients from destabilizing the generator.
 
 A validation study varying Phase 1 duration ($\{3\text{K}, 5\text{K}, 7\text{K}\}$) confirms that both optimal regression duration \emph{and} warmup alignment are necessary: 5K regression steps is the sweet spot, and alignment compounds this advantage. Two key next steps remain: scaling to larger models (ImageNet, Stable Diffusion) and investigating whether the training schedule design transfers to non-LoRA settings. The principle---jointly optimizing regression duration and learning rate scheduling around the multi-phase boundary---may generalize to other procedures where loss terms activate at different stages.
 
